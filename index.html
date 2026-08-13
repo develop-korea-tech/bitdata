@@ -1,0 +1,2113 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
+
+:root{
+  --void:#13141C; --coal:#1C1E28; --slate:#272A36; --edge:#414658;
+  --paper:#F3EFE5; --paper2:#E1DAC9; --ink:#171307;
+  --seal:#D4483A; --gold:#E5C078; --gold2:#B08F4E; --jade:#63C4A6;
+  --text:#D6DAE4; --dim:#A2A8B8;
+  --disp:'Gowun Batang','Nanum Myeongjo','Apple SD Gothic Neo',serif;
+  --body:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+#tsg{
+  font-family:var(--body);color:var(--text);min-height:100vh;width:100%;position:relative;overflow-x:hidden;
+  display:flex;flex-direction:column;
+  background:
+    radial-gradient(ellipse 130% 62% at 50% 0%, #2F3242 0%, transparent 62%),
+    radial-gradient(ellipse 100% 48% at 50% 100%, #2A1A20 0%, transparent 58%),
+    var(--void);
+}
+#tsg::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.14;
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0 1px,transparent 1px 3px)}
+.wrap{width:100%;max-width:1280px;margin:0 auto;padding:0 26px;position:relative;z-index:3;flex:1;display:flex;flex-direction:column}
+.hide{display:none !important}
+
+/* 상태바 */
+.bar{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,rgba(19,20,28,.98),rgba(19,20,28,.9));
+  border-bottom:1px solid var(--edge);backdrop-filter:blur(8px)}
+.bar .in{max-width:1280px;margin:0 auto;padding:10px 26px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.rk{font-family:var(--disp);font-size:17.9px;color:var(--paper);font-weight:700;white-space:nowrap}
+.rk i{font-style:normal;font-family:var(--mono);font-size:14px;color:var(--gold);margin-left:7px}
+.shw{flex:1;min-width:180px}
+.shw .lb{display:flex;justify-content:space-between;font-family:var(--mono);font-size:14px;color:var(--dim);letter-spacing:.12em;margin-bottom:4px}
+.shw .lb b{color:var(--seal)}
+.shb{height:6px;background:#0E0F15;border:1px solid var(--edge);overflow:hidden}
+.shb i{display:block;height:100%;background:linear-gradient(90deg,#752721,#D8493A);transition:width .8s cubic-bezier(.2,.8,.3,1)}
+
+/* 버튼 */
+.btn{font-family:var(--body);font-size:17.3px;font-weight:500;cursor:pointer;color:var(--paper);
+  background:linear-gradient(180deg,var(--slate),var(--coal));border:1px solid var(--edge);padding:12px 26px;transition:.16s}
+.btn:hover:not(:disabled){border-color:var(--gold);color:#fff}
+.btn:disabled{opacity:.28;cursor:not-allowed}
+.key{background:linear-gradient(180deg,#CBA860,#94702E);color:#191204;border-color:#E0C27C;font-weight:700}
+.key:hover:not(:disabled){color:#000;box-shadow:0 8px 28px rgba(200,164,92,.26)}
+.sm{padding:7px 14px;font-size:14.7px;background:transparent;border-color:transparent;color:var(--dim)}
+.sm:hover:not(:disabled){color:var(--gold)}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.rowc{justify-content:center}
+
+/* 타이틀 */
+.title{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 0}
+.title .kk{font-family:var(--body);font-weight:600;font-size:19px;letter-spacing:.18em;color:var(--gold);margin-bottom:26px}
+.smark{width:118px;height:118px;margin-bottom:26px}
+.smark svg{width:100%;height:100%;animation:br 5s ease-in-out infinite}
+@keyframes br{0%,100%{opacity:.9;transform:scale(1)}50%{opacity:1;transform:scale(1.03)}}
+.title h1{font-family:var(--disp);font-weight:700;font-size:clamp(40px,7.2vw,75px);color:var(--paper);line-height:1.14;text-shadow:0 0 48px rgba(180,52,42,.28)}
+.title h1 em{display:block;font-style:normal;color:var(--seal);font-size:.4em;letter-spacing:.24em;margin-top:16px;font-weight:400}
+.title .lg{color:var(--dim);font-size:17.9px;line-height:2.05;max-width:520px;margin:28px auto 32px}
+.title .lg b{color:var(--gold);font-weight:400}
+.herocard{display:flex;gap:18px;align-items:center;border:1px solid var(--edge);background:rgba(31,34,44,.8);padding:16px 20px;margin-bottom:26px;max-width:560px;text-align:left}
+.hp{width:86px;height:104px;flex-shrink:0;border:1px solid var(--edge)}
+.hn{font-family:var(--disp);font-size:24.3px;color:var(--paper);font-weight:700}
+.hn span{font-family:var(--disp);font-size:15.4px;color:var(--seal);margin-left:8px;letter-spacing:.16em}
+.hr{font-family:var(--mono);font-size:14px;color:var(--gold);letter-spacing:.09em;margin:6px 0 9px}
+.hdesc{font-size:16px;line-height:1.8;color:var(--text)}
+.nin{display:none;background:#0E0F15;border:1px solid var(--edge);color:var(--paper);font-family:var(--disp);font-size:19.2px;
+  text-align:center;padding:12px 16px;width:240px;outline:none;margin-bottom:22px}
+.nin:focus{border-color:var(--gold)}
+
+/* 헤더 */
+.hd{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  border-bottom:1px solid var(--edge);padding:26px 0 15px;margin-bottom:6px}
+.hd h2{font-family:var(--disp);font-size:33.3px;color:var(--paper);font-weight:700}
+.hd .mt{font-family:var(--mono);font-size:14.1px;color:var(--dim);margin-top:6px;letter-spacing:.05em}
+.hd .mt b{color:var(--gold)}
+
+/* 연대기 */
+.act{margin-top:30px}
+.atag{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.atag .n{font-family:var(--mono);font-size:14px;background:var(--seal);color:#fff;padding:4px 9px;letter-spacing:.18em}
+.atag h3{font-family:var(--disp);font-size:21.8px;color:var(--paper2);font-weight:700}
+.atag .r{flex:1;height:1px;background:linear-gradient(90deg,var(--edge),transparent)}
+.eps{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:9px}
+.ep{display:flex;gap:14px;align-items:center;text-align:left;cursor:pointer;background:rgba(39,42,54,.72);
+  border:1px solid var(--edge);border-left:2px solid var(--gold2);padding:14px 15px;transition:.15s}
+.ep:hover:not(.locked){background:rgba(56,60,76,.85);border-left-color:var(--gold);transform:translateX(3px)}
+.ep.locked{opacity:.28;cursor:not-allowed;border-left-color:var(--edge)}
+.ep.done{border-left-color:var(--seal)}
+.ep .no{font-family:var(--mono);font-size:14px;color:var(--dim);width:34px;flex-shrink:0}
+.ep .bd{flex:1;min-width:0;display:block}
+.ep .t,.ep .s{display:block}
+.ep .t{font-family:var(--disp);font-size:19.8px;color:var(--paper);font-weight:700}
+.ep .s{font-size:14.7px;color:var(--dim);margin-top:4px;line-height:1.5}
+.ep .st{width:34px;height:34px;flex-shrink:0}
+
+/* 소설 — 2단 */
+.novel{flex:1;display:flex;flex-direction:column;padding:22px 0 26px;min-height:520px}
+.ccard{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;animation:fi .9s}
+@keyframes fi{from{opacity:0}to{opacity:1}}
+.ccard .n{font-family:var(--mono);font-size:14px;letter-spacing:.36em;color:var(--seal);margin-bottom:16px}
+.ccard .t{font-family:var(--disp);font-size:clamp(30px,4.8vw,48px);color:var(--paper);font-weight:700;line-height:1.35}
+.nstage{flex:1;display:grid;grid-template-columns:330px 1fr;gap:28px;align-items:stretch}
+.nleft{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:16px}
+.pt{width:250px;height:300px;border:1px solid var(--edge);transition:.35s;filter:drop-shadow(0 12px 34px rgba(0,0,0,.65))}
+.pt.speak{transform:translateY(-6px) scale(1.03)}
+.ptn{font-family:var(--disp);font-size:20.5px;color:var(--paper);font-weight:700;text-align:center}
+.ptr{font-family:var(--mono);font-size:14px;color:var(--gold);letter-spacing:.14em;margin-top:4px;text-align:center}
+.nstage>div{display:flex;flex-direction:column;min-width:0}
+.pt.narr{opacity:.16}
+.dbox{flex:1;border:1px solid var(--edge);border-left:2px solid var(--gold);
+  background:linear-gradient(180deg,rgba(34,37,48,.97),rgba(22,24,32,.97));padding:24px 26px 22px;
+  display:flex;flex-direction:column;justify-content:center;position:relative;cursor:pointer;min-height:280px}
+.dbox .who{font-family:var(--disp);font-size:17.9px;font-weight:700;color:var(--gold);margin-bottom:12px}
+.dbox .who.nr{color:var(--dim);font-family:var(--mono);font-size:14px;letter-spacing:.24em;font-weight:400}
+.dbox .ln{font-family:var(--disp);font-size:clamp(21px,2.52vw,30px);line-height:1.9;color:var(--paper);max-width:44em}
+.dbox .ln.nr{font-size:clamp(19px,2.04vw,22px);color:var(--text)}
+.dbox .nx{position:absolute;right:20px;bottom:16px;color:var(--gold);font-size:15.4px;animation:bk 1.1s infinite}
+@keyframes bk{0%,100%{opacity:.22}50%{opacity:1}}
+.log{margin-top:12px;max-height:96px;overflow-y:auto;border-top:1px solid var(--edge);padding-top:10px;
+  font-size:15.4px;line-height:1.75;color:var(--dim)}
+.log div{margin-bottom:3px}
+.log b{color:var(--gold2);font-weight:400}
+
+/* 선택지 */
+.cbx{margin-top:14px;animation:fi .4s}
+.cbx .q{font-family:var(--mono);font-size:14px;letter-spacing:.22em;color:var(--dim);margin-bottom:10px;text-align:center}
+.copts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.copt{text-align:left;background:rgba(39,42,54,.75);border:1px solid var(--edge);color:var(--paper);
+  padding:16px 18px;cursor:pointer;font-family:var(--disp);font-size:20.5px;transition:.14s}
+.copt:hover{border-color:var(--seal);background:rgba(58,29,27,.55);transform:translateY(-2px)}
+.copt small{display:block;font-family:var(--body);font-size:14.7px;color:var(--dim);margin-top:6px}
+
+/* 브리핑 */
+.brief{flex:1;padding:24px 0 30px}
+.bgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}
+.bi{border:1px solid var(--edge);border-left:2px solid var(--gold2);background:rgba(31,34,44,.8);
+  padding:13px 15px;font-size:17.3px;line-height:1.75;color:var(--text);display:flex;gap:10px}
+.bi span{font-family:var(--mono);font-size:14px;color:var(--gold2);flex-shrink:0;padding-top:3px}
+.bi b{color:var(--gold);font-weight:600}
+
+/* 설전 — 2단 */
+.duel{flex:1;display:grid;grid-template-columns:380px 1fr;gap:22px;padding:20px 0 28px;align-items:stretch}
+.duel>div{display:flex;flex-direction:column;min-width:0}
+#jd{flex:1}
+.jd{height:100%}
+.foe{border:1px solid var(--edge);background:radial-gradient(ellipse 80% 110% at 50% 0%,rgba(64,40,38,.5),rgba(22,24,32,.9));
+  padding:22px 16px 18px;text-align:center;position:relative;overflow:hidden}
+.foe.sk{animation:sh .3s}
+@keyframes sh{0%,100%{transform:none}25%{transform:translateX(-7px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}}
+.foe .p{width:190px;height:228px;border:1px solid var(--edge);margin:0 auto 12px;transition:.15s}
+.foe .p.hit{filter:brightness(2.5) saturate(.15)}
+.foe .nm{font-family:var(--disp);font-size:26.9px;color:var(--paper);font-weight:700}
+.foe .ro{font-family:var(--mono);font-size:14px;color:var(--gold);letter-spacing:.15em;margin:5px 0 14px}
+.foe .bl{font-family:var(--mono);font-size:14px;color:var(--dim);letter-spacing:.16em;margin-bottom:5px}
+.dbar{height:9px;background:#0E0F15;border:1px solid var(--edge);overflow:hidden}
+.dbar i{display:block;height:100%;background:linear-gradient(90deg,#752721,#D8493A);transition:width .45s cubic-bezier(.2,.8,.3,1)}
+.pop{position:absolute;left:50%;top:26%;transform:translateX(-50%);font-family:var(--disp);font-weight:700;font-size:48.6px;
+  pointer-events:none;animation:pp 1s ease-out forwards;white-space:nowrap}
+@keyframes pp{0%{opacity:0;transform:translate(-50%,14px) scale(.6)}20%{opacity:1;transform:translate(-50%,-4px) scale(1.15)}100%{opacity:0;transform:translate(-50%,-60px) scale(1)}}
+
+/* 문제지 */
+.doc{background:linear-gradient(168deg,var(--paper),var(--paper2));color:var(--ink);padding:22px 24px 20px;
+  box-shadow:0 20px 50px rgba(0,0,0,.6);position:relative;animation:sl .32s cubic-bezier(.2,.9,.3,1)}
+@keyframes sl{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.doc::after{content:'';position:absolute;right:16px;top:14px;width:52px;height:52px;border:2px solid rgba(180,52,42,.14);border-radius:50%}
+.tm{height:3px;background:rgba(60,48,26,.16);margin:-22px -24px 16px}
+.tm i{display:block;height:100%;background:var(--gold2);transition:width .95s linear}
+.tm i.wn{background:var(--seal)}
+.doc .tg{font-family:var(--mono);font-size:14px;color:#7A6A4A;letter-spacing:.18em;margin-bottom:9px}
+.doc .qq{font-family:var(--disp);font-size:clamp(21px,2.28vw,25px);line-height:1.62;font-weight:700;color:#151105;padding-right:46px}
+.opts{display:grid;gap:7px;margin-top:16px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;cursor:pointer;border:1px solid rgba(90,74,44,.26);
+  background:rgba(255,253,246,.55);color:#26200E;padding:13px 14px;font-family:var(--body);font-size:17.9px;line-height:1.55;transition:.12s}
+.opt:hover:not(:disabled){background:#FFFDF7;border-color:#8A6B2C;transform:translateX(3px)}
+.opt:disabled{cursor:default}
+.opt .k{font-family:var(--mono);font-size:14.7px;font-weight:600;color:#8A6B2C;flex-shrink:0}
+.opt.o{background:#CCE4CE;border-color:#3B7442}
+.opt.x{background:#EFCDC9;border-color:#A63F35}
+.opt.f{opacity:.24}
+
+/* 판정 */
+.jd{margin-top:13px;border-left:2px solid var(--gold);background:rgba(27,27,33,.9);padding:15px 17px;animation:sl .3s}
+.jd .h{font-family:var(--mono);font-size:14px;letter-spacing:.16em;margin-bottom:8px}
+.jd .h.o{color:var(--jade)} .jd .h.x{color:var(--seal)}
+.jd .rl{font-family:var(--disp);font-size:19.8px;color:var(--paper);line-height:1.7;margin-bottom:10px}
+.jd p{font-size:17.3px;line-height:1.85;color:var(--text)}
+.jd p b{color:var(--gold)}
+.jd .go{width:100%;margin-top:14px}
+
+/* 내 상태 */
+.me{margin-top:14px;border:1px solid var(--edge);background:rgba(28,31,40,.92);padding:14px 15px}
+.me .tp{display:flex;justify-content:space-between;align-items:center;gap:9px;margin-bottom:11px;flex-wrap:wrap}
+.me .nm{font-family:var(--disp);font-size:17.9px;color:var(--paper);font-weight:700}
+.me .nm i{font-style:normal;font-family:var(--mono);font-size:14px;color:var(--gold);margin-left:7px}
+.mo{font-family:var(--mono);font-size:14px;color:var(--gold)}
+.mo.hot{color:#F0863C;text-shadow:0 0 12px rgba(240,134,60,.5)}
+.g{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+.g label{font-family:var(--mono);font-size:14px;color:var(--dim);width:34px}
+.g .b{flex:1;height:6px;background:#0E0F15;border:1px solid var(--edge);overflow:hidden}
+.g .b i{display:block;height:100%;transition:width .4s}
+.g .v{font-family:var(--mono);font-size:14px;color:var(--dim);width:80px;text-align:right}
+.g1 i{background:linear-gradient(90deg,#3B7442,#5FBE6E)}
+.g2 i{background:linear-gradient(90deg,#2E5A86,#4C97D2)}
+.g3 i{background:linear-gradient(90deg,#7E663A,#C8A45C)}
+.cds{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:12px}
+.cd{background:rgba(56,60,76,.5);border:1px solid var(--edge);color:var(--text);padding:10px 5px;cursor:pointer;
+  font-size:14px;transition:.14s;line-height:1.35}
+.cd:hover:not(:disabled){border-color:var(--gold);color:#fff}
+.cd:disabled{opacity:.26;cursor:not-allowed}
+.cd b{display:block;font-family:var(--disp);font-size:16.6px;font-weight:700;margin-bottom:3px;color:var(--paper)}
+.cd i{font-style:normal;font-family:var(--mono);font-size:14px;color:var(--dim)}
+
+/* 결과 */
+.res{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 10px}
+.res .st{width:104px;height:104px;margin-bottom:18px;animation:si .5s cubic-bezier(.2,1.4,.4,1)}
+@keyframes si{0%{opacity:0;transform:scale(2.3) rotate(-14deg)}70%{opacity:1;transform:scale(.94) rotate(2deg)}100%{transform:scale(1) rotate(0)}}
+.res h2{font-family:var(--disp);font-size:43.5px;font-weight:700;margin-bottom:8px}
+.res h2.w{color:var(--gold)} .res h2.l{color:var(--seal)}
+.res .sb{color:var(--dim);font-size:16.6px;margin-bottom:22px;line-height:1.9}
+.tal{display:inline-grid;grid-template-columns:auto auto;gap:7px 32px;font-family:var(--mono);font-size:15.4px;
+  border-top:1px solid var(--edge);border-bottom:1px solid var(--edge);padding:16px 26px;margin-bottom:24px;text-align:left}
+.tal dt{color:var(--dim)} .tal dd{color:var(--paper);text-align:right}
+.pm{font-family:var(--disp);font-size:20.5px;color:var(--jade);margin-bottom:18px}
+
+/* 파편/요약 */
+.frg{border:1px solid var(--edge);border-left:2px solid var(--seal);background:rgba(18,18,22,.75);padding:14px 16px;margin-bottom:8px}
+.frg .c{font-family:var(--mono);font-size:14px;color:var(--dim);letter-spacing:.1em;margin-bottom:6px}
+.frg .q{font-family:var(--disp);font-size:19.2px;color:var(--paper);font-weight:700;line-height:1.6}
+.frg .a{font-size:16px;color:var(--jade);margin-top:7px}
+.frg .e{font-size:15.4px;color:var(--dim);margin-top:4px;line-height:1.7}
+.sumsec{margin-bottom:20px}
+.sumsec h4{font-family:var(--disp);font-size:20.5px;color:var(--gold);font-weight:700;margin-bottom:9px;
+  border-bottom:1px solid var(--edge);padding-bottom:7px}
+.whg{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:10px}
+.wc{display:flex;gap:14px;border:1px solid var(--edge);background:rgba(31,34,44,.8);padding:12px;align-items:flex-start}
+.wp{width:92px;height:110px;flex-shrink:0;border:1px solid var(--edge)}
+.wi{flex:1;min-width:0}
+.wn{font-family:var(--disp);font-size:20.5px;color:var(--paper);font-weight:700}
+.wr{font-family:var(--mono);font-size:14px;color:var(--gold);letter-spacing:.1em;margin:4px 0 7px}
+.wl{font-family:var(--mono);font-size:14px;margin-bottom:6px}
+.wd{font-size:15.4px;line-height:1.7;color:var(--dim)}
+.bi.fact{border-left-color:var(--seal);background:rgba(46,22,20,.4)}
+.bi.fact span{color:var(--seal);font-family:var(--disp);font-size:16.6px}
+.factbox{display:flex;gap:14px;align-items:flex-start;max-width:620px;border:1px solid var(--edge);border-left:2px solid var(--seal);background:rgba(30,18,17,.6);padding:14px 16px;margin:-8px 0 22px;text-align:left;font-size:16px;line-height:1.8;color:var(--text)}
+.factbox span{font-family:var(--disp);font-size:21.8px;color:var(--seal);flex-shrink:0}
+.factbox b{color:var(--gold);font-weight:600}
+.ep.inter{border-left-color:var(--seal);background:rgba(40,20,20,.4);grid-column:1/-1}
+.ep.inter .no{color:var(--seal);font-family:var(--disp);width:34px}
+.blank{text-align:center;color:var(--dim);font-size:16.6px;padding:60px 0;line-height:2}
+
+@media (max-width:960px){
+  .nstage{grid-template-columns:1fr}
+  .nleft{flex-direction:row;justify-content:center;align-items:center;gap:16px}
+  .pt{width:110px;height:132px}
+  .duel{grid-template-columns:1fr}
+  .bgrid,.copts{grid-template-columns:1fr}
+  .cds{grid-template-columns:repeat(4,1fr)}
+  .wrap,.bar .in{padding-left:14px;padding-right:14px}
+  .dbox{min-height:200px;padding:18px 18px 20px}
+}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+</style>
+
+<div id="tsg">
+  <div class="bar hide" id="bar"><div class="in">
+    <div class="rk" id="b-rk"></div>
+    <div class="shw"><div class="lb"><span>태산그룹 지분</span><b id="b-sh">0.0%</b></div><div class="shb"><i id="b-fl"></i></div></div>
+    <button class="btn sm" id="go-map">연대기</button>
+  </div></div>
+
+  <div class="wrap">
+
+    <section id="s-title" class="title">
+      <div class="kk">2026 빅데이터분석기사 필기</div>
+      <div class="smark"><svg viewBox="0 0 100 100">
+        <rect x="8" y="8" width="84" height="84" fill="none" stroke="#B4342A" stroke-width="3"/>
+        <rect x="16" y="16" width="68" height="68" fill="none" stroke="#B4342A" stroke-width="1" opacity=".55"/>
+        <path d="M30 34 H70 M30 50 H70 M30 66 H58" stroke="#B4342A" stroke-width="4" stroke-linecap="square"/>
+        <circle cx="66" cy="66" r="7" fill="#B4342A"/></svg></div>
+      <h1>태산그룹 막내아들<em>THE DATA HEIR</em></h1>
+      <p class="lg">12년을 파견직으로 살다 남의 죄를 뒤집어쓰고 죽었다.<br>
+        눈을 뜨니 <b>태산그룹 회장의 잊혀진 막내 손자</b>.<br>
+        무기는 두 개 — 15년치 미래 기억, 그리고 책상 위의 필기 교재 한 권.</p>
+      <div class="herocard"><div class="hp" id="heroart"></div>
+        <div class="hb"><div class="hn">진도윤 <span>陳道潤</span></div>
+        <div class="hr">태산그룹 회장 진태산의 넷째 아들의 아들 · 24세</div>
+        <div class="hdesc">1998년 국도에서 아버지를 잃었다. 어머니는 이 집 주방 뒷문으로 들어온 사람이었다.</div></div></div>
+      <div class="row rowc"><button class="btn key" id="b-new">1화부터 시작</button><button class="btn" id="b-cont">이어하기</button></div>
+      <div class="row rowc" style="margin-top:12px"><button class="btn sm" id="b-wipe">기록 삭제</button></div>
+    </section>
+
+    <section id="s-map" class="hide">
+      <div class="hd">
+        <div><h2>연대기</h2><div class="mt" id="m-mt"></div></div>
+        <div class="row"><button class="btn sm" id="b-sum">핵심 정리</button>
+          <button class="btn sm" id="b-who">인명록</button>
+          <button class="btn sm" id="b-frag">기억의 파편 <span id="fn"></span></button>
+          <button class="btn sm" id="b-title">타이틀</button></div>
+      </div>
+      <div id="m-body"></div>
+    </section>
+
+    <section id="s-novel" class="hide novel">
+      <div id="ccard"></div>
+      <div class="nstage" id="nstage">
+        <div class="nleft"><div class="pt" id="pt"></div><div><div class="ptn" id="ptn"></div><div class="ptr" id="ptr"></div></div></div>
+        <div>
+          <div class="dbox" id="dbox">
+            <div class="who" id="who"></div>
+            <div class="ln" id="ln"></div>
+            <div class="nx" id="nx">▼ 클릭 / Enter</div>
+          </div>
+          <div class="log" id="dlog"></div>
+          <div id="chost"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="s-brief" class="hide brief">
+      <div class="hd"><div><h2 id="br-t"></h2><div class="mt" id="br-s"></div></div>
+        <div class="row"><button class="btn key" id="br-go">설전 시작</button></div></div>
+      <div class="bgrid" id="br-body"></div>
+    </section>
+
+    <section id="s-duel" class="hide duel">
+      <div>
+        <div class="foe" id="foe">
+          <div class="p" id="f-p"></div>
+          <div class="nm" id="f-n"></div>
+          <div class="ro" id="f-r"></div>
+          <div class="bl">논리 방어선</div>
+          <div class="dbar"><i id="f-hp"></i></div>
+        </div>
+        <div class="me">
+          <div class="tp"><div class="nm" id="m-n"></div><div class="mo" id="m-mo"></div></div>
+          <div class="g g1"><label>신뢰</label><div class="b"><i id="m-hp"></i></div><div class="v" id="m-hpv"></div></div>
+          <div class="g g2"><label>정보력</label><div class="b"><i id="m-mp"></i></div><div class="v" id="m-mpv"></div></div>
+          <div class="g g3"><label>경험</label><div class="b"><i id="m-xp"></i></div><div class="v" id="m-xpv"></div></div>
+          <div class="cds" id="cds"></div>
+          <div class="row" style="margin-top:10px"><button class="btn sm" id="b-flee">물러난다</button>
+            <button class="btn sm" id="b-brief2">정리 다시보기</button></div>
+        </div>
+      </div>
+      <div>
+        <div class="doc">
+          <div class="tm"><i id="tmb"></i></div>
+          <div class="tg" id="q-tg"></div>
+          <div class="qq" id="q-q"></div>
+          <div class="opts" id="q-o"></div>
+        </div>
+        <div id="jd"></div>
+      </div>
+    </section>
+
+    <section id="s-res" class="hide"><div class="res" id="r-body"></div></section>
+
+    <section id="s-frag" class="hide">
+      <div class="hd"><div><h2>기억의 파편</h2><div class="mt" id="fr-s"></div></div>
+        <div class="row"><button class="btn sm" id="b-frd">회상 설전</button><button class="btn sm" id="b-frb">돌아가기</button></div></div>
+      <div id="fr-body"></div>
+    </section>
+
+    <section id="s-who" class="hide">
+      <div class="hd"><div><h2>인명록</h2><div class="mt" id="wh-s"></div></div>
+        <div class="row"><button class="btn sm" id="b-whb">돌아가기</button></div></div>
+      <div id="wh-body"></div>
+    </section>
+
+    <section id="s-sum" class="hide">
+      <div class="hd"><div><h2>핵심 정리</h2><div class="mt">필기 전 범위 요약 · 21개 절</div></div>
+        <div class="row"><button class="btn sm" id="b-sumb">돌아가기</button></div></div>
+      <div id="sum-body"></div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ════════════════════════════════════════════════
+   인물 초상 — 파라메트릭 벡터 아트
+   viewBox 200×240 반신 흉상. mood로 표정이 바뀐다.
+   ════════════════════════════════════════════════ */
+var SKIN=["#EFD5B8","#E3C09C","#CBA47F"];
+var SKSH=["#D4B392","#C69F78","#AE855F"];
+
+var CHARS={
+"진도윤":{w:1,r:"태산그룹 · 회장의 막내 손자",s:0,h:"part",hc:"#17171D",su:"#1E2231",ti:"#8E2C24",g:0,a:0,
+ p:"12년을 파견직으로 살다 죽었다. 눈을 뜨니 스물넷이었다."},
+"한금옥":{w:0,r:"진성준의 부인 · 큰어머니",s:0,h:"wave",hc:"#241A22",su:"#3A2430",ti:"",g:0,a:1,
+ p:"가정부의 아들이 지분을 받는 꼴은 못 본다고 했다."},
+"이수진":{w:0,r:"도윤의 어머니 · 고인",s:0,h:"bob",hc:"#241E1A",su:"#2A2A34",ti:"",g:0,a:0,
+ p:"본채에 한 번도 들어가 보지 못하고 세상을 떠났다."},
+"도재하":{w:0,r:"미래그룹 · 도재우의 동생",s:0,h:"bun",hc:"#1C1C24",su:"#22262E",ti:"",g:0,a:0,
+ p:"정략혼 상대로 앉혀졌으나, 정작 본인은 그 자리를 비웃었다."},
+"진태산":{w:2,r:"태산그룹 회장 · 할아버지",s:2,h:"slick",hc:"#B9B4AC",su:"#15151B",ti:"#6A5A2E",g:1,a:2,
+ p:"통계를 배운 적 없으면서 귀무가설로 말하는 노인."},
+"진성호":{w:1,r:"태산건설 상무 · 사촌형",s:0,h:"slick",hc:"#1B1B22",su:"#2A2436",ti:"#7A2E5A",g:0,a:0,
+ p:"큰집 장손. 15년 뒤 배임으로 구속되는 얼굴."},
+"진성준":{w:2,r:"태산IT 대표이사 · 큰아버지",s:1,h:"slick",hc:"#4A4A54",su:"#191C28",ti:"#2E4A6E",g:1,a:1,
+ p:"그룹의 모든 데이터를 쥔 남자. 결과를 보고 기준을 바꾼다."},
+"진하영":{w:0,r:"태산홀딩스 기획총괄 · 사촌누나",s:0,h:"bun",hc:"#1A1A20",su:"#23202C",ti:"",g:0,a:0,
+ p:"유일하게 실력으로 올라온 사람. 그래서 가장 위험하다."},
+"강만식":{w:2,r:"기술기획팀장",s:1,h:"thin",hc:"#2C2C32",su:"#2C2A28",ti:"#4A4A50",g:1,a:1,
+ p:"지난 생에서 서버 로그를 지우고 나를 밀어낸 사람."},
+"오세라":{w:0,r:"전략기획실 차장",s:0,h:"bob",hc:"#201C1C",su:"#23262E",ti:"",g:0,a:0,
+ p:"봐주는 것이 없다. 그래서 믿을 수 있다."},
+"황중태":{w:1,r:"법무팀장",s:1,h:"crew",hc:"#22222A",su:"#1C1C22",ti:"#3A3A46",g:2,a:1,
+ p:"적법하다는 말을 가장 자주 하는 사람."},
+"브라이언 조":{w:1,r:"모건리컨설팅 파트너",s:0,h:"slick",hc:"#3A2A20",su:"#232A3A",ti:"#B4342A",g:0,a:0,
+ p:"표지가 두꺼운 300억짜리 제안서를 들고 왔다."},
+"남기표":{w:2,r:"태산유통 회계부장",s:2,h:"part",hc:"#2A2620",su:"#262420",ti:"#6A5A3A",g:1,a:1,
+ p:"매월 셋째 주 화요일에 값이 비는 이유를 아는 사람."},
+"한지운":{w:0,r:"태산 데이터랩 수석연구원",s:0,h:"wave",hc:"#1E1E26",su:"#22262E",ti:"",g:2,a:0,
+ p:"변수를 300개 넣고 학습 정확도 99.2%를 자랑했다."},
+"서민아":{w:0,r:"특별감사 · 검사",s:0,h:"bob",hc:"#17171C",su:"#1A1D26",ti:"",g:0,a:0,
+ p:"15년 뒤, 죽은 파견직 하나를 위해 재수사를 요청한 사람."},
+"차동욱":{w:2,r:"물류본부장",s:2,h:"buzz",hc:"#22222A",su:"#2A2A24",ti:"#4A5A3A",g:0,a:1,
+ p:"물류 데이터는 그냥 도착 시간이라고 믿는다."},
+"백준혁":{w:1,r:"태산캐피탈 상무",s:1,h:"slick",hc:"#1C1C24",su:"#262232",ti:"#7A6A2E",g:0,a:0,
+ p:"투자는 감이라고 말한다. 내년 4월에 400억을 태운다."},
+"윤채린":{w:0,r:"신사업 TF 팀장",s:0,h:"bun",hc:"#221A1A",su:"#262230",ti:"",g:0,a:0,
+ p:"모형부터 정하고 문제를 나중에 맞추려 한다."},
+"마이클 서":{w:2,r:"외주 개발사 CTO",s:1,h:"crew",hc:"#2A2420",su:"#1E2430",ti:"#2E5A5A",g:2,a:0,
+ p:"시각화가 예쁘다는 이유로 언어를 고른다."},
+"도재우":{w:0,r:"미래그룹 AI부문 총괄",s:0,h:"slick",hc:"#101014",su:"#12141C",ti:"#2A6A6A",g:1,a:0,
+ p:"15년 뒤 나를 지하 3층에서 끌어낸 계획을 세운 남자."},
+"최평강":{w:0,r:"사외이사 · 통계학과 교수",s:1,h:"thin",hc:"#ABA69E",su:"#24242C",ti:"#5A4A6A",g:2,a:2,
+ p:"정확도 97%라는 말에 불량률부터 되묻는 사람."},
+"하윤수":{w:1,r:"경제일보 기자",s:0,h:"wave",hc:"#1E1A1A",su:"#2A2A32",ti:"#4A6A7A",g:0,a:0,
+ p:"y축을 30부터 잘라놓고 절벽이라 부른다."},
+"최비서":{w:1,r:"회장 비서실",s:0,h:"part",hc:"#1A1A22",su:"#16181E",ti:"#3A3A44",g:1,a:0,
+ p:"별채로 오라는 말을 가장 먼저 전해준 사람."},
+"과거의 나":{w:1,r:"지하 3층의 파견직",s:1,h:"part",hc:"#3A3A42",su:"#26262C",ti:"#3A3A42",g:0,a:1,gray:1,
+ p:"회색 배지를 목에 걸고 12년을 보냈다."},
+"이사회":{r:"태산그룹 이사 11인",group:1,p:"열한 개의 표. 지난 생에는 이름조차 몰랐던 얼굴들."}
+};
+
+var FACE=[
+'M64,92 C64,58 79,42 100,42 C121,42 136,58 136,92 C136,116 122,146 100,146 C78,146 64,116 64,92 Z',
+'M61,92 C61,56 78,40 100,40 C122,40 139,56 139,92 C139,118 124,146 100,146 C76,146 61,118 61,92 Z',
+'M58,90 C58,54 77,38 100,38 C123,38 142,54 142,90 C142,116 125,144 100,144 C75,144 58,116 58,90 Z'];
+
+var HAIR={
+slick:{f:'M56,94 C52,42 76,22 100,22 C124,22 148,42 144,94 C139,66 131,52 100,52 C69,52 61,66 56,94 Z',
+       hl:'M76,38 C86,29 104,27 118,32'},
+part :{f:'M54,94 C52,40 76,22 100,22 C124,22 146,40 144,94 C141,70 139,50 106,48 C101,63 88,72 70,63 C61,71 56,80 54,94 Z',
+       hl:'M72,40 C82,31 98,28 110,32'},
+crew :{f:'M57,88 C57,42 78,26 100,26 C122,26 143,42 143,88 C138,60 122,48 100,48 C78,48 62,60 57,88 Z',
+       hl:'M78,38 C88,31 104,30 116,34'},
+buzz :{f:'M59,84 C59,46 79,32 100,32 C121,32 141,46 141,84 C136,58 120,50 100,50 C80,50 64,58 59,84 Z',
+       hl:'M80,40 C90,34 104,34 114,37',op:.9},
+thin :{f:'M59,96 C58,72 63,54 76,45 C70,66 68,80 68,98 Z M141,96 C142,72 137,54 124,45 C130,66 132,80 132,98 Z M74,42 C86,33 114,33 126,42 C113,37 87,37 74,42 Z',
+       hl:''},
+bob  :{b:'M46,148 C42,82 68,20 100,20 C132,20 158,82 154,148 C154,166 150,178 143,186 L57,186 C50,178 46,166 46,148 Z',
+       f:'M54,94 C52,42 76,22 100,22 C124,22 148,42 146,94 C140,68 128,52 100,52 C72,52 60,66 54,94 Z',
+       s:'M54,88 C50,118 53,146 58,172 L72,172 C64,144 62,114 64,86 Z M146,88 C150,118 147,146 142,172 L128,172 C136,144 138,114 136,86 Z',
+       hl:'M74,38 C86,28 106,26 120,32'},
+bun  :{b:'M100,19 m-16,0 a16,16 0 1,0 32,0 a16,16 0 1,0 -32,0 M74,150 C70,120 72,96 76,80 L124,80 C128,96 130,120 126,150 Z',
+       f:'M56,92 C54,40 76,22 100,22 C124,22 146,40 144,92 C138,64 126,52 100,52 C74,52 62,64 56,92 Z',
+       hl:'M76,36 C88,27 108,26 120,32'},
+wave :{b:'M50,140 C46,84 72,22 100,22 C128,22 154,84 150,140 C150,156 147,166 142,172 L58,172 C53,166 50,156 50,140 Z',
+       f:'M55,96 C51,42 76,22 100,22 C124,22 149,42 145,96 C140,78 146,60 133,56 C125,69 116,58 106,63 C95,69 85,56 76,63 C67,71 60,63 57,78 C56,85 55,90 55,96 Z',
+       hl:'M78,36 C90,27 108,26 120,33'}
+};
+
+function face(mood){
+  var m={};
+  if(mood==="angry"){
+    m.bl='M74,82 C82,81 90,86 95,90'; m.br='M126,82 C118,81 110,86 105,90';
+    m.mo='M87,127 C95,120 105,120 113,127'; m.ey=1; m.lid=1;
+  } else if(mood==="shaken"){
+    m.bl='M74,80 C82,73 90,74 95,78'; m.br='M126,80 C118,73 110,74 105,78';
+    m.mo='ellipse'; m.ey=1.25; m.sweat=1;
+  } else if(mood==="down"){
+    m.bl='M74,80 C82,84 90,87 95,88'; m.br='M126,80 C118,84 110,87 105,88';
+    m.mo='M88,130 C96,126 104,126 112,130'; m.ey=0; m.closed=1;
+  } else {
+    m.bl='M75,82 C83,78 90,78 95,81'; m.br='M125,82 C117,78 110,78 105,81';
+    m.mo='M90,125 C96,128 104,128 110,125'; m.ey=1;
+  }
+  return m;
+}
+
+function chr(n){
+  if(CHARS[n]) return CHARS[n];
+  if(typeof HERO!=="undefined" && n===HERO) return CHARS["진도윤"];
+  return null;
+}
+function portrait(name,mood,plain){
+  var c=chr(name);
+  if(!c) return seal(name,true);
+  var uid="p"+Math.abs(name.charCodeAt(0)*31+name.length)+(mood||"c");
+  var defs='<defs><linearGradient id="bg'+uid+'" x1="0" y1="0" x2="0" y2="1">'
+    +'<stop offset="0" stop-color="#232430"/><stop offset="1" stop-color="#0C0C11"/></linearGradient>'
+    +'<linearGradient id="sh'+uid+'" x1="0" y1="0" x2="1" y2="0">'
+    +'<stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></linearGradient>'
+    +'<radialGradient id="hl'+uid+'" cx=".38" cy=".3" r=".8">'
+    +'<stop offset="0" stop-color="#fff" stop-opacity=".1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>';
+  var bg = plain?'':'<rect width="200" height="240" fill="url(#bg'+uid+')"/>'
+    +'<circle cx="100" cy="88" r="70" fill="rgba(180,52,42,.07)"/>'
+    +'<circle cx="100" cy="88" r="70" fill="none" stroke="#B4342A" stroke-width="1.2" opacity=".2"/>'
+    +'<circle cx="100" cy="88" r="61" fill="none" stroke="#B4342A" stroke-width=".8" opacity=".12"/>'
+    +'<rect width="200" height="240" fill="url(#hl'+uid+')"/>';
+
+  if(c.group){
+    var g='';
+    [[46,.84,.55],[154,.84,.55],[100,1,1]].forEach(function(o){
+      var x=o[0],k=o[1];
+      g+='<g opacity="'+o[2]+'" transform="translate('+x+',34) scale('+k+') translate('+(-x)+',0)">'
+       +'<path d="M'+(x-56)+',214 C'+(x-56)+',168 '+(x-28)+',148 '+x+',148 C'+(x+28)+',148 '+(x+56)+',168 '+(x+56)+',214 Z" fill="#232838"/>'
+       +'<path d="M'+(x-10)+',150 L'+x+',176 L'+(x+10)+',150 Z" fill="#C9C4B8"/>'
+       +'<ellipse cx="'+x+'" cy="112" rx="31" ry="37" fill="#1A1D28"/>'
+       +'<path d="M'+(x-31)+',108 C'+(x-31)+',78 '+(x-16)+',68 '+x+',68 C'+(x+16)+',68 '+(x+31)+',78 '+(x+31)+',108 Z" fill="#0F1118"/>'
+       +'</g>';
+    });
+    return '<svg viewBox="0 0 200 240" width="100%" height="100%">'+defs+bg+g
+      +'<text x="100" y="228" text-anchor="middle" font-family="Gowun Batang,serif" font-size="17" fill="#C05A4E" letter-spacing="4">十一人</text></svg>';
+  }
+
+  var sk=c.gray?"#C2C2C9":SKIN[c.s||0], sks=c.gray?"#9C9CA4":SKSH[c.s||0];
+  var hr=HAIR[c.h]||HAIR.slick;
+  var hc=c.hc, hcl="rgba(255,255,255,.15)";
+  var f=face(mood||"calm");
+  var s='';
+
+  /* 뒷머리 */
+  if(hr.b) s+='<path d="'+hr.b+'" fill="'+hc+'" opacity=".95"/>';
+  /* 어깨·정장 */
+  s+='<path d="M12,240 C12,190 50,164 100,164 C150,164 188,190 188,240 Z" fill="'+c.su+'"/>';
+  s+='<path d="M82,166 L100,202 L118,166 C113,162 87,162 82,166 Z" fill="#EAE6DC"/>';
+  s+='<path d="M82,166 L100,202 L72,240 L50,240 C55,204 65,178 82,166 Z" fill="'+c.su+'"/>';
+  s+='<path d="M118,166 L100,202 L128,240 L150,240 C145,204 135,178 118,166 Z" fill="'+c.su+'"/>';
+  s+='<path d="M82,166 L100,202 L72,240" stroke="#000" stroke-opacity=".3" stroke-width="1.2" fill="none"/>';
+  s+='<path d="M118,166 L100,202 L128,240" stroke="#000" stroke-opacity=".3" stroke-width="1.2" fill="none"/>';
+  if(c.ti){
+    s+='<path d="M100,198 L88,212 L100,240 L112,212 Z" fill="'+c.ti+'"/>';
+    s+='<path d="M100,190 L92,199 L100,208 L108,199 Z" fill="'+c.ti+'"/>';
+    s+='<path d="M100,190 L92,199 L100,208 Z" fill="#000" opacity=".18"/>';
+  }
+  /* 목 */
+  s+='<path d="M85,136 h30 v34 h-30 Z" fill="'+sk+'"/>';
+  s+='<path d="M85,136 h30 v14 c-15,9 -15,9 -30,0 Z" fill="'+sks+'"/>';
+  /* 귀 */
+  s+='<ellipse cx="61" cy="97" rx="6.5" ry="9.5" fill="'+sk+'"/><ellipse cx="139" cy="97" rx="6.5" ry="9.5" fill="'+sk+'"/>';
+  /* 얼굴 */
+  s+='<path d="'+FACE[c.w||1]+'" fill="'+sk+'"/>';
+  /* 앞머리 */
+  s+='<path d="'+hr.f+'" fill="'+hc+'" opacity="'+(hr.op||1)+'"/>';
+  if(hr.hl) s+='<path d="'+hr.hl+'" stroke="'+hcl+'" stroke-width="6" fill="none" stroke-linecap="round"/>';
+  /* 눈 */
+  if(f.closed){
+    s+='<path d="M76,97 C82,102 90,102 95,97" stroke="#1A1611" stroke-width="2.4" fill="none" stroke-linecap="round"/>'
+      +'<path d="M105,97 C110,102 118,102 124,97" stroke="#1A1611" stroke-width="2.4" fill="none" stroke-linecap="round"/>';
+  } else {
+    var er=5*(f.ey||1);
+    s+='<ellipse cx="85" cy="97" rx="8.6" ry="'+er+'" fill="#F7F3EB"/><ellipse cx="115" cy="97" rx="8.6" ry="'+er+'" fill="#F7F3EB"/>'
+      +'<circle cx="86" cy="97" r="3.6" fill="#16120B"/><circle cx="116" cy="97" r="3.6" fill="#16120B"/>'
+      +'<circle cx="87.5" cy="95.4" r="1.2" fill="#fff" opacity=".9"/><circle cx="117.5" cy="95.4" r="1.2" fill="#fff" opacity=".9"/>';
+    if(f.lid) s+='<path d="M76.4,93 h17.2 M106.4,93 h17.2" stroke="#1A1611" stroke-width="2.6" stroke-linecap="round"/>';
+  }
+  s+='<path d="'+f.bl+'" stroke="'+hc+'" stroke-width="3.6" fill="none" stroke-linecap="round"/>'
+    +'<path d="'+f.br+'" stroke="'+hc+'" stroke-width="3.6" fill="none" stroke-linecap="round"/>';
+  s+='<path d="M100,102 L95,117 C97,119.5 103,119.5 105,117" stroke="'+sks+'" stroke-width="2.1" fill="none" stroke-linejoin="round"/>';
+  if(f.mo==="ellipse") s+='<ellipse cx="100" cy="127" rx="6.5" ry="8" fill="#5B2A26"/>';
+  else s+='<path d="'+f.mo+'" stroke="#7A3A32" stroke-width="2.8" fill="none" stroke-linecap="round"/>';
+  if(c.a>=1) s+='<path d="M72,110 C76,114 78,118 78,122 M128,110 C124,114 122,118 122,122" stroke="'+sks+'" stroke-width="1.5" fill="none" opacity=".85"/>';
+  if(c.a>=2) s+='<path d="M77,74 C85,70 94,70 99,72 M123,74 C115,70 106,70 101,72" stroke="'+sks+'" stroke-width="1.3" fill="none" opacity=".7"/>';
+  /* 옆머리 (단발) */
+  if(hr.s) s+='<path d="'+hr.s+'" fill="'+hc+'"/>';
+  /* 안경 */
+  if(c.g===1) s+='<g stroke="#31313A" stroke-width="2.6" fill="none"><rect x="72" y="88" width="26" height="18" rx="2"/><rect x="102" y="88" width="26" height="18" rx="2"/><path d="M98,96 h4 M72,93 L63,93 M128,93 L137,93"/></g>';
+  if(c.g===2) s+='<g stroke="#3A3A44" stroke-width="2.4" fill="none"><circle cx="85" cy="97" r="12.5"/><circle cx="115" cy="97" r="12.5"/><path d="M97.5,96 h5 M72.5,94 L63,93 M127.5,94 L137,93"/></g>';
+  if(f.sweat) s+='<path d="M133,70 c4.5,8 7,11 7,14.5 a7,7 0 0 1 -14,0 c0,-3.5 2.5,-6.5 7,-14.5 Z" fill="#8FD3EE" opacity=".9"/>';
+  /* 측광 그림자 */
+  s+='<path d="M100,38 C124,38 142,56 142,92 C142,118 125,146 100,146 Z" fill="url(#sh'+uid+')" opacity=".6"/>';
+
+  return '<svg viewBox="0 0 200 240" width="100%" height="100%">'+defs+bg+s+'</svg>';
+}
+
+/* ════════════════════════════════════════════════
+   국면 전환 대사 — 방어선 66% / 33% 돌파 시
+   ════════════════════════════════════════════════ */
+var PHASE={
+"진성호":["말장난 그만하고. 그래서 우리 회사가 뭘 얻는데.","…너 그거 어디서 외웠어. 대답해."],
+"강만식":["도련님. 여긴 책으로 굴러가는 데가 아닙니다.","…누가 우리 팀 자료를 보여줬습니까."],
+"브라이언 조":["실무 경험이 없으신 것 같은데요.","…이 자리는 제 커리어가 걸려 있습니다."],
+"오세라":["말은 잘하시네요. 근거는요.","…어디까지 알고 오신 겁니까."],
+"황중태":["법적으로는 아무 문제 없습니다.","…이 얘기, 여기서 끝냅시다."],
+"진성준":["도윤아. 어른들 일에 끼어들지 마라.","…네가 그걸 어떻게 알아. 대답해."],
+"남기표":["숫자를 모르시는군요. 회계는 다릅니다.","…누가 시켰습니까. 누가 보라고 했어요."],
+"한지운":["논문 몇 편 읽어보셨습니까.","…잠깐. 방금 그 얘기 다시 해보세요."],
+"서민아":["진도윤 씨. 지금 조사를 방해하는 겁니까.","…당신, 정말 재벌집 막내 맞습니까."],
+"차동욱":["현장은 그렇게 안 굴러갑니다.","…이거 보시면 안 되는 겁니다."],
+"백준혁":["숫자로 사람 겁주지 마세요.","…내년 4월이라고 했습니까, 방금."],
+"진태산":["더 해봐라. 아직 멀었다.","…네 놈, 대체 누구냐."],
+"윤채린":["일정이 있습니다. 이론은 나중에 하시죠.","…처음부터 다시 쓰겠습니다."],
+"마이클 서":["계약서에 그런 조항은 없습니다.","…이거 저희가 불리해지는데요."],
+"도재우":["재밌네요. 근데 거기까지입니다.","…당신, 우리 내부 자료를 봤습니까."],
+"최평강":["교과서를 외운 것과 아는 것은 다릅니다.","…어디서 공부하셨습니까, 대체."],
+"하윤수":["기사는 이미 넘어갔습니다.","…원자료를 정말 주실 수 있습니까."],
+"진하영":["도윤아. 너 언제부터 이랬어.","…이건 내가 준비한 3년이야."],
+"이사회":["근거를 대십시오. 숫자로.","…의결을 요청합니다. 조용히 하세요."],
+"과거의 나":["넌 나를 못 이겨. 나는 12년을 여기 있었어.","…그때 알았으면, 안 죽었을까."]
+};
+
+/* ════════════════════════════════════════════════
+   관계 — 온건/강경 선택과 승패로 변한다
+   ════════════════════════════════════════════════ */
+function relLabel(v){ return v>=2?"맹우":v===1?"우호":v===0?"중립":v===-1?"경계":"적대"; }
+function relColor(v){ return v>=2?"var(--jade)":v===1?"#8FBFA8":v===0?"var(--dim)":v===-1?"#B08A55":"var(--seal)"; }
+function allies(){ var a=0,b=0; for(var k in (P.rel||{})){ if(P.rel[k]>=2)a++; else if(P.rel[k]===1)b++; } return {m:a,u:b}; }
+function bumpRel(n,d){ if(!P.rel)P.rel={}; P.rel[n]=Math.max(-3,Math.min(3,(P.rel[n]||0)+d)); }
+
+/* ════════════════════════════════════════════════
+   현실 각주 — 실제로 있었던 일
+   ════════════════════════════════════════════════ */
+var FACT={
+"1_1_1":"빅데이터의 3V는 2001년 애널리스트 더그 레이니가 정리한 규모·유형·속도에서 출발했다. 여기에 품질(Veracity)과 가치(Value)가 더해져 5V가 됐다.",
+"1_1_2":"맵리듀스는 2004년 구글의 딘·게마와트 논문으로 공개됐다. 하둡은 그 논문을 오픈소스로 구현한 결과물이고, 이름은 개발자 아들의 코끼리 인형에서 따왔다.",
+"1_2_1":"CRISP-DM은 1996년 유럽 기업 컨소시엄이 만든 절차다. 30년 가까이 지난 지금도 데이터 분석 방법론 중 가장 널리 인용된다.",
+"1_2_2":"데이터 분석 업무 시간의 절반 이상이 수집과 전처리에 들어간다는 조사 결과는 업계에서 반복적으로 재현되어 왔다. 모델링은 그다음이다.",
+"1_3_1":"k-익명성은 1998년 라타냐 스위니가 제안했다. 그는 생년월일·성별·우편번호 세 가지만으로 미국 인구 상당수를 특정할 수 있음을 실증했다.",
+"1_3_2":"NoSQL은 관계형을 버린다는 뜻이 아니다. 'Not Only SQL' — 관계형만 쓰지는 않는다는 의미로 통용된다.",
+"2_1_1":"결측을 평균으로 채우면 분산이 실제보다 작아진다. 데이터가 원래보다 안정돼 보이는 착시가 생기고, 신뢰구간도 좁아진다.",
+"2_1_2":"'차원의 저주'라는 이름은 1961년 수학자 리처드 벨만이 붙였다. 동적계획법을 연구하다 마주친 문제였다.",
+"2_2_1":"탐색적 데이터 분석(EDA)은 1977년 존 튜키가 체계화했다. 상자수염그림도 그가 고안한 도구다.",
+"2_2_2":"1854년 런던, 의사 존 스노는 콜레라 사망자를 지도 위에 점으로 찍어 오염된 급수 펌프 한 곳을 찾아냈다. 공간 시각화의 고전이다.",
+"2_3_1":"포아송분포는 1898년 보르트키에비치가 프로이센 기병대에서 말에 차여 죽은 병사 수를 설명하면서 널리 알려졌다.",
+"2_3_2":"p<0.05라는 기준은 자연법칙이 아니다. 로널드 피셔가 편의상 제안한 관행이 굳어진 것이고, 지금도 통계학계에서 논쟁 중이다.",
+"3_1_1":"'모든 모형은 틀렸다. 다만 그중 일부는 쓸모가 있다.' 통계학자 조지 박스의 말이다.",
+"3_1_2":"R은 1993년 뉴질랜드 오클랜드대에서, 파이썬은 1991년 귀도 반 로섬이 공개했다. 파이썬의 이름은 뱀이 아니라 영국 코미디 그룹에서 따왔다.",
+"3_2_1":"2012년 이미지넷 대회에서 합성곱 신경망이 오차율을 큰 폭으로 낮추며 딥러닝 시대를 열었다. LSTM은 1997년, GAN은 2014년에 세상에 나왔다.",
+"3_2_2":"ARIMA는 1970년 박스와 젠킨스가 정리했다. 반세기가 지난 지금도 수요예측 모델의 성능 기준선으로 쓰인다.",
+"4_1_1":"희귀 사건 예측에서 정확도는 거의 쓸모가 없다. 불량률이 1%면 전부 정상이라고만 찍어도 정확도 99%가 나온다.",
+"4_1_2":"Adam 최적화 알고리즘은 2015년에 제안된 뒤 딥러닝의 사실상 기본값이 됐다. 모멘텀과 적응적 학습률을 합친 구조다.",
+"4_2_1":"상관과 인과의 혼동은 통계 오용의 대표 사례다. 인과를 주장하려면 무작위 대조 실험이나 그에 준하는 설계가 필요하다.",
+"4_2_2":"1986년 챌린저호 사고 전날, 발사 위험을 담은 자료는 이미 있었다. 에드워드 터프티는 그 자료의 제시 방식이 위험을 가렸다고 분석했다.",
+"4_2_3":"시간이 지나면서 모델 성능이 조용히 떨어지는 현상을 모델 드리프트라고 한다. 리모델링을 멈춘 모델은 작년의 세상을 예측한다."
+};
+
+/* ════════════════════════════════════════════════
+   막간 — 막이 끝날 때마다 벌어지는 일
+   ════════════════════════════════════════════════ */
+var INTER=[
+{t:"어머니의 이름",s:[
+["","태산IT 지분 4%가 내 이름으로 넘어온 그날 밤."],
+["","별채 문이 부서질 듯이 열렸다."],
+["한금옥","가정부 아들이 지분을 받아? 이 집에서?"],
+["","큰어머니 한금옥. 찻잔이 벽에 부딪혀 깨졌다."],
+["한금옥","네 어미가 어떻게 이 집에 들어왔는지 알기나 하니."],
+["*","…압니다. 주방 뒷문으로요."],
+["한금옥","알면서도 뻔뻔하구나."],
+["*","제 아버지는 그 뒷문으로 나가서, 국도에서 돌아가셨죠."],
+["한금옥","…뭐?"],
+["","1998년 12월. 넷째 아들의 차가 국도에서 미끄러졌다. 브레이크 계통 결함이라 했다."],
+["","지난 생에서 나는 그 사고 기록을 본 적이 있다. 정비 이력이 사고 3일 전에 한 번 지워져 있었다."],
+["","지워진 자리에는 구멍이 남는다. 나는 이제 그 구멍을 읽을 줄 안다."],
+["*","큰어머니. 아버지 차량 정비 기록, 어디 있는지 아십니까."],
+["한금옥","…!"],
+["","그날 이후 그 사람은 나와 눈을 마주치지 않았다."],
+["","그 밤, 오래된 기억 하나가 떠올랐다. 여덟 살, 별채 부엌."],
+["이수진","도윤아. 본채는 쳐다보지도 마라."],
+["이수진","엄마는 저기 못 들어가. 너도 안 들어가는 게 나아."],
+["","어머니는 끝내 그 문턱을 넘지 못하고 세상을 떠났다."],
+["*","…어머니. 저는 들어갈 겁니다. 정문으로요."]]},
+
+{t:"친자확인서",s:[
+["","이사회 임시 소집. 진성준이 봉투 하나를 탁자에 던졌다."],
+["진성준","유전자 검사 결과입니다. 저 놈은 아버지 핏줄이 아닙니다."],
+["","회의실이 얼어붙었다. 큰어머니가 처음으로 웃었다."],
+["진성준","일치 확률 0.02%. 숫자는 거짓말을 안 하죠."],
+["*","…숫자는 안 하죠. 사람이 하지."],
+["*","큰아버지. 이 검사기관의 위양성률이 얼마인지 아십니까."],
+["진성준","그딴 걸 왜 물어."],
+["*","사전확률이 있습니다. 저는 이미 호적에 올라 있고, 20년을 이 집에서 불렸습니다."],
+["*","그 사전확률에 검사 결과를 곱해서 사후확률을 냅니다. 베이즈 정리입니다."],
+["*","검사 하나로 0.02%가 나오려면, 시료가 바뀌지 않았다는 전제가 필요합니다."],
+["진성준","시료가 왜 바뀌어."],
+["*","채취 시각 11월 3일 14시 20분. 그런데 그 시각에 저는 울산 현장에 있었습니다."],
+["*","차량 출입 로그, 하이패스 기록, 현장 출입 카드. 시간과 공간이 붙으면 그건 증거가 됩니다."],
+["","진성준의 손이 멈췄다."],
+["진태산","…성준아. 네가 시료를 바꿨냐."],
+["진성준","아버지, 그건…"],
+["진태산","도윤이는 내 핏줄이다. 나는 처음부터 알고 있었다."],
+["","그 말에 놀란 건 진성준이 아니라 나였다."],
+["","알고 있었다면, 왜 24년을 별채에 두었나."]]},
+
+{t:"병실",s:[
+["","회장이 쓰러졌다. 새벽 세 시, 서재 바닥에서."],
+["","진단은 초기 인지 저하. 의사는 진행 속도를 예측할 수 없다고 했다."],
+["","그리고 병실 밖에서, 나는 두 개의 유언장이 존재한다는 말을 들었다."],
+["진하영","도윤아. 하나는 3년 전 거고, 하나는 지난달 거래."],
+["진하영","지난달 거는 큰아버지가 들고 있어."],
+["*","…누나는 왜 저한테 말해줘요."],
+["진하영","우리 엄마가 아버지 비서랑 눈 맞은 걸, 이 집에서 나만 몰랐거든."],
+["진하영","그래서 나는 뒤늦게 아는 게 뭔지 알아."],
+["","복도 끝에서 도재우가 걸어왔다. 옆에 낯선 여자가 있었다."],
+["도재우","진도윤 씨. 인사하시죠. 제 동생 도재하입니다."],
+["도재우","두 집안이 사돈이 되면, 이 싸움은 끝납니다."],
+["도재하","오빠. 나는 물건이 아니야."],
+["도재하","…그리고 진도윤 씨. 나는 당신이 3년 전에 쓴 리포트를 읽었어요."],
+["","3년 전. 그때 나는 지하 3층의 파견직이었다."],
+["*","…그걸 어떻게."],
+["도재하","이름 없는 리포트였죠. 작성자란이 비어 있었으니까."],
+["","심장이 한 번 크게 뛰었다. 지난 생의 내가, 이번 생에 흔적을 남기고 있었다."]]},
+
+{t:"유언장",s:[
+["","이사회 전날 밤. 진성준이 유언장 사본을 언론에 뿌렸다."],
+["","태산그룹 주식 전량을 장남에게 상속한다는 내용. 작성일은 지난달 12일."],
+["진성준","아버지 서명입니다. 공증도 받았고요."],
+["*","…파일 원본, 주십시오."],
+["진성준","종이로 충분한데."],
+["*","종이는 충분하지 않습니다. 저는 메타데이터를 보겠습니다."],
+["","문서 속성 창을 열었다. 작성 2026-11-12, 최종 수정 2026-11-12."],
+["*","작성과 수정이 같은 날 같은 시각입니다. 3페이지짜리 유언장을 0분 만에 쓰셨군요."],
+["진성준","…"],
+["*","그리고 작성자 계정이 회장님 것이 아닙니다."],
+["*","메타데이터는 다른 데이터를 설명하는 데이터입니다. 본문은 고쳐도, 이건 잘 안 고쳐지죠."],
+["한금옥","여보. 당신 정말…"],
+["진성준","닥쳐."],
+["","병실 문이 열렸다. 회장이 링거를 끌고 서 있었다."],
+["진태산","…성준아. 내가 아직 안 죽었다."],
+["진태산","도윤아. 내일 이사회, 네가 올라가라."],
+["","그리고 그는 아주 작은 목소리로 덧붙였다."],
+["진태산","…네 아비 차 정비 기록은, 내 금고에 있다."]]}
+];
+var Q = function(q,c,a,e){return {q:q,c:c,a:a,e:e};};
+
+var QBANK = [
+{code:"1_1_1",name:"개요의 성소",star:1,ch:0,mobs:["정형의 파수병","암묵지 망령"],boss:"삼중오각(3V+2V)의 수호자",
+ qs:[
+ Q("반정형 데이터에 대한 설명으로 옳은 것은?",["정해진 형식과 구조에 맞게 저장되어 연산이 가능하다","스키마 정보를 데이터와 함께 제공하며 연산이 불가능하다","구조가 전혀 정해지지 않은 대부분의 데이터다","숫자로만 이루어져 사칙연산이 자유롭다"],1,"반정형은 형식·구조가 비교적 유연하고 스키마를 데이터와 함께 제공하지만 연산은 불가능하다. 1번은 정형, 3번은 비정형."),
+ Q("\"철수가 시험에 합격하였다\"는 어떤 데이터인가?",["정량적 데이터","정성적 데이터","반정형 데이터","메타 데이터"],1,"문자·텍스트로 구성되어 함축적 의미를 지니면 정성적(qualitative) 데이터다."),
+ Q("빅데이터의 3V+2V에 포함되지 않는 것은?",["Volume(규모)","Variety(유형)","Veracity(품질)","Visibility(가시성)"],3,"3V+2V는 규모·유형·속도·품질·가치(Volume, Variety, Velocity, Veracity, Value)."),
+ Q("데이터 웨어하우스(DW)의 특성이 아닌 것은?",["주제지향성","통합성","시계열성","휘발성"],3,"DW의 4대 특성은 주제지향성·통합성·시계열성·비휘발성이다."),
+ Q("다양한 DBMS에서 추출한 데이터를 통합적으로 관리하는 것은?",["ETL","ODS","OLAP","데이터마이닝"],1,"ODS(Operational Data Store). ETL은 추출·정제·가공하여 DW에 적재하는 과정이다."),
+ Q("학습과 경험을 통해 개인에게 체화되어 있지만 겉으로 드러나지 않는 지식은?",["형식지","암묵지","메타 데이터","정형 지식"],1,"암묵지의 정의다."),
+ Q("빅데이터 조직 구성 중 전문 인력을 각 부서에 배치하는 형태는?",["집중형","기능형","분산형","혼합형"],2,"집중형=별도 조직, 기능형=해당 부서가 직접 수행, 분산형=전문 인력을 부서에 배치."),
+ Q("빅데이터 활용 3요소 중 '기술'에 해당하지 않는 것은?",["분산파일시스템을 통한 대용량 분산 처리","데이터마이닝을 통한 분석 및 시각화","스스로 학습·처리하는 AI 기술 활용","도메인 지식을 습득하여 결과를 해석"],3,"도메인 지식 습득과 결과 해석은 '인력' 요소다. 자원·기술·인력 3요소를 구분할 것.")
+]},
+
+{code:"1_1_2",name:"기술의 회랑",star:3,ch:0,mobs:["크롤러 거미","NoSQL 히드라","비식별 그림자"],boss:"맵리듀스 골렘",
+ qs:[
+ Q("빅데이터 처리 과정의 순서로 옳은 것은?",["데이터(생성)-수집-저장(공유)-처리-분석-시각화","데이터-수집-처리-저장-분석-시각화","데이터-저장-수집-분석-처리-시각화","데이터-수집-저장-분석-처리-시각화"],0,"생성 → 수집 → 저장(공유) → 처리 → 분석 → 시각화."),
+ Q("분산 저장된 문서를 수집하여 검색 대상의 색인으로 포함시키는 기술은?",["크롤링","ETL","로그 수집기","센서 네트워크"],0,"크롤링(crawling)의 정의다."),
+ Q("NoSQL 데이터베이스가 아닌 것은?",["HBase","MongoDB","Cassandra","Oracle"],3,"NoSQL은 데이터 모델을 단순화한 비관계형 DB. HBase·MongoDB·Cassandra·Cloudata 등이 해당."),
+ Q("구글에서 개발했으며 효과적인 병렬 및 분산처리를 지원하는 프로그래밍 모델은?",["하둡","맵리듀스","아파치 스쿱","스크래피"],1,"맵리듀스(MapReduce). 하둡은 분산 처리 환경의 오픈 소스 프레임워크다."),
+ Q("입력값에 대한 목표치가 없이 주요 특징을 발견하고 요약하는 학습 방식은?",["지도학습","비지도학습","강화학습","전이학습"],1,"지도학습은 학습 데이터로부터 함수를 유추하며 분류와 회귀를 수행한다."),
+ Q("기존에 학습된 모델의 지식을 새로운 문제에 적용하여 학습을 빠르고 효율적으로 수행하는 것은?",["강화학습","전이학습","준지도학습","앙상블 학습"],1,"전이학습(transfer learning)의 정의다."),
+ Q("개인정보 비식별화 기법에 해당하지 않는 것은?",["가명 처리","총계 처리","데이터 범주화","데이터 복제"],3,"비식별 조치는 가명 처리, 총계 처리, 데이터 삭제, 데이터 범주화, 데이터 마스킹이다."),
+ Q("유럽 의회에서 유럽 시민의 개인정보 보호 강화를 위해 만든 통합 규정은?",["GDPR","HIPAA","CCPA","ISMS-P"],0,"GDPR(General Data Protection Regulation)."),
+ Q("관찰된 변수들의 집합 요소 구조를 파악하기 위해 통계적 기법을 활용하는 분석은?",["탐구 요인 분석","확인 요인 분석","연관 분석","군집 분석"],1,"탐구 요인 분석은 데이터 간 상호 관계를 파악하고, 확인 요인 분석은 집합 요소 구조를 파악한다."),
+ Q("개인정보 처리 위탁에 대한 설명으로 옳은 것은?",["위탁 시에는 어떠한 경우에도 사전 동의가 면제되지 않는다","위탁받는 자와 위탁 업무 내용을 알리고 동의를 받아야 한다","위탁 사실은 공개할 수 없다","비식별 조치를 하면 위탁 자체가 불가능하다"],1,"원칙적으로 고지·동의가 필요하나, 정보통신서비스 계약 이행 및 이용자 편의 증진 등의 경우 처리방침 공개로 갈음할 수 있다.")
+]},
+
+{code:"1_2_1",name:"방법론의 미궁",star:3,ch:0,mobs:["하향식 감시자","KDD 사슬","거버넌스 석상"],boss:"CRISP-DM 대군주",
+ qs:[
+ Q("문제의 정의 자체가 어려운 경우 데이터를 기반으로 문제를 재정의하고 해결방안을 탐색하는 접근은?",["하향식 접근","상향식 접근","혼합식 접근","연역적 접근"],1,"하향식(Top-Down)은 문제가 주어지고 해법을 찾는 방식, 상향식(Bottom-Up)은 문제 창조 방식이다."),
+ Q("분석 대상은 Un-Known, 분석 방식은 Known인 경우의 분석 주제 유형은?",["Optimization","Insight","Solution","Discovery"],1,"대상 Known+방식 Known=Optimization, 대상 Un-Known+방식 Known=Insight, 대상 Known+방식 Un-Known=Solution, 둘 다 Un-Known=Discovery."),
+ Q("KDD의 절차로 옳은 것은?",["데이터셋 선택-전처리-변환-데이터 마이닝-결과 평가","샘플링-탐색-수정-모델링-평가","업무 이해-데이터 이해-준비-모델링-평가-전개","기획-준비-분석-구현-전개"],0,"2번은 SEMMA, 3번은 CRISP-DM, 4번은 빅데이터 분석 방법론 참조모델이다."),
+ Q("CRISP-DM의 6단계에 해당하지 않는 것은?",["업무 이해","데이터 준비","모델링","샘플링"],3,"CRISP-DM: 업무 이해-데이터 이해-데이터 준비-모델링-평가-전개. 샘플링은 SEMMA의 단계다."),
+ Q("SEMMA의 단계 구성으로 옳은 것은?",["추출-탐색-수정-모델링-평가","추출-변환-적재-분석-평가","선택-전처리-변환-마이닝-평가","이해-준비-모델링-평가-전개"],0,"SEMMA = Sample, Explore, Modify, Model, Assess."),
+ Q("데이터 거버넌스가 확보하고자 하는 것이 아닌 것은?",["가용성","유용성","보안성","희소성"],3,"데이터의 가용성·유용성·통합성·보안성·안전성을 확보한다."),
+ Q("분석 성숙도 모델의 단계 구분으로 옳은 것은?",["도입-활용-확산-최적화","계획-실행-평가-개선","인식-준비-실행-정착","기획-구축-운영-고도화"],0,"비즈니스, 조직 및 역량, IT 부문을 대상으로 도입-활용-확산-최적화 단계로 평가한다."),
+ Q("빅데이터 분석 방법론의 개발절차 순서로 옳은 것은?",["분석 기획-데이터 준비-데이터 분석-시스템 구현-평가 및 전개","데이터 준비-분석 기획-데이터 분석-평가-전개","분석 기획-데이터 분석-데이터 준비-시스템 구현-전개","기획-모델링-검증-배포-운영"],0,"Planning-Preparing-Analyzing-Developing-Deploying."),
+ Q("다른 데이터를 설명하기 위해 사용되는 데이터는?",["원천 데이터","메타 데이터","파생 데이터","마스터 데이터"],1,"메타 데이터(metadata)의 정의다.")
+]},
+
+{code:"1_2_2",name:"계획의 관문",star:1,ch:0,mobs:["전처리 수문장"],boss:"품질지표 판관",
+ qs:[
+ Q("데이터 전처리 수행에 해당하지 않는 것은?",["정제","통합","축소","예측"],3,"전처리 수행은 정제, 통합, 축소, 변환이다."),
+ Q("데이터 품질 지표에 해당하지 않는 것은?",["정확성","완전성","적시성","확장성"],3,"데이터 품질 지표는 정확성·완전성·적시성·일관성이다."),
+ Q("일반적 분석 절차 중 '복잡한 문제를 논리적으로 단순화하고 변수들 간 관계로 정의'하는 단계는?",["문제 인식","연구조사","모형화","데이터 분석"],2,"문제 인식-연구조사-모형화-데이터 수집-데이터 분석-분석 결과 제시 순이다."),
+ Q("분석 프로젝트 중점 관리 영역에서 '분석 모형의 안정성' 측면에서 중요한 것은?",["정확도","정밀도","재현율","특이도"],1,"분석 결과 활용에서는 정확도, 분석 모형 안정성 측면에서는 정밀도가 중요하다."),
+ Q("데이터 처리 영역에 대한 설명으로 옳은 것은?",["데이터를 가공한 후 분석을 직접 수행하고 결과를 표현한다","기초 데이터를 정의하고 수집·저장·분석하기 수월하도록 물리적 환경을 제공한다","분석 결과를 업무에 반영할 액션 플랜을 만든다","분석 모형의 알고리즘을 개선한다"],1,"1번은 데이터 분석 영역에 대한 설명이다."),
+ Q("데이터 확보를 위한 사전 검토 항목이 아닌 것은?",["필요 데이터의 정의","보유 데이터의 현황 파악","편향되지 않고 충분한 양의 데이터 규모","분석 모형의 하이퍼파라미터 결정"],3,"하이퍼파라미터 결정은 모델링 단계의 작업이다.")
+]},
+
+{code:"1_3_1",name:"수집의 심연",star:1,ch:0,mobs:["스쿱 수집귀","익명성 환영"],boss:"품질기준 감시탑",
+ qs:[
+ Q("관계형 데이터스토어 간 대량 데이터를 효과적으로 전송하는 도구는?",["아파치 스쿱","아파치 플럼","스크래피","크롤러"],0,"스쿱(Sqoop). 플럼은 로그 데이터 수집·집계·이동, 스크래피는 파이썬 기반 웹 크롤링 도구다."),
+ Q("대용량의 로그 데이터를 효과적으로 수집·집계·이동시키는 분산 서비스 솔루션은?",["아파치 스쿱","아파치 플럼","스크래피","하이브"],1,"플럼(Flume)."),
+ Q("동일한 값을 가진 레코드를 k개 이상으로 하여 특정 개인을 식별할 확률을 1/k로 낮추는 프라이버시 보호 모델은?",["k-익명성","l-다양성","t-근접성","차등 프라이버시"],0,"k-익명성의 정의다."),
+ Q("전체 데이터 집합의 정보 분포와 특정 정보의 분포 차이를 t 이하로 하여 추론을 방지하는 모델은?",["k-익명성","l-다양성","t-근접성","m-유일성"],2,"t-근접성. l-다양성은 각 레코드가 최소 l개 이상의 다양성을 갖게 한다."),
+ Q("정형 데이터의 품질 기준에 해당하지 않는 것은?",["완전성","유일성","유효성","이식성"],3,"정형은 완전성·유일성·유효성·일관성·정확성. 이식성은 비정형 데이터 품질 기준이다."),
+ Q("비정형 데이터 품질 기준 중 '사용자에 의해 이해되고 선호되는 정도'는?",["기능성","신뢰성","사용성","효율성"],2,"비정형 품질 기준은 기능성·신뢰성·사용성·효율성·이식성이다."),
+ Q("데이터 수집 시스템 구축 절차의 순서로 옳은 것은?",["수집 데이터 유형 파악-수집 기술 결정-아키텍처 수립-하드웨어 구축-실행환경 구축","수집 기술 결정-유형 파악-하드웨어 구축-아키텍처 수립-실행환경 구축","아키텍처 수립-유형 파악-수집 기술 결정-실행환경 구축-하드웨어 구축","유형 파악-아키텍처 수립-수집 기술 결정-실행환경 구축-하드웨어 구축"],0,"마지막 실행환경 구축 단계에서 Sqoop, Flume 등 수집 솔루션을 설치한다."),
+ Q("개인을 고유하게 식별할 수 있는 정보를 무엇이라 하는가?",["식별자","속성자","연결자","대체키"],0,"속성자는 개인에 대한 추가적인 정보다.")
+]},
+
+{code:"1_3_2",name:"저장고의 파수꾼",star:1,ch:0,mobs:["키-값 정령"],boss:"스트림 크라켄",
+ qs:[
+ Q("데이터를 로우가 아닌 칼럼 기반으로 저장하고 처리하는 NoSQL 유형은?",["key-value DB","column-oriented DB","document DB","graph DB"],1,"column-oriented DB의 정의다."),
+ Q("key-value DB보다 문서의 내부구조에 기반한 복잡한 형태의 데이터 저장을 지원하는 것은?",["key-value DB","column-oriented DB","document DB","관계형 DB"],2,"document DB는 문서 형식의 정보를 저장·검색·관리한다."),
+ Q("스트리밍 데이터의 특징으로 옳지 않은 것은?",["빠르고 연속적이다","대용량이다","다양한 장소에서 발생한다","정적이며 일회성으로 생성된다"],3,"네트워크 모니터링 데이터, IoT 센서 데이터, 통신 데이터, 웹 로그 등이 대표적이다."),
+ Q("빅데이터 저장시스템 선정을 위한 분석 요소가 아닌 것은?",["기능성 비교분석","분석대상 데이터 유형","기존 시스템과의 연계","개발자 인건비 산정"],3,"기능성 비교분석, 분석방식 및 환경, 분석대상 데이터 유형, 기존 시스템과의 연계를 검토한다."),
+ Q("컴퓨터의 처리 내용이나 이용 상황을 시간의 흐름에 따라 기록한 것은?",["로그","트랜잭션","스냅숏","인덱스"],0,"로그(log)의 정의다.")
+]},
+
+/* ================= 2과목 ================= */
+{code:"2_1_1",name:"정제의 늪",star:1,ch:1,mobs:["결측치 유령","대치법 수렁"],boss:"이상치 리바이어던",
+ qs:[
+ Q("어떤 변수상에서 결측 데이터가 다른 변수와 아무런 연관이 없는 경우는?",["완전 무작위 결측","무작위 결측","비 무작위 결측","구조적 결측"],0,"무작위 결측은 관측된 다른 변수와는 연관이 있으나 비관측값과는 연관되지 않는 경우다."),
+ Q("단순 대치법에 해당하지 않는 것은?",["평균 대치법","회귀 대치법","최근접 대치법","다중 대치법"],3,"다중 대치법은 단순 대치법을 복수로 시행하여 통계적 효율성·일치성 문제를 보완한다."),
+ Q("이상치 탐지 방법으로 옳지 않은 것은?",["상자그림 시각화","Z-Score","밀도기반 클러스터링","최소자승법"],3,"이상치 탐지는 시각화(상자그림·줄기잎·산점도), Z-Score, 밀도기반 클러스터링, 고립 의사나무 방법이다."),
+ Q("정규분포임을 가정할 수 없을 때 사용하는 통계적 방법은?",["모수적 방법","비모수적 방법","베이지안 방법","최우추정법"],1,"모수적 방법은 정규분포를 따른다는 가정 하에 모수적 특성을 이용한다."),
+ Q("이상치가 비무작위로 나타날 때 발생하는 문제는?",["표본 크기가 자동으로 증가한다","데이터의 정상성 감소를 초래하여 신뢰성 저하로 연결된다","결측치가 자동으로 대치된다","분산이 항상 0에 수렴한다"],1,"비무작위 이상치는 정상성 감소 → 신뢰성 저하로 이어진다."),
+ Q("데이터 정제 과정에서 '저장 후의 처리로 저장 데이터의 품질관리 등을 포함'하는 단계는?",["전처리","후처리","적재","변환"],1,"전처리는 저장 전 처리로 대상 데이터와 입수 방법 결정, 저장 방식·장소를 선정한다.")
+]},
+
+{code:"2_1_2",name:"변수의 대장간",star:2,ch:1,mobs:["전진선택 기사","차원의 저주 마수"],boss:"불균형 쌍두수",
+ qs:[
+ Q("종속변수와 단순상관계수의 절댓값이 가장 큰 변수를 모형에 포함시키며, 한 번 추가된 변수는 제거하지 않는 방법은?",["전진 선택법","후진 소거법","단계적 선택법","전체 탐색법"],0,"후진 소거법은 절댓값이 가장 작은 변수를 제외하며 한 번 제거된 변수는 추가하지 않는다."),
+ Q("전진 선택으로 유의한 변수를 포함한 뒤 나머지 변수에 후진 방식을 적용해 유의하지 않은 변수를 제거하는 방법은?",["전진 선택법","후진 소거법","단계적 선택법","라쏘 선택법"],2,"단계적 선택법(stepwise)의 정의다."),
+ Q("차원이 증가하면서 학습데이터의 수가 차원의 수보다 적어져 성능이 저하되는 현상은?",["과적합","차원의 저주","다중공선성","클래스 불균형"],1,"차원을 줄이거나 데이터 수를 늘려 해결한다."),
+ Q("음수를 포함하지 않은 행렬 V를 행렬 W와 H의 곱으로 분해하는 기법은?",["주성분 분석","특이값 분해","음수 미포함 행렬분해","정준상관분석"],2,"NMF. V보다 W, H가 적은 차원을 가지며 정확한 해가 없어 대략적 해를 구한다."),
+ Q("특정 조건을 만족하거나 특정 함수에 의해 값을 만들어 의미를 부여한 변수는?",["파생변수","요약변수","더미변수","잠재변수"],0,"요약변수는 수집된 정보를 분석에 맞게 종합한 변수다."),
+ Q("소수 클래스의 복사본을 만들어 대표 클래스만큼 데이터를 만드는 방법은?",["언더샘플링","오버샘플링","부트스트래핑","교차검증"],1,"언더샘플링은 대표 클래스의 일부만 선택한다."),
+ Q("차원 축소의 기대효과로 옳지 않은 것은?",["분석시간과 저장변수의 양을 줄인다","과적합 발생 가능성을 줄인다","이해와 해석이 용이해진다","변수 개수가 늘어 설명력이 항상 강화된다"],3,"변수는 많을수록 신뢰성이 높아지나, 더 적은 변수로 동일한 설명력이 나오면 효율성이 증가한다."),
+ Q("요인 분석에 대한 설명으로 옳은 것은?",["독립변수와 종속변수를 명확히 구분한다","다수의 변수들 간 관계를 분석하여 공통 차원을 축약하며 독립/종속 개념이 없다","반드시 범주형 변수에만 적용한다","시계열 데이터 전용 기법이다"],1,"요인 분석은 독립변수/종속변수 개념이 없다.")
+]},
+
+{code:"2_2_1",name:"탐색의 서고",star:2,ch:1,mobs:["EDA 사서","상관계수 쌍둥이"],boss:"상자수염 감시자",
+ qs:[
+ Q("상관분석의 기본가정에 해당하지 않는 것은?",["선형성","동변량성","정규분포성","이분산성"],3,"기본가정은 선형성·동변량성·정규분포성·무선독립표본이며, 동변량성의 반대 개념이 이분산성이다."),
+ Q("자료의 값 대신 순위를 매기는 경우에 사용하는 상관계수는?",["피어슨 상관계수","스피어만 상관계수","켄달 타우","크론바흐 알파"],1,"피어슨은 +1~-1 사이 값으로 선형 상관관계를 나타낸다."),
+ Q("좌로 치우친 그래프에서 가장 작은 값을 갖는 대표값은?",["산술평균","중앙값","최빈값","기하평균"],2,"최빈값은 가장 노출 빈도가 높은 자료이며, 좌로 치우친 그래프에서 제일 작다."),
+ Q("표본분산을 계산할 때 편차 제곱합을 나누는 값은?",["n","n-1","n+1","N"],1,"표본분산은 n-1로 나누고, 모분산은 N으로 나눈다."),
+ Q("분포가 어느 한쪽으로 치우친 정도를 나타내는 통계적 척도는?",["왜도","첨도","분산","사분위범위"],0,"첨도는 분포의 뾰족한 정도를 나타낸다."),
+ Q("상자수염그림(Box Plot)으로 파악하기 어려운 것은?",["최솟값과 최댓값","이상치","사분위수","분산과 같은 퍼짐 정도"],3,"상자수염그림은 이상치는 파악 가능하나 분산 등 퍼짐 정도 파악은 어렵다."),
+ Q("사분위범위(IQR)의 정의로 옳은 것은?",["Q3 - Q1","Q2 - Q1","최댓값 - 최솟값","Q3 - Q2"],0,"자료를 크기 순으로 배열한 뒤 3사분위수에서 1사분위수를 뺀 값이다."),
+ Q("n개의 자료에 대해 관측치를 곱한 후 제곱근으로 표현하는 평균은?",["산술평균","기하평균","조화평균","가중평균"],1,"기하평균의 정의다.")
+]},
+
+{code:"2_2_2",name:"시공간의 균열",star:1,ch:1,mobs:["공간 모델 키메라"],boss:"오피니언 마이너",
+ qs:[
+ Q("공간 데이터 모델 중 비구조적이고 자연스러운 표현이 가능하며 연산·함수 확장이 쉽고 무결성 검사가 용이한 것은?",["관계형 모델","객체지향 모델","계층형 모델","네트워크 모델"],1,"관계형 모델은 정적 모델로 표현이 유연하지 못해 실세계 공간 객체 표현에 한계가 있다."),
+ Q("다변량 데이터 탐색에서 '변수축약'에 해당하는 기법은?",["군집분석","판별분석","정준상관분석","다차원 척도법"],2,"변수축약은 주성분분석·요인분석·정준상관분석, 개체유도는 군집분석·다차원 척도법·판별분석이다."),
+ Q("특정 주제에 대한 사람들의 주관적 의견을 통계·수치화해 객관적 정보로 바꾸는 기술은?",["텍스트 마이닝","오피니언 마이닝","웹 마이닝","데이터 마이닝"],1,"텍스트 마이닝은 문장 내 주제 파악, 오피니언 마이닝은 감정·태도를 판별한다."),
+ Q("시공간자료 조작언어에 대한 설명으로 옳은 것은?",["시공간 테이블 인덱스 및 뷰의 정의문을 포함한다","객체의 삽입·삭제·변경 검색문을 포함하며 시간지원·공간 연산자를 제공한다","공간 속성만 다루며 시간 속성은 배제한다","이력 정보는 제공하지 않는다"],1,"1번은 시공간자료 정의언어에 대한 설명이다."),
+ Q("데이터 마이닝의 한계로 지적되는 것은?",["항상 인과관계를 증명한다","자료가 현실을 충분히 반영하지 못하면 잘못된 모형을 구축하는 오류를 범할 수 있다","정형 데이터에는 적용할 수 없다","패턴 추출이 불가능하다"],1,"자료에 의존하여 현상을 해석하기 때문이다.")
+]},
+
+{code:"2_3_1",name:"확률의 제단",star:2,ch:1,mobs:["표본추출 사제","이산분포 군단"],boss:"중심극한 대정령",
+ qs:[
+ Q("모집단에서 추출간격을 설정하여 그 간격 사이에서 무작위로 추출하는 방법은?",["단순무작위 추출","계통 추출","층화 추출","군집 추출"],1,"계통 추출(systematic sampling)."),
+ Q("모집단을 서로 겹치지 않게 분할된 층별로 임의 추출하는 방법은?",["단순무작위 추출","계통 추출","층화 추출","군집 추출"],2,"군집 추출은 차이가 없는 여러 군집으로 나눈 뒤 군집 단위로 분석한다."),
+ Q("베르누이 시행을 n번 독립적으로 시행할 때 성공횟수의 분포는?",["베르누이분포","이항분포","포아송분포","기하분포"],1,"기하분포는 처음 성공까지 시도한 횟수의 분포다."),
+ Q("단위 시간 안에 어떤 사건이 몇 번 발생할 것인지를 표현하는 분포는?",["포아송분포","이항분포","다항분포","초기하분포"],0,"포아송분포의 정의다."),
+ Q("포아송 과정에서 한 개의 사건이 발생할 때까지의 대기 시간을 나타내는 연속확률분포는?",["지수분포","감마분포","정규분포","연속균등분포"],0,"감마분포는 k개의 사건이 발생할 때까지의 대기시간이다."),
+ Q("k개의 서로 독립인 표준정규확률변수를 각각 제곱한 후 합하여 얻어지는 분포는?",["t 분포","F 분포","카이제곱분포","베타분포"],2,"카이제곱분포의 정의다."),
+ Q("모집단의 분포에 상관없이 표본의 수가 큰 표본평균의 분포가 정규분포를 이룬다는 정리는?",["대수의 법칙","중심극한정리","베이지안 정리","체비셰프 부등식"],1,"중심극한정리(Central Limit Theorem)."),
+ Q("비복원 추출에서 n개를 추출했을 때 원하는 것 k개가 뽑힐 확률을 표현하는 분포는?",["이항분포","초기하분포","음이항분포","다항분포"],1,"초기하분포의 정의다."),
+ Q("표본평균의 표준편차를 무엇이라 하는가?",["표준편차","표준오차","분산","평균절대편차"],1,"모집단 크기가 무한이면 σ/√n이다.")
+]},
+
+{code:"2_3_2",name:"검정의 법정",star:2,ch:1,mobs:["점추정 서기","신뢰구간 저울"],boss:"제1종 오류의 재판관",
+ qs:[
+ Q("귀무가설이 참인데 이를 기각하는 오류는?",["제1종 오류","제2종 오류","표본오차","측정오차"],0,"H0가 참인데 기각 = Type 1 Error, H0가 거짓인데 채택 = Type 2 Error."),
+ Q("p-value의 정의로 옳은 것은?",["귀무가설을 기각하려 할 때 필요한 최소의 유의수준","제2종 오류를 범할 확률","검정통계량의 표준편차","신뢰구간의 폭"],0,"유의수준은 제1종 오류를 범할 확률의 최대 허용한계다."),
+ Q("모집단의 분산을 모르고 표본 크기가 작을 때 모평균 신뢰구간에 사용하는 분포는?",["표준정규분포(Z)","t 분포","카이제곱분포","F 분포"],1,"분산을 알거나 표본이 크면 Z, 분산을 모르고 소표본이면 t 분포를 사용한다."),
+ Q("편향이 0이 되는 추정량을 무엇이라 하는가?",["일치추정량","불편추정량","유효추정량","충분통계량"],1,"편향은 기대하는 추정량과 모수의 차이다."),
+ Q("대립가설이 '~보다 크다'인 경우 사용하는 검정은?",["양측검정","단측검정","적합도검정","독립성검정"],1,"양측검정은 대립가설이 '~가 아니다(크거나 작다)'일 때 사용한다."),
+ Q("두 모분산비에 대한 가설검정에 사용하는 검정통계량은?",["Z 검정","T 검정","카이제곱 검정","F 검정"],3,"F = s1²/s2². 단일표본 모분산 검정은 카이제곱 검정이다."),
+ Q("주어진 관찰값을 가장 잘 설명해 주는, 표본을 얻을 확률이 가장 높은 추정량은?",["최소자승추정량","최대우도추정량","불편추정량","적률추정량"],1,"최대우도추정량(MLE).")
+]},
+
+/* ================= 3과목 ================= */
+{code:"3_1_1",name:"설계의 탑",star:1,ch:2,mobs:["시나리오 초안"],boss:"기각역의 문지기",
+ qs:[
+ Q("분석 모형 선정 프로세스의 순서로 옳은 것은?",["문제요건 정의-데이터 수집·정리-데이터 전처리-분석 모형 선정","데이터 수집-문제 정의-모형 선정-전처리","전처리-문제 정의-데이터 수집-모형 선정","모형 선정-문제 정의-데이터 수집-전처리"],0,"문제요건 정의가 항상 선행한다."),
+ Q("가설검정 절차의 순서로 옳은 것은?",["유의수준 결정 및 가설 설정-검정통계량 설정-기각역 설정-검정통계량 계산-통계적 의사결정","가설 설정-기각역 설정-검정통계량 설정-계산-의사결정","검정통계량 설정-가설 설정-계산-기각역 설정-의사결정","기각역 설정-가설 설정-검정통계량 설정-계산-의사결정"],0,"①유의수준·가설 ②검정통계량 ③기각역 ④계산 ⑤의사결정."),
+ Q("종속 변수가 없을 때 사용 가능한 알고리즘으로 제한되는 것은?",["다중 회귀분석","군집, 원인 분석, 이상치, 연관 법칙","로지스틱 회귀분석","의사결정나무 예측 모형"],1,"종속 변수 유무에 따라 사용 가능한 알고리즘이 달라진다."),
+ Q("분석 테마 후보 그룹(pool)을 활용하고 연관된 분석 기회를 발굴하는 접근은?",["하향식 접근","상향식 접근","분석 유스케이스 기반 접근","프로토타이핑 접근"],2,"분석 유스케이스 기반 접근의 정의다."),
+ Q("분석 시나리오 작성 단계에서 수행하는 일이 아닌 것은?",["분석 대상 및 범위를 요구사항에 맞게 정의","해결할 수 있는 문제와 목표 설정","목표별 구현 모델과 예상 결과 작성","최종 모형의 하이퍼파라미터 튜닝 수행"],3,"튜닝은 이후 모델링·개선 단계의 작업이다.")
+]},
+
+{code:"3_1_2",name:"환경의 공방",star:1,ch:2,mobs:["R과 Python의 쌍생아"],boss:"과적합 거인",
+ qs:[
+ Q("R의 단점으로 지적되는 것은?",["시각화 도구가 부족하다","대용량 메모리 처리가 어렵고 보안에 취약하다","자료구조가 단순하다","객체지향을 지원하지 않는다"],1,"R은 시각화에 특화되어 있으나 대용량 메모리 처리·보안이 약하다."),
+ Q("Python의 단점으로 지적되는 것은?",["플랫폼 종속적이다","데이터타입을 동적으로 결정할 수 없다","인터프리터 방식이라 실행속도가 비교적 느리다","메모리 청소 기능이 없다"],2,"Python은 플랫폼 독립적이고 동적 타이핑, 자동 메모리 관리를 제공한다."),
+ Q("추정한 분석모델이 과대·과소적합인지 모형의 성능을 평가하기 위한 데이터는?",["학습 데이터","평가 데이터","테스트 데이터","원천 데이터"],1,"테스트 데이터는 최종적으로 일반화된 모형을 검증한다."),
+ Q("모형이 단순하여 데이터 내부의 패턴 또는 규칙을 잘 학습하지 못하는 것은?",["과대적합","과소적합","일반화","정규화"],1,"과소적합(under-fitting)."),
+ Q("과대적합(과적합)에 대한 설명으로 옳은 것은?",["학습 데이터와 테스트 데이터 모두에서 성능이 낮다","학습 데이터에서는 높은 정확도를 보이나 새로운 데이터 예측은 잘 못한다","모형이 지나치게 단순하다","항상 학습 데이터 부족 때문에 발생한다"],1,"과적합의 정의다."),
+ Q("원시 코드를 기계어로 번역하는 컴파일러와 대비되는, 소스 코드를 바로 실행하는 환경은?",["어셈블러","인터프리터","링커","디버거"],1,"인터프리터의 정의다.")
+]},
+
+{code:"3_2_1",name:"알고리즘의 왕좌",star:3,ch:2,mobs:["의사결정나무 정령","신경망 히드라","SVM 검투사","연관규칙 상인"],boss:"랜덤 포레스트 대공",
+ qs:[
+ Q("비지도학습 알고리즘에 해당하지 않는 것은?",["군집 분석","연관성 분석","오토인코더","서포트벡터머신(SVM)"],3,"SVM은 지도학습(분류) 알고리즘이다."),
+ Q("준지도학습에 해당하는 알고리즘은?",["Q-Learning","GAN","랜덤 포레스트","로지스틱 회귀분석"],1,"준지도학습에는 셀프 트레이닝과 GAN이 있고, Q-Learning·정책경사는 강화학습이다."),
+ Q("종속변수가 이항형일 때 사용하며 신용 평가에 많이 쓰이는 기법은?",["선형 회귀분석","로지스틱 회귀분석","다중 회귀분석","정준상관분석"],1,"유효한 범주의 개수가 두 개일 때 사용한다."),
+ Q("의사결정나무의 분리 기준으로 옳은 것은?",["부모마디보다 자식마디의 순수도가 증가하고 불확실성이 감소하도록 분리","자식마디의 순수도가 감소하도록 분리","모든 마디의 엔트로피를 동일하게 유지","불확실성이 최대가 되도록 분리"],0,"순수도(purity) 증가 = 정보 획득."),
+ Q("의사결정나무 분석 과정에서 불필요하거나 분류오류를 크게 할 위험이 있는 마디를 제거하는 단계는?",["변수 선택","의사결정나무 형성","가지치기","타당성 평가"],2,"변수 선택-나무 형성-가지치기-타당성 평가-해석 및 예측 순이다."),
+ Q("단순 복원 임의추출법으로 크기가 동일한 여러 개의 표본자료를 생성하는 것은?",["부트스트래핑","배깅","부스팅","스태킹"],0,"배깅은 여러 부트스트랩 자료를 생성하여 학습하는 모델링이다."),
+ Q("가중치를 활용하여 약분류기를 강분류기로 만드는 방법은?",["배깅","부스팅","보팅","스태킹"],1,"부스팅은 순차적 학습으로 가중치를 부여해 오차를 보완한다."),
+ Q("신경망에서 은닉층의 뉴런을 임의로 삭제하면서 학습하는 과대적합 방지 기법은?",["가중치 감소","드롭아웃","조기 종료","배치 정규화"],1,"적은 뉴런으로 훈련한 뒤 테스트 시 전체 뉴런을 사용한다."),
+ Q("L1 규제를 부르는 다른 이름은?",["릿지(Ridge)","라쏘(Lasso)","엘라스틱넷","드롭아웃"],1,"L1 규제=라쏘, L2 규제=릿지."),
+ Q("0보다 크면 입력값을 그대로 출력하고 0 이하는 0으로 출력하는 활성 함수는?",["Sigmoid","ReLU","tanh","Softmax"],1,"Sigmoid는 0~1 사이의 값으로 출력한다."),
+ Q("순서를 가진 데이터를 입력하여 단위 간 연결이 시퀀스를 따라 방향성 그래프를 형성하는 모델은?",["CNN","RNN","GAN","오토인코더"],1,"필기나 음성 인식처럼 시변적 특징을 지닌 데이터 처리에 적용한다."),
+ Q("입력 크기 5×5, 필터 3×3, 패딩 1, 스트라이드 1일 때 출력 크기는?",["3×3","4×4","5×5","7×7"],2,"OH=(H+2P-FH)/S+1=(5+2-3)/1+1=5. 따라서 5×5."),
+ Q("SVM에서 서포트벡터를 지나는 초평면 사이의 거리를 무엇이라 하는가?",["초평면","마진","커널","서포트벡터"],1,"초평면은 서로 다른 분류 간 거리를 가장 크게 하는 분류 선이다."),
+ Q("향상도(lift)의 계산식으로 옳은 것은?",["P(A,B)/P(A)","P(A,B)/{P(A)·P(B)}","P(A)·P(B)","P(B|A)/P(A)"],1,"향상도는 두 규칙의 상관관계, 즉 독립 여부를 판단하는 개념이다."),
+ Q("최소 지지도 이상의 빈발항목집합만 찾아내서 연관규칙을 계산하는 알고리즘은?",["아프리오리","FP-Growth","k-평균","아다부스트"],0,"Apriori 알고리즘의 정의다."),
+ Q("민코프스키 거리에서 m=1일 때와 같아지는 거리는?",["유클리드 거리","맨해튼 거리","마할라노비스 거리","자카드 거리"],1,"m=1이면 맨해튼, m=2이면 유클리드 거리와 같다."),
+ Q("특정 값이 평균에서 얼마나 멀리 있는지를 변수 간 상관관계를 고려하여 나타내는 거리는?",["유클리드 거리","맨해튼 거리","마할라노비스 거리","자카드 거리"],2,"자카드 거리는 두 집합 간 비유사성을 측정한다."),
+ Q("덴드로그램으로 결과를 표현하며 군집 수를 미리 명시할 필요가 없는 군집분석은?",["계층적 군집분석","비계층적 군집분석","K-평균 군집분석","밀도기반 군집분석"],0,"비계층적은 사전 군집 수로 표본을 나누며 대규모 DB 처리에 유용하다."),
+ Q("인공신경망 학습 단계의 순서로 옳은 것은?",["미니배치-가중치 매개변수 기울기 산출-매개변수 갱신","가중치 산출-미니배치-갱신","갱신-미니배치-기울기 산출","미니배치-갱신-기울기 산출"],0,"1단계 미니배치 → 2단계 기울기 산출 → 3단계 매개변수 갱신."),
+ Q("오차를 출력층에서 입력층으로 전달하며 연쇄법칙을 활용해 가중치와 편향을 계산하는 방법은?",["경사 하강법","오차역전파","드롭아웃","배치 정규화"],1,"미분을 직접 진행하지 않고 역전파로 계산한다."),
+ Q("CNN에서 출력데이터 크기가 줄어드는 것을 방지하고자 입력데이터 주변을 특정값으로 채우는 것은?",["필터","스트라이드","패딩","풀링"],2,"스트라이드는 필터가 입력을 순회하는 간격이다."),
+ Q("점차 데이터가 소멸되는 RNN의 단점을 보완하며 보통 신경망 대비 4배 이상 파라미터를 보유한 모델은?",["CNN","LSTM","GAN","오토인코더"],1,"LSTM은 여러 단계를 거쳐도 오랜 시간 데이터를 잘 기억한다.")
+]},
+
+{code:"3_2_2",name:"고급 술식의 방",star:2,ch:2,mobs:["범주형 검사관","다변량 미로"],boss:"시계열 예언자",
+ qs:[
+ Q("독립변수가 범주형(두 개 이상 집단)이고 종속변수가 연속형인 경우 사용하는 검정은?",["T 검정","분산분석","카이제곱검정","빈도분석"],1,"T 검정은 독립변수가 두 개의 집단인 범주형일 때 사용한다."),
+ Q("두 범주형 변수가 서로 상관이 있는지 독립인지를 판단하는 통계적 검정 방법은?",["T 검정","분산분석","카이제곱검정","정준상관분석"],2,"카이제곱검정."),
+ Q("종속변수군과 독립변수군 간의 상관을 최대화하는 각 변수군의 선형조합을 찾는 분석은?",["요인분석","정준상관분석","다중판별분석","다차원척도법"],1,"정준상관분석(canonical correlation analysis)."),
+ Q("개체들을 원래보다 낮은 차원의 공간상에 위치시켜 개체 간 구조·관계를 파악하는 방법은?",["군집분석","다차원척도법","다중판별분석","다변량공분산분석"],1,"다차원척도법(MDS)."),
+ Q("시계열의 정상성 조건으로 옳지 않은 것은?",["모든 시점의 평균이 일정","모든 시점의 분산이 일정","공분산이 시차에만 의존","시간이 지날수록 분산이 증가"],3,"정상시계열은 평균회귀 경향을 가진다."),
+ Q("관찰기간 제한 없이 모든 시계열 데이터를 사용하되 최근 시계열에 더 많은 가중치를 주는 방법은?",["이동평균법","지수평활법","분해법","자기회귀모형"],1,"이동평균법은 일정 기간을 이동하며 평균을 계산한다."),
+ Q("비정상성을 가지는 시계열 데이터 분석에 사용하는 모형은?",["AR","MA","ARMA","ARIMA"],3,"자기회귀누적이동평균모형(ARIMA)."),
+ Q("서로 다른 알고리즘 모델을 조합해서 사용하고 결과물에 대해 투표로 결정하는 앙상블 기법은?",["보팅","배깅","부스팅","스태킹"],0,"배깅은 같은 알고리즘 내에서 다른 표본 데이터 조합을 사용한다."),
+ Q("순차적 학습을 하며 가중치를 부여해 오차를 보완하지만 병렬처리가 어려운 앙상블 기법은?",["보팅","배깅","부스팅","스태킹"],2,"부스팅의 특징이다."),
+ Q("비모수 통계 검정 방법에 해당하지 않는 것은?",["부호검정","윌콕슨 부호순위 검정","크루스칼-왈리스 검정","피어슨 상관분석"],3,"비모수 통계는 모집단이 정규분포가 아닐 때, 표본이 적을 때 사용한다."),
+ Q("분류에 필요한 파라미터 추정에 매우 적은 학습 데이터만 필요하고 디자인이 간단한 지도학습 분류기는?",["나이브 베이즈 분류","SVM","랜덤 포레스트","심층 신경망"],0,"나이브 베이즈 분류의 특징이다.")
+]},
+
+/* ================= 4과목 ================= */
+{code:"4_1_1",name:"평가의 심판정",star:3,ch:3,mobs:["오차행렬 사천왕","회귀지표 감정관","실루엣 측량사"],boss:"교차검증 대심판",
+ qs:[
+ Q("정밀도(precision)의 계산식은?",["TP/(TP+FN)","TP/(TP+FP)","(TP+TN)/전체","TN/(TN+FP)"],1,"정밀도는 예측이 Positive인 것 중 실제 Positive 비율이다."),
+ Q("재현율(recall)의 계산식은?",["TP/(TP+FN)","TP/(TP+FP)","(TP+TN)/전체","FP/(FP+TN)"],0,"재현율은 실제 Positive 중 맞게 예측한 비율이다."),
+ Q("TP=40, FP=10, FN=20, TN=30일 때 정확도(accuracy)는?",["0.40","0.67","0.70","0.80"],2,"(TP+TN)/(TP+FP+TN+FN)=(40+30)/100=0.70."),
+ Q("정밀도와 재현율을 결합한 조화평균 지표는?",["AUC","F1 score","AIC","실루엣 계수"],1,"값이 클수록 모형이 정확하다."),
+ Q("ROC curve의 하단 면적을 무엇이라 하는가?",["AUC","MSE","AIC","Dunn Index"],0,"ROC는 FP rate가 변할 때 TP rate의 변화를 나타내는 곡선이다."),
+ Q("MSE에 루트를 취한 지표는?",["SSE","RMSE","MSPE","MAE"],1,"SSE에 평균을 취하면 MSE, MSE에 루트를 취하면 RMSE, MSE를 퍼센트로 바꾸면 MSPE."),
+ Q("AIC에 대한 설명으로 옳은 것은?",["값이 높을수록 모형의 적합도가 높다","값이 낮을수록 모형의 적합도가 높다","독립변수 개수와 무관하다","분류모형에만 사용한다"],1,"최대 우도에 독립변수 개수에 대한 손실분을 반영한다."),
+ Q("실루엣 계수 s(i)가 0일 때의 의미로 옳은 것은?",["군집이 완벽하게 분리되었다","군집으로 분리가 의미 없다","군집 내 응집도가 최대다","군집 수가 최적이다"],1,"0.5보다 크면 적절한 군집 모델로 본다."),
+ Q("군집 간 거리의 최소값을 분자, 군집 내 요소 간 거리의 최대값을 분모로 하는 지표는?",["실루엣 계수","Dunn Index","AUC","F1 score"],1,"Dunn Index는 값이 클수록 좋다."),
+ Q("k-폴드 교차검증의 구성으로 옳은 것은?",["k개 서브셋 중 k-1개는 훈련, 1개는 검증 데이터로 사용","k개 서브셋 모두를 훈련에만 사용","1개는 훈련, k-1개는 검증으로 사용","훈련·검증 구분 없이 전체를 한 번만 사용"],0,"모든 데이터셋을 평가에 활용하여 과적합을 방지한다."),
+ Q("관측된 표본분포와 가정된 분포 사이의 적합도를 누적분포함수의 차이로 검사하는 검정법은?",["카이제곱 검정","콜모고로프 스미르노프 검정","F 검정","더빈-왓슨 검정"],1,"연속형 데이터에도 적용 가능하다."),
+ Q("회귀분석에서 잔차 진단 시 확인하는 항목이 아닌 것은?",["정규성 진단","등분산성 진단","독립성 진단","다중공선성 소거"],3,"잔차 진단은 정규성·등분산성·독립성을 확인한다.")
+]},
+
+{code:"4_1_2",name:"개선의 용광로",star:1,ch:3,mobs:["규제의 사슬"],boss:"Adam 대장장이",
+ qs:[
+ Q("손실함수에 가중치의 절댓값(L1 norm)을 추가 적용하여 대부분의 특성 가중치를 0으로 만드는 규제는?",["L1 규제","L2 규제","드롭아웃","배치 정규화"],0,"L2 규제는 L2 norm의 제곱을 더한 패널티를 부여한다."),
+ Q("모멘텀과 AdaGrad를 결합한 방법론으로 좌우 흔들림이 덜한 최적화 알고리즘은?",["SGD","모멘텀","AdaGrad","Adam"],3,"Adam의 정의다."),
+ Q("개별 매개변수에 적응적으로 학습률을 조정하면서 학습을 진행하는 알고리즘은?",["SGD","모멘텀","AdaGrad","Adam"],2,"AdaGrad의 정의다."),
+ Q("하나의 미니배치를 학습할 때 1회 매개변수 업데이트가 진행되는 단위는?",["에폭","이터레이션","배치 크기","학습율"],1,"1 iteration = 1회 매개변수 업데이트."),
+ Q("학습율이 작을 때 나타나는 현상은?",["학습 시간이 길어진다","항상 최적해에 도달하지 못한다","기울기가 0이 된다","은닉층 개수가 늘어난다"],0,"학습율은 기울기 방향으로 얼마나 빠르게 이동할지를 결정한다."),
+ Q("회귀모형의 주요 성능평가 지표가 아닌 것은?",["SSE","결정계수 R²","MAE","재현율"],3,"재현율은 분류모형 지표(특이도·정밀도·재현율·정확도)다."),
+ Q("초매개변수 중 은닉층 개수에 대한 설명으로 옳은 것은?",["적을수록 특정 훈련 데이터에 최적화된다","모든 은닉층의 뉴런 개수를 동일하게 하는 것이 가변적으로 하는 것보다 효과적이다","은닉층 개수는 학습 시간과 무관하다","은닉층은 항상 1개여야 한다"],1,"은닉층이 많아질수록 특정 훈련 데이터에 더 최적화된다.")
+]},
+
+{code:"4_2_1",name:"해석의 거울방",star:1,ch:3,mobs:["모델별 해석자"],boss:"평행좌표계 마술사",
+ qs:[
+ Q("KNN 결과 시각화에 주로 활용되며 변수들과의 연관성 및 그룹데이터 경향성을 파악하는 것은?",["산점도와 구분선","평행좌표계","트리 다이어그램","네트워크 그래프"],1,"SVM은 산점도와 구분선, 의사결정나무는 트리 다이어그램이다."),
+ Q("연관분석 모델의 시각화 방법으로 적절한 것은?",["히트맵","트리 다이어그램","네트워크 그래프","상자수염그림"],2,"연관성 있는 항목끼리 묶어 네트워크 그래프를 활용한다."),
+ Q("회귀 모델의 결과 해석에 주로 사용되는 것은?",["잔차와 결정계수","지지도와 향상도","실루엣 계수","혼동행렬"],0,"결정계수는 추정된 회귀식이 변동을 얼마나 잘 설명하는지를 나타낸다."),
+ Q("군집분석 모델에서 범주형 변수가 있는 경우의 결과 해석 방법은?",["평균 또는 중앙값을 계산","범주별로 각 군집의 분포를 사용","향상도를 계산","오차율을 계산"],1,"연속형 변수인 경우 평균 또는 중앙값을 계산한다."),
+ Q("연관분석 모델 해석 시 유의할 점으로 옳은 것은?",["지지도만 높으면 충분하다","지지도, 신뢰도, 향상도가 높은 규칙을 찾되 최소 기준점을 적용한다","향상도는 해석에 사용하지 않는다","최소 기준점은 설정하지 않는다"],1,"두 개 이상의 품목 간 상호 관련성으로 해석한다."),
+ Q("딥러닝 모델의 결과 해석에서 오차율로 사용하는 것은?",["상대오차나 평균 제곱근 편차","지지도","실루엣 계수","사분위범위"],0,"분류문제인 경우 정확도나 오차율을 사용한다.")
+]},
+
+{code:"4_2_2",name:"시각의 화랑",star:2,ch:3,mobs:["시간 시각화 화가","분포 시각화 조각가"],boss:"카토그램 지도장인",
+ qs:[
+ Q("시간 시각화 중 연속형에 해당하지 않는 것은?",["꺾은선그래프","계단그래프","추세선","막대그래프"],3,"이산형은 특정 시점의 값을 표현(막대그래프, 점그래프)한다."),
+ Q("각 영역을 모두 합치면 1 또는 100%가 되는 시각화 유형은?",["시간 시각화","분포 시각화","관계 시각화","공간 시각화"],1,"히스토그램, 파이차트, 도넛차트, 트리맵, 누적영역차트 등이 해당한다."),
+ Q("비교 시각화에 해당하는 것은?",["버블차트","체르노프 페이스","단계구분도","도넛차트"],1,"비교 시각화는 히트맵, 체르노프 페이스, 스타차트, 평행좌표계, 다차원척도법 등이다."),
+ Q("장소나 지역에 따른 데이터의 분포를 표현하는 시각화는?",["관계 시각화","비교 시각화","공간 시각화","분포 시각화"],2,"단계구분도, 카토그램 등이 사용된다."),
+ Q("복잡한 수치나 글로 표현된 정보와 지식을 한눈에 파악하도록 시각적으로 표현한 것은?",["정보 시각화","정보 디자인","인포그래픽","대시보드"],2,"정보 디자인은 시각 디자인의 하위 영역이다."),
+ Q("데이터셋에 변수가 두 개 이상 있을 때 상관관계를 표현하는 관계 시각화 도구는?",["산점도, 버블차트, 히트맵","막대그래프, 점그래프","트리맵, 도넛차트","단계구분도, 카토그램"],0,"관계 시각화의 대표 도구들이다."),
+ Q("데이터 시각화에서 함께 고려해야 하는 두 측면은?",["기능적 측면과 심미적 측면","경제적 측면과 기술적 측면","정확성과 속도","보안성과 확장성"],0,"정보를 명확하고 효과적으로 전달하는 것이 목적이다.")
+]},
+
+{code:"4_2_3",name:"전개의 문",star:1,ch:3,mobs:["참조모델 전령"],boss:"리모델링 종결자",
+ qs:[
+ Q("빅데이터 분석 방법론 참조모델(데이터산업진흥원)의 순서는?",["분석기획-데이터 준비-데이터 분석-시스템 구현-평가 및 전개","업무 이해-데이터 이해-준비-모델링-평가-전개","샘플링-탐색-전처리-모델링-평가","데이터 추출-전처리-변환-마이닝-해석/평가"],0,"2번은 CRISP-DM, 3번은 SEMMA, 4번은 KDD다."),
+ Q("SEMMA의 절차로 옳은 것은?",["샘플링-탐색-전처리-모델링-평가","비즈니스 이해-데이터 이해-준비-모델링-평가-전개","데이터 추출-전처리-변환-마이닝-해석/평가","기획-준비-분석-구현-전개"],0,"SEMMA는 5단계다."),
+ Q("전개 단계 중 데이터 품질 검토, 알고리즘 개선, 매개변수 최적화 과정이 진행되는 것은?",["분석결과 활용 계획 수립","분석결과 적용과 보고서 작성","분석모형 모니터링","분석모형 리모델링"],3,"변화된 업무와 데이터를 지속적으로 수용하기 위한 과정이다."),
+ Q("분석모형 모니터링의 목적으로 옳은 것은?",["최초 분석 목표를 재정의하기 위함","수립한 활용방안이 잘 수행되는지 확인하고 환경·데이터 변화를 모델에 지속 반영하기 위함","데이터 수집 도구를 교체하기 위함","분석 조직을 재편하기 위함"],1,"모니터링의 정의다."),
+ Q("KDD의 절차로 옳은 것은?",["데이터 추출-전처리-변환-데이터 마이닝-해석/평가","샘플링-탐색-전처리-모델링-평가","업무 이해-데이터 이해-준비-모델링-평가-전개","기획-준비-분석-구현-전개"],0,"KDD는 5단계 절차다.")
+]}
+];
+
+
+/* ── 문제은행 인덱싱 ───────────────────────────── */
+var BANK={};
+QBANK.forEach(function(s){ s.qs.forEach(function(q,i){ q.id=s.code+"#"+i; q.stage=s.code; q.sname=s.name; }); BANK[s.code]=s; });
+function findQ(id){ var a=id.split("#"), s=BANK[a[0]]; return s?s.qs[+a[1]]:null; }
+
+/* ── 절별 핵심 정리 (필기 요약본 기준) ─────────── */
+var SUM = {
+"1_1_1":["정량적=숫자 / 정성적=텍스트, 함축적 의미",
+"정형=형식·구조 준수, <b>연산 가능</b> / 반정형=스키마를 데이터와 함께 제공, 연산 불가 / 비정형=구조 없음, 연산 불가",
+"암묵지=학습·경험으로 체화되었으나 겉으로 드러나지 않는 지식",
+"빅데이터 <b>3V+2V</b>=규모(Volume)·유형(Variety)·속도(Velocity) + 품질(Veracity)·가치(Value)",
+"활용 3요소=자원(수집·전처리) / 기술(분산처리·마이닝·AI) / 인력(전문지식·도메인)",
+"DW 4특성=<b>주제지향성·통합성·시계열성·비휘발성</b>",
+"ETL=내외부에서 추출·정제·가공하여 DW에 적재 / ODS=여러 DBMS 추출 데이터의 통합 관리",
+"조직 구성=집중형(별도 조직)·기능형(부서가 직접 수행)·분산형(전문 인력을 부서에 배치)"],
+
+"1_1_2":["처리과정=생성 → <b>수집 → 저장(공유) → 처리 → 분석 → 시각화</b>",
+"수집=크롤링(색인 포함), 로그 수집기, 센서 네트워크, RSS/Open API, ETL",
+"저장=NoSQL(HBase·MongoDB·Cassandra·Cloudata), 분산 파일 시스템, 병렬 DBMS",
+"처리=분산 병렬 컴퓨팅(미들웨어로 하나처럼), 맵리듀스(<b>구글</b>), 하둡(오픈소스 프레임워크)",
+"분석=탐구 요인 분석(데이터 간 상호 관계) / 확인 요인 분석(집합 요소 구조)",
+"지도학습=함수 유추, 분류·회귀 / 비지도=목표치 없음, 특징 발견·요약 / 전이학습=학습된 지식을 새 문제에",
+"비식별화 5기법=<b>가명 처리·총계 처리·데이터 삭제·범주화·마스킹</b>",
+"개인정보=살아 있는 개인, 다른 정보와 쉽게 결합해 특정 가능 / GDPR=EU 통합 규정"],
+
+"1_2_1":["하향식=문제가 주어지고 해법 탐색 / 상향식=문제 정의 자체가 어려울 때 재정의",
+"4분면: 대상Known+방식Known=<b>Optimization</b>, 대상Un+방식Known=<b>Insight</b>, 대상Known+방식Un=<b>Solution</b>, 둘 다 Un=<b>Discovery</b>",
+"KDD=데이터셋 선택 → 전처리 → 변환 → 데이터 마이닝 → 결과 평가",
+"CRISP-DM=업무 이해 → 데이터 이해 → 데이터 준비 → 모델링 → 평가 → 전개 (<b>6단계</b>)",
+"SEMMA=추출 → 탐색 → 수정 → 모델링 → 평가",
+"개발절차=분석 기획 → 데이터 준비 → 데이터 분석 → 시스템 구현 → 평가 및 전개",
+"데이터 거버넌스=가용성·유용성·통합성·보안성·안전성 확보 / 메타 데이터=데이터를 설명하는 데이터",
+"분석 성숙도=<b>도입 → 활용 → 확산 → 최적화</b> (비즈니스·조직 및 역량·IT 대상)"],
+
+"1_2_2":["데이터 처리 영역=물리적 환경 제공 / 데이터 분석 영역=가공·분석·결과 표현",
+"확보 사전 검토=필요 데이터 정의, 보유 현황, 유형, 편향되지 않은 충분한 규모, 내부 사용, 외부 수집",
+"전처리 수행=<b>정제·통합·축소·변환</b>",
+"품질 지표=<b>정확성·완전성·적시성·일관성</b>",
+"분석 절차=문제 인식 → 연구조사 → 모형화 → 데이터 수집 → 데이터 분석 → 결과 제시",
+"중점 관리 영역=데이터 크기·복잡도·속도·분석 모형 복잡도·정확도와 정밀도",
+"모형이 복잡할수록 정확도↑ 해석↓ / 결과 활용=<b>정확도</b>, 모형 안정성=<b>정밀도</b>"],
+
+"1_3_1":["구축 절차=유형 파악 → 수집 기술 결정 → 아키텍처 수립 → 하드웨어 구축 → 실행환경 구축",
+"원천 데이터 정보=수집 가능성·보안·정확성·수집 난이도·수집 비용",
+"스쿱=관계형 데이터스토어 간 대량 전송 / 플럼=로그 수집·집계·이동 / 스크래피=파이썬 웹 크롤링",
+"<b>k-익명성</b>=동일 값 레코드 k개 이상, 식별 확률 1/k",
+"<b>l-다양성</b>=각 레코드에 최소 l개 다양성 / <b>t-근접성</b>=분포 차이를 t 이하로",
+"식별자=고유 식별 정보 / 속성자=개인에 대한 추가 정보",
+"정형 품질=완전성·유일성·유효성·일관성·정확성",
+"비정형 품질=기능성·신뢰성·사용성·효율성·<b>이식성</b>"],
+
+"1_3_2":["적재=데이터 유형과 실시간 처리 여부로 구분",
+"key-value DB=키-값 쌍, 확장성 우수·질의 응답 빠름",
+"column-oriented DB=로우가 아닌 <b>칼럼</b> 기반 저장·처리",
+"document DB=문서 내부구조 기반의 복잡한 데이터 저장 지원",
+"저장시스템 선정=기능성 비교분석·분석방식 및 환경·데이터 유형·기존 시스템 연계",
+"스트리밍=빠르고 연속적·대용량·다양한 장소 (네트워크 모니터링, IoT 센서, 웹 로그)",
+"로그=처리 내용·이용 상황을 시간 흐름에 따라 기록한 것"],
+
+"2_1_1":["정제 과정=수집 → 변환 → 저장 → 품질 확인 → 관리 / 전처리=저장 전, 후처리=저장 후 품질관리",
+"<b>완전 무작위 결측</b>=다른 변수와 아무 연관 없음",
+"<b>무작위 결측</b>=관측된 다른 변수와 연관, 비관측값과는 무관 / <b>비 무작위 결측</b>=다른 변수와 연관 있음",
+"단순 대치법=완전 분석법·평균·회귀·단순확률·최근접 대치법",
+"다중 대치법=단순 대치를 복수 시행, 통계적 효율성·일치성 보완",
+"이상치 탐지=상자그림·줄기잎·산점도, Z-Score, 밀도기반 클러스터링, 고립 의사나무",
+"이상치가 비무작위면 정상성 감소 → <b>신뢰성 저하</b>",
+"모수적=정규분포 가정 / 비모수적=정규분포 가정 불가"],
+
+"2_1_2":["전진 선택=상관 절댓값 최대 변수 추가, 제거 안 함 / 후진 소거=최소 변수 제외, 재추가 안 함 / 단계적=혼합",
+"차원 축소=분석시간·저장량 감소, 과적합 감소, 해석 용이",
+"<b>차원의 저주</b>=차원 증가로 학습데이터 수가 차원 수보다 적어져 성능 저하 → 차원↓ 또는 데이터↑",
+"요인 분석=공통 차원 축약, <b>독립/종속 개념 없음</b>",
+"주성분 분석 / 특이값 분해 / 음수 미포함 행렬분해(V=W×H, 대략적 해)",
+"파생변수=조건·함수로 의미 부여 / 요약변수=수집 정보를 분석에 맞게 종합",
+"변수 변환=범주형·정규화(일반·최소최대·Z-Score)·로그·역수·지수·제곱근",
+"불균형: 언더샘플링=대표클래스 일부만 / 오버샘플링=소수클래스 복제"],
+
+"2_2_1":["EDA=본격 분석 전 직관적 통찰, 잠재 문제 인식·새 패턴 발견",
+"상관분석 가정=<b>선형성·동변량성·정규분포성·무선독립표본</b> (동변량성 ↔ 이분산성)",
+"피어슨=+1~-1 선형 상관 / 스피어만=값 대신 <b>순위</b>",
+"기하평균=관측치를 곱한 뒤 n제곱근 / 최빈값=좌로 치우친 분포에서 가장 작음",
+"모분산은 N으로, <b>표본분산은 n-1</b>로 나눔 / 표준편차=분산의 제곱근",
+"왜도=치우친 정도 / 첨도=뾰족한 정도 / 사분위범위=<b>Q3 − Q1</b>",
+"상자수염그림=최솟값·Q1·Q2·Q3·최댓값, 이상치는 보이나 <b>퍼짐 정도는 파악 어려움</b>"],
+
+"2_2_2":["시공간 데이터=공간 정보 + 시간 흐름의 다차원 데이터",
+"공간 모델: 관계형=정적, 표현 한계 / 객체지향=자연스런 표현, 연산·함수 확장 쉬움, 무결성 검사 용이",
+"시공간 정의언어=테이블·인덱스·뷰 정의 / 조작언어=삽입·삭제·변경, 시간지원·공간 연산자, 이력 제공",
+"다변량 인과관계=다중회귀·로지스틱·분산분석",
+"<b>변수축약</b>=주성분·요인·정준상관 / <b>개체유도</b>=군집·다차원척도·판별",
+"텍스트 마이닝=문장 내 주제 / 오피니언 마이닝=감정·태도 / 웹 마이닝=로그·행동·콘텐츠",
+"데이터 마이닝은 자료 의존적 — 현실 반영이 부족하면 잘못된 모형을 만든다"],
+
+"2_3_1":["표본추출=단순무작위 / 계통(추출간격) / 층화(겹치지 않는 층) / 군집(군집 단위)",
+"조건부 P(A|B)=P(A∩B)/P(B) / 결합 P(A∩B)=P(A)×P(B) / 베이즈=사전확률+정보 → 사후확률",
+"이산: 베르누이(성공·실패), 이항(n회 성공횟수), 다항, <b>포아송(단위시간 발생 횟수)</b>",
+"이산: 기하(첫 성공까지), 음이항(k번째 성공까지), <b>초기하(비복원 추출)</b>",
+"연속: 균등, <b>지수(1개 사건 대기)</b>, 정규, 표준정규(μ=0,σ=1), <b>감마(k개 사건 대기)</b>",
+"연속: <b>카이제곱(표준정규 제곱합)</b>, t(소표본 평균), F(두 카이제곱의 비)",
+"표준오차=표본평균의 표준편차 σ/√n / <b>중심극한정리</b>=표본이 크면 표본평균 분포는 정규분포"],
+
+"2_3_2":["점추정=표본평균·표본분산·표본비율 / 편향 0 → <b>불편추정량</b>",
+"최대우도추정량=주어진 관찰값을 가장 잘 설명하는 θ̂",
+"신뢰구간: 모분산 알면 <b>Z</b> / 모르고 소표본이면 <b>t(n-1)</b> / 모르고 대표본이면 Z",
+"귀무가설=기존 통념·기준 / 대립가설=연구자가 새로 입증하려는 가설",
+"<b>제1종 오류</b>=참인 H0을 기각 / <b>제2종 오류</b>=거짓 H0을 채택",
+"유의수준=제1종 오류 확률의 최대 허용한계 / <b>p-value</b>=기각에 필요한 최소 유의수준",
+"양측검정=대립가설이 '~가 아니다' / 단측검정='~보다 크다/작다'",
+"검정통계량: 두 독립표본 T, 대응표본 T, 단일 모분산 χ², 두 모분산비 <b>F</b>"],
+
+"3_1_1":["분석 모형=예측 분석 모형·현황 진단 모형·최적화 분석 모형",
+"선정 프로세스=<b>문제요건 정의 → 데이터 수집·정리 → 전처리 → 분석 모형 선정</b>",
+"분석 유스케이스 기반 접근=분석 테마 후보 그룹(pool) 활용",
+"가설검정=유의수준·가설 설정 → 검정통계량 설정 → 기각역 설정 → 계산 → 통계적 의사결정",
+"검정통계량=(표본평균 − 모평균)/(표본 표준편차)",
+"종속 변수가 없으면 군집·원인 분석·이상치·연관 법칙으로 <b>알고리즘이 제한</b>됨"],
+
+"3_1_2":["R=객체지향, 고속메모리, 시각화 특화 / 단점=대용량 메모리 처리 어려움, 보안 취약",
+"Python=인터프리터, 동적 타입, 플랫폼 독립, 메모리 자동 청소 / 단점=<b>실행 속도</b>",
+"인터프리터=소스 코드를 바로 실행 (컴파일러와 대비)",
+"학습 데이터=모형 생성 / 평가 데이터=과대·과소적합 판단 / 테스트 데이터=최종 검증",
+"과대적합=학습에는 강하나 새 데이터 예측 실패 / 과소적합=모형이 단순해 패턴 학습 실패",
+"일반화=테스트 데이터에서도 정확하게 예측하는 것"],
+
+"3_2_1":["지도 분류=의사결정나무·랜덤포레스트·인공신경망·SVM·로지스틱 / 지도 회귀=의사결정나무·선형·다중",
+"비지도=군집·연관성·인공신경망·오토인코더 / 준지도=셀프 트레이닝·<b>GAN</b> / 강화=Q-Learning·정책경사",
+"의사결정나무=자식마디 <b>순수도 증가·불확실성 감소</b>. 변수 선택→나무 형성→가지치기→타당성 평가→해석",
+"부트스트래핑=단순 복원 임의추출 / 배깅=부트스트랩 학습 / 부스팅=가중치로 약→강, <b>랜덤포레스트=배깅 기반</b>",
+"신경망 학습=미니배치 → 기울기 산출 → 매개변수 갱신 / 오차역전파=연쇄법칙으로 출력층→입력층",
+"과적합 방지=가중치 감소(<b>L1 라쏘·L2 릿지</b>), 드롭아웃, 초매개변수 최적화",
+"활성함수: Sigmoid=0~1 / <b>ReLU=0 이하는 0, 초과는 그대로</b>",
+"CNN=필터·스트라이드·패딩, <b>OH=(H+2P−FH)/S+1</b> / RNN=시퀀스 / LSTM=RNN 소멸 보완 / GAN=생성자·판별자",
+"SVM=초평면(분류 선)·서포트벡터(경계)·<b>마진(초평면 사이 거리)</b>",
+"연관성=지지도·신뢰도·<b>향상도 lift=P(A,B)/{P(A)P(B)}</b> / 아프리오리=최소 지지도 이상 빈발항목집합",
+"거리=유클리드·맨해튼·민코프스키(m=1 맨해튼, m=2 유클리드)·마할라노비스(상관관계 고려)·자카드",
+"계층적 군집=덴드로그램, 군집 수 불필요 / 비계층적=사전 군집 수 지정, K-평균"],
+
+"3_2_2":["범주형: 빈도분석 / 카이제곱(독립성) / 로지스틱 / <b>T검정=2집단</b> / <b>분산분석=2집단 이상</b>",
+"다변량=다중회귀·다변량분산분석·다변량공분산분석·정준상관·요인·군집·다중판별·다차원척도",
+"정준상관분석=종속변수군과 독립변수군의 상관을 최대화하는 선형조합",
+"시계열 성분=추세·계절·순환·복합·자기상관·백색잡음",
+"<b>정상성</b>=모든 시점 평균·분산 일정, 공분산은 시차에만 의존, 평균회귀 경향",
+"단순법=이동평균·<b>지수평활(최근에 큰 가중치)</b>·분해법 / 모형=AR·ARMA·<b>ARIMA(비정상)</b>",
+"나이브 베이즈=적은 학습 데이터, 간단한 설계, 지도학습에서 효율적",
+"앙상블=보팅(다른 알고리즘 투표)·부스팅(순차, <b>병렬 어려움</b>)·배깅(같은 알고리즘 다른 표본)·스태킹",
+"비모수=부호검정·윌콕슨 부호순위·만 휘트니·크루스칼-왈리스"],
+
+"4_1_1":["정확도=(TP+TN)/전체 / <b>정밀도=TP/(TP+FP)</b> / <b>재현율=TP/(TP+FN)</b>",
+"F1 score=정밀도와 재현율의 <b>조화평균</b>, 클수록 정확",
+"ROC=FP rate 변화에 따른 TP rate 곡선, 하단 면적=<b>AUC</b>",
+"회귀: SSE → 평균=MSE → 루트=RMSE → 퍼센트=MSPE / MAE=절댓값 평균 / R²=적합 비율",
+"<b>AIC는 낮을수록 적합도가 높다</b>",
+"실루엣 계수 s(i)=(b−a)/max(a,b), <b>0.5 초과면 적절, 0이면 분리 무의미</b> / Dunn Index=클수록 좋음",
+"잔차 진단=정규성·등분산성·독립성 / 중심극한정리",
+"k-폴드=서브셋 k개, k−1 훈련 + 1 검증, 전부 평가에 활용 / 홀드아웃=비율 분할",
+"적합도=카이제곱 / <b>콜모고로프 스미르노프</b>=누적분포함수 차이, 연속형에도 적용"],
+
+"4_1_2":["드롭아웃=은닉층 뉴런을 임의 삭제하며 학습",
+"<b>L2 규제</b>=가중치 L2 norm 제곱 패널티 → 값을 작게 / <b>L1 규제</b>=절댓값 추가 → 대부분 가중치를 0으로",
+"SGD=기울기 따라 하강 / 모멘텀=속도(가속) 개념 / AdaGrad=적응적 학습률 / <b>Adam=모멘텀+AdaGrad</b>",
+"초매개변수=학습율(작으면 학습 시간↑)·미니배치 크기·훈련 반복 횟수·이터레이션·은닉층 개수",
+"이터레이션=미니배치 1회 학습 시 1회 매개변수 업데이트",
+"은닉층 뉴런 개수는 <b>동일하게</b> 하는 편이 가변보다 효과적",
+"최종 지표: 회귀=SSE·R²·MAE·MAPE / 분류=특이도·정밀도·재현율·정확도"],
+
+"4_2_1":["회귀=잔차·결정계수 / 분류=클래스별 속할 확률의 정확도",
+"딥러닝=정확도·오차율(상대오차, 평균 제곱근 편차)",
+"군집=연속형은 평균·중앙값, <b>범주형은 범주별 각 군집의 분포</b>",
+"연관=지지도·신뢰도·향상도가 높은 규칙, 단 <b>최소 기준점</b> 적용",
+"시각화: 회귀=히트맵·산점도 / <b>SVM=산점도와 구분선</b> / <b>KNN=평행좌표계</b> / 의사결정나무=트리 다이어그램",
+"군집=클러스터별 산점도 / 연관=<b>네트워크 그래프</b> / 딥러닝=파라미터·가중치·차원감소"],
+
+"4_2_2":["정보 시각화=추상 데이터를 인지하기 쉽게 / 정보 디자인=효율적 사용 지원 / 인포그래픽=한눈에 파악",
+"<b>시간</b>: 이산형=막대·점그래프 / 연속형=꺾은선·계단그래프·추세선",
+"<b>분포</b>: 합이 1 또는 100% — 히스토그램·파이·도넛·트리맵·누적영역차트",
+"<b>관계</b>: 변수 2개 이상의 상관관계 — 산점도·버블차트·히트맵",
+"<b>비교</b>: 차이와 유사성 — 히트맵·체르노프 페이스·스타차트·평행좌표계·다차원척도법",
+"<b>공간</b>: 장소·지역별 분포 — 단계구분도·카토그램",
+"시각화는 기능적 측면과 심미적 측면을 모두 고려"],
+
+"4_2_3":["참조모델(데이터산업진흥원)=분석기획 → 데이터 준비 → 데이터 분석 → 시스템 구현 → 평가 및 전개",
+"CRISP-DM=비즈니스 이해 → 데이터 이해 → 데이터 준비 → 모델링 → 평가 → 전개",
+"SEMMA=샘플링 → 탐색 → 전처리 → 모델링 → 평가",
+"KDD=데이터 추출 → 전처리 → 변환 → 데이터 마이닝 → 해석/평가",
+"전개 단계=활용 계획 수립 → 적용 및 보고서 작성 → <b>모니터링</b> → <b>리모델링</b>",
+"모니터링=활용방안 수행 확인 + 환경·데이터 변화를 모델에 지속 반영",
+"리모델링=데이터 품질 검토·알고리즘 개선·매개변수 최적화"]
+};
+
+/* ── 서사 ─────────────────────────────────────── */
+function E(code,act,title,scenes,choice,foe,win,lose,share){
+  return {code:code,act:act,title:title,scenes:scenes,choice:choice,foe:foe,win:win,lose:lose,share:share};
+}
+function EB(){ var e=E.apply(null,arguments); e.actPool=true; return e; }
+
+var ACTS=[{n:"제1막",t:"말단에서 시작한다"},{n:"제2막",t:"데이터는 거짓말을 하지 않는다"},
+          {n:"제3막",t:"예측하는 자가 지배한다"},{n:"제4막",t:"왕좌"}];
+
+var PROLOGUE=[
+["","2026년 1월 17일. 태산그룹 데이터센터 지하 3층. 나는 그곳에서 12년째 파견직이었다."],
+["","정규직 배지는 파란색, 내 목에 걸린 건 회색이었다. 회색은 4층 위로 올라갈 수 없다."],
+["","그날 밤 나는 회장 일가의 12년치 거래 내역을 정형 데이터로 정리하고 있었다."],
+["","정형. 형식과 구조가 정해져 있어서, 연산이 가능한 데이터. 더하고 뺄 수 있다는 뜻이다."],
+["","합계를 내는 순간 손이 멈췄다. 장부에 적힌 숫자와 3,400억이 어긋났다."],
+["","다음 날 아침, 서버 로그가 통째로 사라져 있었다."],
+["강만식","자네가 마지막 접속자야. 로그에 자네 계정만 남았어."],
+["강만식","자네만 조용히 나가주면, 다 끝나. 위로금은 챙겨줄게."],
+["","새벽 국도. 마주 오는 헤드라이트. 마지막 생각은 억울함이 아니었다."],
+["","— 내가 12년간 만진 그 데이터가 대체 뭐였는지, 끝내 몰랐구나."],
+["","눈을 떴다. 손등에 주름이 없다. 거울 속 얼굴은 스물넷."],
+["최비서","도련님. 정신이 드십니까. 회장님께서 별채로 오라십니다."],
+["","진도윤. 태산그룹 회장 진태산의 넷째 아들의 아들. 있는 줄도 몰랐던 막내 손자."],
+["","그리고 나는, 앞으로 벌어질 15년을 전부 알고 있다."],
+["","누가 언제 배임으로 잡혀가는지. 어떤 시스템이 언제 멈추는지. 어떤 회사가 어떻게 무너지는지."],
+["","책상 위에 누가 던져둔 책 한 권이 있었다. 『빅데이터분석기사 필기』."],
+["","웃음이 났다. 지난 생에는 이 책을 펴볼 시간조차 없었다."],
+["*","…이번 생의 무기는, 이거다."]
+];
+
+var EPS=[
+/* ══════ 제1막 ══════ */
+E("1_1_1",0,"제1화 · 첫 번째 시험대",
+[["","별채 응접실. 손자 다섯이 일렬로 섰다. 회장은 신문을 접지도 않고 물었다."],
+ ["진태산","요즘 신문마다 빅데이터, 빅데이터 하더구나."],
+ ["진태산","그게 대체 뭐냐. 아는 놈 있으면 말해봐라."],
+ ["진성호","할아버지, 그거 그냥 데이터가 많다는 겁니다. 저희 계열사도 서버 늘리고 있어요."],
+ ["","큰집 장손 진성호. 15년 뒤 배임 혐의로 구속되는 얼굴이다. 지금은 아직 웃고 있다."],
+ ["한금옥","아버님. 저 애는 왜 여기 서 있습니까."],
+ ["한금옥","가정부 딸이 낳은 애를 손자라고 세워두시는 거예요?"],
+ ["","큰어머니 한금옥. 지난 생에서 내 어머니 장례식에 끝내 오지 않은 사람."],
+ ["진태산","조용히 해라. 손자는 내가 세운다."],
+ ["진태산","많으면 그게 다냐."],
+ ["진성호","…예. 뭐, 요즘은 다들 그렇게 합니다."],
+ ["","나는 한 발 앞으로 나갔다. 회색 배지를 달고 12년을 보낸 층의 공기가 떠올랐다."],
+ ["*","많은 게 아니라, 거기서 새로운 통찰과 가치를 뽑아낼 수 있느냐의 문제입니다."],
+ ["*","규모, 유형, 속도. 거기에 품질과 가치까지. 3V에 2V를 더해서 봐야 합니다."],
+ ["진태산","…유형이라니. 데이터에 종류가 있냐."],
+ ["*","정형, 반정형, 비정형. 정형만 연산이 가능합니다. 나머지는 더할 수도 없습니다."],
+ ["진성호","야. 너 지금 나한테 훈수 두는 거야?"]],
+{q:"회장 앞에서 어떻게 나갈 것인가",o:[
+ ["정면으로 성호를 밟는다","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["회장의 질문에만 답한다","hp","신뢰를 가득 채우고 시작"]]},
+{n:"진성호",r:"태산건설 상무 · 사촌형",hp:88,t:22},
+[["진성호","야. 그딴 걸 어디서 주워들었어."],
+ ["*","…읽었습니다. 형님도 읽으시면 됩니다."],
+ ["진태산","도윤이라 했나. 내일부터 기술기획팀으로 출근해라."],
+ ["","이 집에서 내 이름이 처음으로 불렸다. 지분 장부에도 처음으로 내 이름이 올랐다."]],
+[["진태산","됐다. 나가라."],
+ ["","이 집에서 눈 밖에 나는 건 한순간이다."],
+ ["","다시 읽어야 한다. 처음부터."]],
+1.2),
+
+E("1_1_2",0,"제2화 · 말단의 텃세",
+[["","기술기획팀. 지난 생에서 나를 죽인 남자가, 아직은 팀장 자리에 앉아 있었다."],
+ ["강만식","낙하산 도련님이시구만. 앉으세요. 커피는 셀프입니다."],
+ ["","이 남자의 커피 취향까지 안다. 아메리카노, 얼음 반, 시럽 두 번."],
+ ["강만식","기왕 오셨으니 여쭙죠. 우리 팀 데이터 처리 과정이 어떻게 되는지는 아시나?"],
+ ["","팀원 여덟 명이 전부 고개를 들었다. 이건 질문이 아니라 통과의례다."],
+ ["*","생성, 수집, 저장, 처리, 분석, 시각화. 여섯 단계입니다."],
+ ["*","수집에는 크롤링과 로그 수집기, 센서 네트워크, ETL 프로세스가 들어가고요."],
+ ["강만식","…"],
+ ["*","저장은 NoSQL과 분산 파일 시스템. 처리는 분산 병렬 컴퓨팅과 맵리듀스."],
+ ["*","팀장님 팀은 지금 수집과 저장 사이가 비어 있습니다. 그래서 예산이 새고 있고요."],
+ ["강만식","…뭐야, 이 자식."]],
+{q:"강만식을 어떻게 다룰 것인가",o:[
+ ["여기서 밟아둔다","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["웃으며 정보를 캔다","mp","정보력 100으로 시작"]]},
+{n:"강만식",r:"기술기획팀장",hp:94,t:21},
+[["강만식","…어디서 굴렀는지는 몰라도, 말은 되네."],
+ ["*","팀장님. 3년 뒤에 저한테 고마워하실 겁니다."],
+ ["강만식","무슨 소립니까 그게."],
+ ["","이 남자는 3년 뒤 내부 자료를 미래그룹에 판다. 그날까지는 곁에 둔다."]],
+[["강만식","역시 도련님은 도련님이지. 커피나 드세요."],
+ ["","회색 배지가 없어졌을 뿐, 아직 아무것도 바뀌지 않았다."]],
+1.2),
+
+E("1_2_1",0,"제3화 · 방법론 전쟁",
+[["","컨설팅사가 300억짜리 제안서를 들고 왔다. 표지가 두꺼웠다."],
+ ["","지난 생에서 이 프로젝트는 5년간 아무것도 만들어내지 못하고 조용히 종료됐다."],
+ ["브라이언 조","CRISP-DM 기반 글로벌 스탠다드 방법론입니다. 태산에는 이게 필요합니다."],
+ ["진성준","좋은데. 바로 계약하지."],
+ ["","큰아버지가 벌써 펜을 들었다. 나는 손을 들었다."],
+ ["*","…그 6단계, 순서대로 말해보시죠."],
+ ["브라이언 조","네?"],
+ ["*","업무 이해, 데이터 이해, 데이터 준비, 모델링, 평가, 전개."],
+ ["*","제안서 47페이지에는 데이터 이해가 빠져 있습니다. 준비로 바로 넘어가더군요."],
+ ["브라이언 조","…그건 요약본이라서."],
+ ["*","그리고 KDD와 SEMMA를 섞어 쓰셨습니다. 추출·탐색·수정·모델링·평가는 SEMMA죠."],
+ ["진태산","…계속 해봐라, 도윤아."]],
+{q:"이 자리를 어떻게 쓸 것인가",o:[
+ ["공개 석상에서 끝을 본다","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["먼저 판을 읽는다","cut","「미래 기억」 3회 무료"]]},
+{n:"브라이언 조",r:"모건리컨설팅 파트너",hp:100,t:20},
+[["브라이언 조","…이건 예정에 없던 질문인데요."],
+ ["진태산","계약, 보류한다."],
+ ["","300억이 남았다. 회장의 눈이 두 번째로 나를 향했다."],
+ ["최비서","도련님. 회장님이 다음 주 임원회의에 배석하라 하십니다."]],
+[["브라이언 조","실무는 전문가에게 맡기시죠, 도련님."],
+ ["진성준","도윤아. 어른들 말할 땐 좀 앉아 있어라."]],
+1.5),
+
+E("1_2_2",0,"제4화 · 사흘짜리 기획서",
+[["오세라","사흘 드립니다. 데이터 처리 계획서, 품질 지표까지 전부."],
+ ["오세라","못 하시면 원래 자리로 돌아가세요. 저는 봐주는 거 없습니다."],
+ ["","오세라 차장. 훗날 내 편이 되는 몇 안 되는 사람. 지금은 나를 시험 중이다."],
+ ["*","처리 영역과 분석 영역, 둘 다 씁니까?"],
+ ["오세라","…둘을 나눠서 생각하시는군요."],
+ ["*","처리 영역은 물리적 환경을 만드는 일이고, 분석 영역은 가공해서 결과를 표현하는 일이니까요."],
+ ["*","섞어 쓰면 예산 항목이 엉킵니다. 지난번 프로젝트가 그래서 깨졌고요."],
+ ["오세라","…지난번 프로젝트를 어떻게 아세요. 대외비인데."],
+ ["","말이 헛나왔다. 그건 3년 뒤 감사보고서에서 읽은 내용이다."],
+ ["*","…추측입니다."],
+ ["오세라","이틀 드리죠. 추측이 그 정도면."],
+  ["","이 사람에 대해 아는 게 하나 더 있다."],
+  ["","3년 뒤, 오세라는 큰아버지의 비자금 서류를 들고 회사를 나간다. 이유는 아무도 모른다."]],
+{q:"기획서를 어떻게 쓸 것인가",o:[
+ ["완벽하게 다듬는다","hp","신뢰를 가득 채우고 시작"],
+ ["핵심만 치고 지분을 요구한다","share","보상 지분 +30% · 신뢰 20 손실로 시작"]]},
+{n:"오세라",r:"전략기획실 차장",hp:96,t:20},
+[["오세라","…품질 지표 네 개. 정확성, 완전성, 적시성, 일관성. 순서까지 맞췄네요."],
+ ["오세라","전처리도 정제·통합·축소·변환으로 나눠 썼고요."],
+ ["오세라","진도윤 씨. 이름 기억하겠습니다."]],
+[["오세라","다시 하세요. 저는 두 번은 안 봅니다."],
+ ["","돌아서는 등이 차가웠다. 이 사람을 놓치면, 이번 생도 혼자다."]],
+1.5),
+
+E("1_3_1",0,"제5화 · 수집의 대가",
+[["","태산몰이 고객 데이터를 긁어모으고 있었다. 회원 1,100만 명분."],
+ ["","지난 생에서 이 건은 3년 뒤 터졌다. 과징금 480억. 대표 사퇴. 주가 반토막."],
+ ["황중태","적법합니다. 동의도 받았고요. 도련님이 관여할 문제가 아닙니다."],
+ ["*","비식별 조치는 하셨습니까. 어떤 기법으로요."],
+ ["황중태","…비식별이요?"],
+ ["*","가명 처리, 총계 처리, 데이터 삭제, 범주화, 마스킹. 다섯 가지 중에 뭘 쓰셨습니까."],
+ ["황중태","그건 실무진이…"],
+ ["*","k-익명성은 확보하셨나요. 동일한 값을 가진 레코드가 k개 이상이어야 합니다."],
+ ["*","그래야 특정 개인을 식별할 확률이 1/k로 떨어지니까요."],
+ ["황중태","…"],
+ ["*","안 하셨군요. 그럼 이건 데이터가 아니라 폭탄입니다."]],
+{q:"이 폭탄을 어떻게 처리할 것인가",o:[
+ ["감사팀에 넘긴다","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["조용히 덮고, 카드로 쥔다","mp","정보력 100으로 시작"]]},
+{n:"황중태",r:"법무팀장",hp:100,t:20},
+[["황중태","…이거, 어디까지 아십니까."],
+ ["*","l-다양성과 t-근접성까지 물어볼까요."],
+ ["황중태","…아닙니다. 조치하겠습니다."],
+ ["","3년 뒤 터질 폭탄 하나를 미리 뽑았다. 그리고 법무팀장의 목줄도 함께 쥐었다."]],
+[["황중태","말씀 조심하시죠. 증거도 없이."],
+ ["","증거는 3년 뒤에 생긴다. 그때는 이미 늦는다."]],
+1.6),
+
+EB("1_3_2",0,"제6화 · 저장고의 주인",
+[["","태산IT 대표이사 진성준. 큰아버지. 그룹의 모든 데이터를 쥔 남자."],
+ ["","그리고 지난 생에서, 지하 3층의 서버 로그를 지우라고 지시한 사람."],
+ ["진성준","도윤아. 네가 데이터를 안다며?"],
+ ["진성준","그럼 우리 스토리지 전략도 알겠구나. 300억짜리다."],
+ ["","화면에 구성도가 떴다. 나는 그 그림을 안다. 2년 뒤 장애 보고서 3페이지에 실린 그림이다."],
+ ["*","키-값 구조로 전부 밀어넣으셨네요."],
+ ["진성준","확장성이 좋으니까. 응답도 빠르고."],
+ ["*","맞습니다. 그런데 상품 상세는 문서 구조입니다. 내부구조가 복잡한 데이터죠."],
+ ["*","키-값 DB로는 그 안을 못 봅니다. document DB로 가셨어야 합니다."],
+ ["진성준","…"],
+ ["*","2년 뒤 이 시스템은 멈춥니다. 정확히는 재작년 블랙프라이데이 같은 트래픽에서요."],
+ ["진성준","이 자식이 지금 무슨 소릴 하는 거야."],
+ ["진태산","…들어보자. 도윤아, 계속해라."]],
+{q:"큰아버지 앞에서",o:[
+ ["장애 시점까지 정확히 예고한다","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["안전하게 실력만 보인다","hp","신뢰를 가득 채우고 시작"]]},
+{n:"진성준",r:"태산IT 대표이사 · 큰아버지",hp:150,t:17},
+[["진성준","…너, 뭐 하는 놈이냐."],
+ ["진태산","태산IT 지분 4%, 도윤이 앞으로 돌려라."],
+ ["진성준","아버지!"],
+ ["진태산","네가 못 본 걸 저놈이 봤다. 그게 답이다."],
+ ["","제1막 종료. 이제 아무도 나를 막내라고 부르지 않는다."]],
+[["진성준","역시 애는 애구나. 나가 있어라."],
+ ["","문이 닫혔다. 지난 생에도 이 문 앞에서 서 있었다."]],
+4.0),
+
+/* ══════ 제2막 ══════ */
+E("2_1_1",1,"제7화 · 더러운 데이터",
+[["","태산유통 매출 데이터에 구멍이 있었다. 그것도 아주 규칙적으로."],
+ ["","매월 셋째 주 화요일. 특정 점포 열한 곳. 값이 비어 있다."],
+ ["남기표","시스템 오류입니다. 평균으로 채우면 됩니다."],
+ ["*","평균 대치법이요. 그건 결측이 무작위일 때 쓰는 겁니다."],
+ ["남기표","…무슨 차이가 있습니까."],
+ ["*","완전 무작위 결측은 다른 변수와 아무 연관이 없습니다. 그때만 단순 대치가 안전하죠."],
+ ["*","그런데 이건 날짜와 점포에 붙어 있습니다. 다른 변수와 연관이 있어요."],
+ ["*","비 무작위 결측입니다. 평균으로 덮으면 증거가 사라집니다."],
+ ["남기표","증거라니, 무슨 말씀을."],
+ ["*","부장님. 이 결측, 누가 만든 겁니까."],
+  ["","그리고 나는 그 열한 개 점포의 명의를 안다."],
+  ["","전부 큰어머니 친정 쪽 이름이었다."]],
+{q:"이 구멍을 어떻게 다룰 것인가",o:[
+ ["즉시 회장에게 보고","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["패턴을 더 캔다","mp","정보력 100으로 시작"]]},
+{n:"남기표",r:"태산유통 회계부장",hp:98,t:20},
+[["남기표","…"],
+ ["","결측은 비무작위였다. 누군가 규칙을 갖고 지우고 있었다."],
+ ["","지운 흔적도 데이터다. 지난 생에 내가 그걸 몰랐을 뿐이다."]],
+[["남기표","회계는 회계에 맡기시죠."],
+ ["","이번에도 놓쳤다. 이 패턴은 다음 분기에 또 나타난다."]],
+1.5),
+
+E("2_1_2",1,"제8화 · 변수를 다루는 자",
+[["한지운","변수 300개 전부 넣었습니다. 많을수록 정확해지니까요."],
+ ["*","정확도는 어떻게 나왔습니까."],
+ ["한지운","학습 데이터에서 99.2%."],
+ ["*","테스트에서는요."],
+ ["한지운","…61%."],
+ ["*","차원의 저주라고, 들어보셨습니까."],
+ ["한지운","박사 학위 있는 사람한테 지금 뭐라고 하셨죠."],
+ ["*","차원이 늘면 학습데이터 수가 차원 수보다 적어집니다. 그러면 성능이 떨어집니다."],
+ ["*","차원을 줄이거나, 데이터를 늘리거나. 둘 중 하나입니다."],
+ ["*","전진 선택법으로 상관이 큰 것부터 넣어보시죠. 300개는 필요 없습니다."]],
+{q:"데이터랩 수석과의 거리",o:[
+ ["공개적으로 반박한다","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["협력을 제안한다","hp","신뢰를 가득 채우고 시작"]]},
+{n:"한지운",r:"태산 데이터랩 수석연구원",hp:102,t:20},
+[["한지운","…주성분 분석으로 27개까지 줄였습니다. 테스트 88%."],
+ ["한지운","같이 일합시다. 진심으로요."],
+ ["","이 사람은 앞으로 내 손발이 된다. 지난 생에는 3년 뒤에 퇴사했다."]],
+[["한지운","책 좀 더 보고 오시죠."],
+ ["","자존심 싸움에서 이길 필요는 없었다. 실수했다."]],
+1.5),
+
+E("2_2_1",1,"제9화 · 탐색의 밤",
+[["","그룹에 특별감사가 들어왔다. 회의실 문이 열리고, 낯익은 얼굴이 들어왔다."],
+ ["","서민아. 15년 뒤, 죽은 파견직 하나를 위해 재수사를 요청한 유일한 사람."],
+ ["","물론 지금 그녀는 나를 모른다. 나는 그냥 재벌집 막내다."],
+ ["서민아","진도윤 씨. 이 상관계수 0.9. 무슨 뜻인지 설명해보시죠."],
+ ["*","두 양적 변수 사이에 강한 양의 선형 상관관계가 있다는 뜻입니다."],
+ ["서민아","그래서 A가 B의 원인이라는 거죠."],
+ ["*","아닙니다. 상관은 인과가 아닙니다."],
+ ["*","그리고 상관분석에는 전제가 있습니다. 선형성, 동변량성, 정규분포성, 무선독립표본."],
+ ["*","이 데이터는 정규분포가 아닙니다. 히스토그램이 오른쪽으로 심하게 치우쳐 있고요."],
+ ["*","이럴 땐 값 대신 순위를 쓰는 스피어만 상관계수로 다시 보셔야 합니다."],
+ ["서민아","…"],
+ ["","그녀가 처음으로 나를 똑바로 봤다."],
+  ["서민아","진도윤 씨. 1998년 12월, 국도 단독 사고 하나 아십니까."],
+  ["*","…제 아버지 얘기군요."],
+  ["서민아","재수사 요청이 세 번 들어왔고, 세 번 다 반려됐습니다."],
+  ["서민아","반려 사유란이 전부 비어 있더군요."],
+  ["","비어 있는 칸도 데이터다. 지난 생에 나는 그걸 몰랐다."]],
+{q:"감사에 어떻게 응할 것인가",o:[
+ ["전부 협조한다","hp","신뢰를 가득 채우고 시작"],
+ ["필요한 것만 준다","share","보상 지분 +30% · 신뢰 20 손실로 시작"]]},
+{n:"서민아",r:"특별감사 · 검사",hp:104,t:20},
+[["서민아","…의외네요. 재벌집 막내가 상자수염그림을 아는 건."],
+ ["*","이상치는 보이지만 퍼짐 정도는 안 보이죠. 그것도 감안해서 보십시오."],
+ ["서민아","진도윤 씨. 명함 하나 주시겠어요."],
+ ["","지난 생보다 15년 빠르다."]],
+[["서민아","모르시면 조사에나 협조해주세요."],
+ ["","그녀는 끝까지 나를 보지 않았다."]],
+1.8),
+
+E("2_2_2",1,"제10화 · 시공간의 증거",
+[["차동욱","물류 데이터는 그냥 도착 시간이에요. 뭘 더 봅니까."],
+ ["*","시간만 보시면 그렇죠. 좌표를 붙이면 달라집니다."],
+ ["차동욱","좌표요?"],
+ ["*","공간 정보에 시간의 흐름이 결합되면 다차원 데이터가 됩니다."],
+ ["*","그리고 다차원이 되는 순간, 그건 기록이 아니라 증거가 됩니다."],
+ ["","화면에 3년치 운송 로그를 띄웠다. 관계형 모델로는 안 보이던 것이 보였다."],
+ ["*","여기 보십시오. 같은 좌표, 같은 시각, 서로 다른 차량."],
+ ["차동욱","…이건 우리 창고가 아닌데."]],
+{q:"운송 기록을 어떻게 볼 것인가",o:[
+ ["전 노선을 통째로 연다","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["야간 기록만 판다","cut","「미래 기억」 3회 무료"]]},
+{n:"차동욱",r:"물류본부장",hp:98,t:20},
+[["차동욱","…밤 11시에 세 번, 같은 좌표. 이게 뭡니까 이거."],
+ ["*","본부장님은 모르시는 게 낫습니다."],
+ ["","비자금 운반 경로였다. 15년 뒤 검찰이 찾아내는 바로 그 경로."]],
+[["차동욱","트럭이나 한 번 타보고 말하시죠."]],
+1.5),
+
+E("2_3_1",1,"제11화 · 확률로 협박하다",
+[["백준혁","투자는 감이에요, 도련님. 확률 같은 소리 하지 마시고."],
+ ["","이 사람은 내년 4월에 400억을 태운다. 나는 그 날짜까지 안다."],
+ ["*","상무님. 작년 부실 발생 건수, 월평균 몇 건입니까."],
+ ["백준혁","한 2.3건?"],
+ ["*","단위 시간당 사건 발생 횟수. 포아송분포로 봅니다."],
+ ["*","월 2.3건이면, 한 달에 6건 이상 터질 확률이 3%가 넘습니다."],
+ ["백준혁","그래서요."],
+ ["*","그 3%가 내년 4월에 옵니다. 그때 상무님 포트폴리오는 400억을 잃습니다."],
+ ["백준혁","…무슨 근거로."],
+ ["*","근거는 지금 못 드립니다. 대신 날짜를 적어두시죠."]],
+{q:"캐피탈 상무를 어떻게 칠 것인가",o:[
+ ["숫자로 공개 처형한다","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["빚을 하나 지운다","hp","신뢰를 가득 채우고 시작"]]},
+{n:"백준혁",r:"태산캐피탈 상무",hp:104,t:20},
+[["백준혁","…포아송이요? 그딴 게 왜 여기서 나옵니까."],
+ ["*","비복원 추출이면 초기하로 봐도 됩니다. 편하신 걸로 하시죠."],
+ ["백준혁","…내년 4월에 다시 뵙겠습니다."],
+ ["","그 사람은 그날 나를 찾아온다. 그리고 내 편이 된다."]],
+[["백준혁","감이라니까, 감. 젊은 양반이 뭘 알아."]],
+1.7),
+
+EB("2_3_2",1,"제12화 · 검정",
+[["","회장이 나를 서재로 불렀다. 손자를 부르는 눈이 아니었다. 사람을 부르는 눈이었다."],
+ ["진태산","도윤아. 내가 사업하면서 배운 게 하나 있다."],
+ ["진태산","네가 옳다고 아무리 우겨봐야, 그게 옳은 게 되진 않아."],
+ ["진태산","틀렸다는 걸 아무도 못 밝혀낼 때. 그때 비로소 옳은 거다."],
+ ["","등줄기가 서늘해졌다. 이 노인은 통계를 배운 적이 없다."],
+ ["","그런데 지금, 귀무가설을 말하고 있다."],
+ ["*","…귀무가설이군요."],
+ ["진태산","뭐라고 했냐, 방금."],
+ ["*","기존의 기준을 귀무가설이라고 합니다. 우리는 그걸 증명하지 않습니다."],
+ ["*","기각하지 못하면 그냥 남겨두는 겁니다. 회장님 말씀 그대로입니다."],
+ ["진태산","…그래서, 언제 기각하냐."],
+ ["*","유의수준을 정해놓고, 그보다 p-value가 작을 때. 그때만 뒤집습니다."],
+ ["진태산","기준을 먼저 정한다는 거구나. 싸움 전에."],
+ ["*","예. 결과를 보고 기준을 바꾸면, 그건 분석이 아니라 변명입니다."]],
+{q:"회장 앞에서",o:[
+ ["끝까지 밀어붙인다","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["예의를 지킨다","hp","신뢰를 가득 채우고 시작"]]},
+{n:"진태산",r:"태산그룹 회장 · 할아버지",hp:155,t:17},
+[["진태산","…그래. 이제야 말이 통하는구나, 도윤아."],
+ ["진태산","성준이는 늘 결과를 보고 기준을 바꾸더라."],
+ ["*","그래서 제1종 오류를 그렇게 자주 범하십니다."],
+ ["진태산","허. 그건 또 무슨 소리냐."],
+ ["","제2막 종료. 그가 처음으로 내 이름을 불렀다."]],
+[["진태산","아직 멀었다. 나가 봐라."],
+ ["","서재 문이 닫혔다. 이 노인에게 두 번째 기회는 잘 없다."]],
+5.0),
+
+/* ══════ 제3막 ══════ */
+E("3_1_1",2,"제13화 · 설계도",
+[["윤채린","모형부터 정하죠. 딥러닝 갑시다. 요즘 다 그거 해요."],
+ ["*","문제 요건 정의도 안 하고요?"],
+ ["윤채린","…순서가 그렇게 중요합니까?"],
+ ["*","문제요건 정의, 데이터 수집·정리, 전처리, 그 다음이 모형 선정입니다."],
+ ["*","순서를 뒤집으면 데이터에 모형을 맞추게 됩니다. 그건 분석이 아니라 끼워맞추기죠."],
+ ["윤채린","그래서 뭐부터 하자는 겁니까."],
+ ["*","종속 변수가 있습니까, 없습니까."],
+ ["윤채린","…없습니다."],
+ ["*","그럼 쓸 수 있는 게 군집, 원인 분석, 이상치, 연관 법칙으로 제한됩니다."],
+ ["*","딥러닝으로 분류하겠다는 계획서는, 지금 쓸 수가 없습니다."]],
+{q:"TF 팀장과의 첫 회의",o:[
+ ["주도권을 뺏는다","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["설계부터 같이 짠다","hp","신뢰를 가득 채우고 시작"]]},
+{n:"윤채린",r:"신사업 TF 팀장",hp:106,t:20},
+[["윤채린","…순서가 있었네요. 인정합니다."],
+ ["윤채린","시나리오부터 다시 쓰겠습니다."]],
+[["윤채린","그냥 유행 따라가시죠, 우리. 다들 그렇게 합니다."]],
+2.0),
+
+E("3_1_2",2,"제14화 · R이냐 Python이냐",
+[["마이클 서","R로 갑시다. 시각화가 예쁘잖아요. 보고서 잘 나옵니다."],
+ ["*","우리 로그 데이터가 하루 8테라입니다."],
+ ["마이클 서","…그게 왜요."],
+ ["*","R은 대용량 메모리 처리가 어렵습니다. 보안도 취약하고요."],
+ ["*","웹에서 쓰려면 별도 모듈을 연동해야 합니다. 그 비용은 견적서에 없더군요."],
+ ["마이클 서","Python은 느립니다. 인터프리터 방식이라."],
+ ["*","맞습니다. 대신 플랫폼 독립적이고, 메모리를 자동으로 회수합니다."],
+ ["*","그리고 이 프로젝트에서 병목은 언어가 아니라 I/O입니다."],
+ ["마이클 서","…"],
+ ["*","한 가지 더. 학습·평가·테스트 데이터 분할 계획이 견적서에 없습니다."],
+ ["*","과대적합인지 과소적합인지 판단할 방법이 없다는 뜻입니다."]],
+{q:"외주사와의 협상",o:[
+ ["계약 조건을 뒤집는다","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["약점을 미리 파악한다","cut","「미래 기억」 3회 무료"]]},
+{n:"마이클 서",r:"외주 개발사 CTO",hp:106,t:20},
+[["마이클 서","…계약서, 다시 쓰죠."],
+ ["*","분할 비율도 명시해주십시오. 나중에 딴소리 나옵니다."]],
+[["마이클 서","현업은 저희가 더 잘 압니다. 도련님."]],
+2.0),
+
+E("3_2_1",2,"제15화 · 알고리즘 전쟁",
+[["","미래그룹. 이번 생에서도 태산의 목을 노리는 곳."],
+ ["","그리고 도재우. 15년 뒤, 나를 지하 3층에서 끌어내 죽인 계획을 세운 남자."],
+ ["","그는 나를 모른다. 나는 그의 논문 목록까지 안다."],
+ ["도재우","진도윤 씨. 공개 벤치마크로 붙읍시다."],
+ ["도재우","진 쪽이 데이터 사업 접는 걸로. 어때요."],
+ ["*","좋습니다. 단, 질문은 제가 합니다."],
+ ["도재우","질문이요? 모델 성능으로 붙는 게 아니고?"],
+ ["*","성능은 데이터가 만듭니다. 사람은 판단을 만들고요."],
+ ["*","서포트벡터가 뭔지도 모르면서 SVM을 쓰는 사람이 이 업계에 절반입니다."],
+ ["도재우","…재밌네요. 그럼 첫 질문 받죠."],
+ ["*","랜덤 포레스트가 배깅 기반인 이유부터 시작하겠습니다."],
+  ["도재우","좋습니다. 아, 그리고 하나 더."],
+  ["도재우","제 동생이 진도윤 씨를 만나고 싶어 하던데요."],
+  ["도재우","두 집안이 사돈이 되면 이 싸움 자체가 없어지지 않겠습니까."],
+  ["*","…이건 벤치마크 얘기가 아닌 것 같은데요."],
+  ["도재우","원래 인수는 숫자로 안 끝납니다. 진도윤 씨."]],
+{q:"이 남자와 어떻게 싸울 것인가",o:[
+ ["정면으로 붙는다","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["미래의 약점을 판다","cut","「미래 기억」 3회 무료"]]},
+{n:"도재우",r:"미래그룹 AI부문 총괄",hp:142,t:18},
+[["도재우","…이번엔 네가 이겼다. 이번엔."],
+ ["*","'이번엔'이 아닙니다. 앞으로도요."],
+ ["도재우","…우리 만난 적 있나?"],
+ ["","처음으로 그의 표정이 굳었다. 미래는, 바뀌고 있다."]],
+[["도재우","역시 재벌집 도련님은 도련님이네요."],
+ ["","그 웃음을 지난 생에도 봤다. 법정 복도에서."]],
+3.0),
+
+EB("3_2_2",2,"제16화 · 시계열의 예언",
+[["","큰아버지가 주가를 예측하겠다며 이사회를 소집했다."],
+ ["","자료를 미리 받아 봤다. 비정상 시계열에 자기회귀모형을 그대로 박아넣은 물건이었다."],
+ ["진성준","3분기 매출, 전년 대비 40% 상승. 우리 모델의 예측입니다."],
+ ["진성준","이 숫자를 근거로 태산IT에 1,200억을 증자하겠습니다."],
+ ["*","정상성 검정은 하셨습니까."],
+ ["진성준","…또 너냐."],
+ ["*","시계열이 정상이려면 모든 시점의 평균과 분산이 일정해야 합니다."],
+ ["*","공분산은 시차에만 의존해야 하고요."],
+ ["*","이 데이터는 분산이 계속 커집니다. 비정상 시계열입니다."],
+ ["*","여기에 AR을 그대로 쓰면 예측이 아니라 소설입니다. ARIMA로 가셔야죠."],
+ ["진성준","…아버지, 저 놈 좀 내보내십시오."],
+ ["진태산","도윤아. 네가 예측해봐라."]],
+{q:"이사회 한복판에서",o:[
+ ["모델을 완전히 해체한다","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["출구를 하나 남겨둔다","hp","신뢰를 가득 채우고 시작"]]},
+{n:"진성준",r:"태산IT 대표이사 · 재대결",hp:152,t:17},
+[["*","3분기 매출, 전년 대비 6% 하락으로 봅니다. 지수평활로 최근에 가중치를 두면요."],
+ ["진성준","…이 자식이."],
+ ["진태산","태산IT, 도윤이한테 넘겨라."],
+ ["진성준","아버지, 저는 20년을…!"],
+ ["진태산","20년 동안 뭘 봤냐. 저놈은 3개월 만에 봤다."],
+ ["","제3막 종료. 큰아버지의 자리가 비었다."]],
+[["진성준","봐라. 아직 애다."],
+ ["","증자안이 통과됐다. 1,200억은 2년 뒤에 사라진다."]],
+6.0),
+
+/* ══════ 제4막 ══════ */
+E("4_1_1",3,"제17화 · 평가받는 자",
+[["최평강","정확도 97%짜리 모델이라. 훌륭하군요."],
+ ["최평강","그런데 이 데이터, 불량률이 3%죠?"],
+ ["","회의실이 조용해졌다. 함정이다."],
+ ["","전부 정상이라고만 찍어도 정확도 97%가 나온다. 아무것도 못 잡는 모델인데."],
+ ["*","…정확도로 판단하실 게 아닙니다, 교수님."],
+ ["최평강","그럼 뭘로 봅니까."],
+ ["*","불량을 잡아야 하는 문제입니다. 재현율부터 봐야죠. TP를 TP+FN으로 나눈 값입니다."],
+ ["*","그리고 정밀도와 함께 조화평균을 낸 F1을 봅니다."],
+ ["최평강","이 모델의 F1은요."],
+ ["*","0.11입니다. 사실상 아무것도 못 잡습니다."],
+ ["최평강","…누가 만든 겁니까, 이거."],
+ ["*","제가 만들었습니다. 3주 전에요."]],
+{q:"사외이사 앞에서",o:[
+ ["지표의 함정을 전부 까발린다","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["차분히 논리만 세운다","hp","신뢰를 가득 채우고 시작"]]},
+{n:"최평강",r:"사외이사 · 통계학과 교수",hp:124,t:19},
+[["최평강","…자기 모델을 자기가 깨는 경영진은 처음 봅니다."],
+ ["*","AIC도 같이 보시죠. 낮을수록 적합합니다."],
+ ["최평강","진도윤 씨. 나는 당신 편에 서겠습니다."]],
+[["최평강","숫자는 그렇게 읽는 게 아닙니다."],
+ ["","이사회 의사록에 내 이름이 붉게 남았다."]],
+2.5),
+
+E("4_1_2",3,"제18화 · 개선하거나, 죽거나",
+[["","강만식이 미래그룹으로 자료를 넘기려던 밤. 새벽 1시 40분."],
+ ["","지난 생에서는 이 시각에 성공했다. 나는 그때 지하 3층에 있었다."],
+ ["","이번에는, 내가 먼저 그의 자리에 앉아 있었다."],
+ ["강만식","…언제부터 알고 계셨습니까."],
+ ["*","처음부터요. 정확히는 — 지난 생부터."],
+ ["강만식","무슨 소리를 하는 겁니까."],
+ ["*","팀장님이 지운 로그도 데이터입니다. 지운 자리에 구멍이 남거든요."],
+ ["*","그 구멍이 규칙적이면, 그건 오류가 아니라 의도입니다."],
+ ["강만식","…증거 있습니까."],
+ ["*","드롭아웃이라고 아십니까. 뉴런을 임의로 지워도 학습은 계속됩니다."],
+ ["*","사람도 마찬가지더군요. 하나 지워졌다고 조직이 못 굴러가진 않습니다."],
+ ["*","저를 지웠을 때, 팀장님도 그렇게 생각하셨겠죠."],
+  ["*","팀장님. 그날 로그를 지우라고 한 사람, 큰아버지 맞습니까."],
+  ["강만식","…그걸 어떻게."],
+  ["*","방금 대답하셨습니다."]],
+{q:"12년의 빚을 어떻게 받을 것인가",o:[
+ ["끝까지 몰아붙인다","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["기회를 한 번 준다","hp","신뢰를 가득 채우고 시작"]]},
+{n:"강만식",r:"기술기획팀장 · 재대결",hp:126,t:19},
+[["강만식","…어떻게 알았습니까, 그걸."],
+ ["*","팀장님. 커피 얼음 반, 시럽 두 번이시죠."],
+ ["강만식","…!"],
+ ["","나를 죽인 손에 수갑이 채워졌다. 그런데 이상하게, 아무 감정도 없었다."]],
+[["강만식","증거 있으면 가져오시죠."],
+ ["","그가 웃으며 나갔다. 이번 생에도 그 웃음을 놓쳤다."]],
+2.5),
+
+E("4_2_1",3,"제19화 · 해석의 함정",
+[["하윤수","태산이 고객 데이터로 장난쳤다는 제보가 있습니다."],
+ ["하윤수","보세요. 상관계수가 0.87이 나오는데요."],
+ ["*","상관은 인과가 아닙니다."],
+ ["하윤수","말장난하지 마시죠."],
+ ["*","말장난이 아닙니다. 그 그래프, y축이 0에서 시작하지 않는군요."],
+ ["*","30부터 잘라놓으셨습니다. 그러면 아무 차이나 절벽처럼 보입니다."],
+ ["하윤수","…"],
+ ["*","그리고 이건 관계 시각화입니다. 산점도로 보셨어야죠."],
+ ["*","막대그래프는 시간 시각화의 이산형입니다. 특정 시점 값을 보는 도구입니다."],
+ ["*","도구를 바꾸면 결론이 바뀝니다. 그건 기사가 아니라 연출입니다."]],
+{q:"기자 앞에서",o:[
+ ["생중계로 반박한다","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["자료로 조용히 눌러둔다","mp","정보력 100으로 시작"]]},
+{n:"하윤수",r:"경제일보 기자",hp:122,t:19},
+[["하윤수","…이 부분은 정정 보도 나가겠습니다."],
+ ["*","다음엔 원자료를 요청하십시오. 드리겠습니다."],
+ ["하윤수","…태산에서 그런 말 하는 사람은 처음입니다."]],
+[["하윤수","내일 1면입니다. 각오하시죠."]],
+3.0),
+
+E("4_2_2",3,"제20화 · 보여주는 자가 이긴다",
+[["","사촌누나 진하영. 유일하게 실력으로 여기까지 온 사람."],
+ ["","그래서 가장 위험하다. 지난 생에서 마지막까지 남은 것도 이 사람이었다."],
+ ["진하영","도윤아. 이사회 발표, 나랑 너 둘 중 하나만 올라가."],
+ ["진하영","숫자는 내가 더 잘 알아. 근데 사람은 숫자를 안 봐."],
+ ["진하영","그림을 보지. 그래서 내가 이겨."],
+ ["*","…누나 자료 봤어요. 지역별 매출을 파이차트로 그리셨더군요."],
+ ["진하영","보기 좋잖아."],
+ ["*","분포 시각화는 합쳐서 100%가 되는 걸 볼 때 씁니다."],
+ ["*","지역별 분포를 보여주려면 단계구분도나 카토그램으로 가야죠. 공간 시각화입니다."],
+ ["*","그리고 비교하려면 스타차트나 평행좌표계요. 파이차트는 둘 다 아닙니다."],
+ ["진하영","…"],
+ ["진하영","…도윤아. 우리 엄마가 아버지 비서랑 눈 맞은 거, 알고 있었니."],
+  ["*","…"],
+  ["진하영","이 집에서 나만 몰랐어. 3년 동안."],
+  ["진하영","그래서 나는 안 지고 싶어. 모르는 사람으로 남기 싫어서."],
+  ["*","…그림도 제가 이기겠습니다, 누나."]],
+{q:"누나와의 마지막 경쟁",o:[
+ ["정면 승부","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["손을 내민다","hp","신뢰를 가득 채우고 시작"]]},
+{n:"진하영",r:"태산홀딩스 기획총괄 · 사촌누나",hp:134,t:18},
+[["진하영","…졌다."],
+ ["진하영","대신 하나만 약속해. 할아버지처럼은 되지 마."],
+ ["*","…노력하겠습니다."],
+ ["","지난 생에서 이 사람은 나에게 사과를 하려고 했다. 끝내 못 했지만."]],
+[["진하영","역시 너는 아직이야. 올라가는 건 나야."]],
+3.0),
+
+EB("4_2_3",3,"제21화 · 이사회",
+[["","2026년 12월 19일. 태산그룹 본사 34층 이사회의실."],
+ ["","15년 전, 지하 3층에서 올려다보기만 하던 그 층이다."],
+ ["","회색 배지를 달고는 엘리베이터 버튼조차 누를 수 없던 층."],
+ ["진태산","마지막이다."],
+ ["진태산","네 분석이 이 회사를 어떻게 바꾸느냐. 그것만 말해라."],
+ ["*","…분석은 끝이 아닙니다. 전개가 시작입니다."],
+ ["진태산","전개."],
+ ["*","분석 결과를 어떻게 업무에 반영할지 액션 플랜을 세우고, 성과를 계속 모니터링합니다."],
+ ["*","환경과 데이터가 변하면 모델도 다시 만듭니다. 품질을 다시 보고, 알고리즘을 고치고요."],
+ ["*","리모델링을 멈추는 순간, 그 모델은 작년의 회사를 예측하게 됩니다."],
+ ["진태산","…그럼 언제 끝나냐, 그건."],
+ ["*","안 끝납니다. 회사가 살아 있는 한."],
+ ["","이사 열한 명이 나를 보고 있었다. 지난 생에는 이름조차 몰랐던 얼굴들."]],
+{q:"마지막 발표",o:[
+ ["전부 걸고 밀어붙인다","share","보상 지분 +30% · 신뢰 20 손실로 시작"],
+ ["끝까지 정확하게","hp","신뢰를 가득 채우고 시작"]]},
+{n:"이사회",r:"태산그룹 이사 11인",hp:168,t:16},
+[["진태산","…의결한다."],
+ ["진태산","진도윤을 태산그룹 데이터부문 대표로 선임한다. 이의 있나."],
+ ["","아무도 손을 들지 않았다."],
+ ["","지분 51%. 그리고 지하 3층 출입증."],
+ ["","이번 생은, 내가 데이터를 만진 게 아니라 — 데이터가 나를 여기까지 데려왔다."]],
+[["진태산","…아직은, 아니다."],
+ ["","34층의 문이 닫혔다. 아직 한 번 더 남았다."]],
+3.0)
+];
+
+/* ── 상태 ─────────────────────────────────────── */
+var KEY="tsg_heir_v3";
+var HERO="진도윤";
+var P={lv:1,exp:0,share:0,done:[],frag:[],right:0,wrong:0,seenPro:false,rel:{},met:[],inter:[]};
+var G=null,tick=null,typer=null,NV=null,lastBrief=null;
+var RANKS=["잊혀진 막내","인턴","사원","대리","과장","차장","부장","이사","전무","부회장","회장 대행"];
+function rank(){return RANKS[Math.min(P.lv-1,RANKS.length-1)];}
+function maxT(){return 100+15*(P.lv-1);}
+function pow(){return 20+4*(P.lv-1);}
+function needX(){return 80*P.lv;}
+function cl(c){return P.done.indexOf(c)>=0;}
+function op(i){return i===0||cl(EPS[i-1].code);}
+function save(){try{if(window.storage&&window.storage.set)window.storage.set(KEY,JSON.stringify(P),false);}catch(e){}}
+function load(cb){var f=false,e=function(){if(!f){f=true;cb();}};
+  try{if(window.storage&&window.storage.get){window.storage.get(KEY,false).then(function(r){
+    if(r&&r.value){var d=JSON.parse(r.value);for(var k in d)if(k in P)P[k]=d[k];}e();}).catch(e);setTimeout(e,2500);return;}}catch(x){}
+  e();}
+
+var $=function(i){return document.getElementById(i);};
+function show(id){["s-title","s-map","s-novel","s-brief","s-duel","s-res","s-frag","s-sum","s-who"].forEach(function(s){
+  $(s).classList.toggle("hide",s!==id);});
+  $("bar").classList.toggle("hide",id==="s-title"); bar();}
+function bar(){$("b-rk").innerHTML=HERO+' <i>'+rank()+" · Lv."+P.lv+'</i>';
+  $("b-sh").textContent=P.share.toFixed(1)+"%"; $("b-fl").style.width=Math.min(100,P.share/51*100)+"%";}
+
+function seal(name,big){
+  var ch=(name||"?").charAt(0),h=0;
+  for(var i=0;i<name.length;i++)h=(h*33+name.charCodeAt(i))|0; h=Math.abs(h);
+  var rot=(h%9)-4;
+  return '<svg viewBox="0 0 100 100" width="100%" height="100%"><g transform="rotate('+rot+' 50 50)">'
+   +'<rect x="9" y="9" width="82" height="82" fill="rgba(180,52,42,.07)" stroke="#B4342A" stroke-width="'+(big?3.2:2.6)+'"/>'
+   +'<rect x="16" y="16" width="68" height="68" fill="none" stroke="#B4342A" stroke-width="0.9" opacity=".5"/>'
+   +'<text x="50" y="51" text-anchor="middle" dominant-baseline="central" font-family="Gowun Batang, serif" '
+   +'font-weight="700" font-size="42" fill="#D9584B">'+ch+'</text></g></svg>';
+}
+
+/* ── 연대기 ───────────────────────────────────── */
+function map(){
+  var acc=(P.right+P.wrong)?Math.round(P.right/(P.right+P.wrong)*100):0;
+  $("m-mt").innerHTML="진행 <b>"+P.done.length+"</b>/"+EPS.length+" · 정답률 <b>"+acc+"%</b> · 정답 "+P.right+" / 오답 "+P.wrong+" · 문항 170";
+  $("fn").textContent=P.frag.length?"("+P.frag.length+")":"";
+  var h="";
+  ACTS.forEach(function(a,ai){
+    h+='<div class="act"><div class="atag"><span class="n">'+a.n+'</span><h3>'+a.t+'</h3><div class="r"></div></div><div class="eps">';
+    EPS.forEach(function(e,ei){
+      if(e.act!==ai)return;
+      var lk=!op(ei),dn=cl(e.code);
+      h+='<button class="ep'+(lk?" locked":"")+(dn?" done":"")+'" data-i="'+ei+'"'+(lk?" disabled":"")+'>'
+       +'<span class="no">'+(ei+1<10?"0":"")+(ei+1)+'</span><span class="bd">'
+       +'<span class="t">'+(lk?"???":e.title.split("·")[1].trim())+'</span>'
+       +'<span class="s">'+(lk?"이전 화를 넘겨야 열린다":(e.foe.n+" · "+e.foe.r+"<br>지분 "+e.share.toFixed(1)+"%"+(e.actPool?" · 막보스(전 범위)":"")))+'</span>'
+       +'</span>'+(dn?'<span class="st">'+seal("印")+'</span>':'')+'</button>';
+    });
+    h+='</div>';
+    if(P.inter.indexOf(ai)>=0) h+='<button class="ep inter" data-x="'+ai+'"><span class="no">막간</span>'
+      +'<span class="bd"><span class="t">'+INTER[ai].t+'</span><span class="s">막이 끝나고 벌어진 일 · 다시 보기</span></span></button>';
+    h+='</div>';
+  });
+  $("m-body").innerHTML=h;
+  Array.prototype.forEach.call($("m-body").querySelectorAll(".ep.inter"),function(el){
+    el.addEventListener("click",function(ev){ev.stopPropagation();replayInter(+el.dataset.x);});});
+  Array.prototype.forEach.call($("m-body").querySelectorAll(".ep:not(.locked)"),function(el){
+    el.addEventListener("click",function(){ep(+el.dataset.i);});});
+  show("s-map");
+}
+
+/* ── 소설 ─────────────────────────────────────── */
+function play(lines,title,end){
+  NV={l:lines,i:-1,end:end,typing:false,log:[]};
+  $("chost").innerHTML=""; $("dlog").innerHTML="";
+  show("s-novel");
+  if(title){
+    $("ccard").innerHTML='<div class="ccard"><div class="n">'+(title.n||"")+'</div><div class="t">'+title.t+'</div></div>';
+    $("nstage").classList.add("hide");
+    setTimeout(function(){$("ccard").innerHTML="";$("nstage").classList.remove("hide");stp();},1700);
+  } else { $("ccard").innerHTML=""; $("nstage").classList.remove("hide"); stp(); }
+}
+function stp(){
+  if(!NV)return;
+  if(NV.typing){clearInterval(typer);NV.typing=false;$("ln").textContent=NV.full;$("nx").style.display="block";return;}
+  NV.i++;
+  if(NV.i>=NV.l.length){var f=NV.end;NV=null;f();return;}
+  var w=NV.l[NV.i][0],t=NV.l[NV.i][1];
+  if(w==="*")w=HERO;
+  var nr=(w==="");
+  if(NV.i>0){
+    var pw=NV.l[NV.i-1][0]; if(pw==="*")pw=HERO;
+    NV.log.push((pw?"<b>"+pw+"</b> · ":"")+NV.l[NV.i-1][1]);
+    $("dlog").innerHTML=NV.log.slice(-6).map(function(x){return "<div>"+x+"</div>";}).join("");
+    $("dlog").scrollTop=$("dlog").scrollHeight;
+  }
+  $("who").className="who"+(nr?" nr":""); $("who").textContent=nr?"독백":w;
+  $("ln").className="ln"+(nr?" nr":"");
+  $("pt").innerHTML=nr?seal("獨",true):portrait(w,"calm");
+  $("pt").classList.toggle("speak",!nr); $("pt").classList.toggle("narr",nr);
+  $("ptn").textContent=nr?"":w;
+  $("ptr").textContent=(nr||!chr(w))?"":chr(w).r;
+  if(!nr&&CHARS[w]&&P.met.indexOf(w)<0){P.met.push(w);}
+  NV.full=t; NV.typing=true; $("nx").style.display="none";
+  var n=0; $("ln").textContent=""; clearInterval(typer);
+  typer=setInterval(function(){n++;$("ln").textContent=t.slice(0,n);
+    if(n>=t.length){clearInterval(typer);NV.typing=false;$("nx").style.display="block";}},24);
+}
+
+/* ── 에피소드 ─────────────────────────────────── */
+function ep(i){ var e=EPS[i]; play(e.scenes,{n:ACTS[e.act].n,t:e.title},function(){choice(i);}); }
+function choice(i){
+  var c=EPS[i].choice;
+  var h='<div class="cbx"><div class="q">'+c.q+'</div><div class="copts">';
+  c.o.forEach(function(o,k){h+='<button class="copt" data-k="'+k+'">'+o[0]+'<small>'+o[2]+'</small></button>';});
+  h+='</div></div>';
+  $("chost").innerHTML=h; $("nx").style.display="none";
+  Array.prototype.forEach.call($("chost").querySelectorAll(".copt"),function(el){
+    el.addEventListener("click",function(){brief(i,c.o[+el.dataset.k][1]);});});
+}
+function brief(i,buff){
+  var e=EPS[i];
+  lastBrief={i:i,buff:buff};
+  var codes = e.actPool ? QBANK.filter(function(s){return s.ch===e.act;}).map(function(s){return s.code;}) : [e.code];
+  $("br-t").textContent="미래 기억 열람";
+  $("br-s").innerHTML = e.actPool
+    ? ACTS[e.act].n+" 전 범위 · 막보스전 대비"
+    : BANK[e.code].code.replace(/_/g,".")+" "+BANK[e.code].name+" · "+new Array(BANK[e.code].star+1).join("★");
+  var h="";
+  codes.forEach(function(c){
+    if(codes.length>1) h+='<div class="bi" style="grid-column:1/-1;border-left-color:var(--seal)"><span>■</span><div><b>'+c.replace(/_/g,".")+" "+BANK[c].name+'</b></div></div>';
+    (SUM[c]||[]).forEach(function(x,k){ h+='<div class="bi"><span>'+(k+1<10?"0":"")+(k+1)+'</span><div>'+x+'</div></div>'; });
+  });
+  var fc=FACT[e.actPool?e.code:e.code];
+  if(fc) h+='<div class="bi fact" style="grid-column:1/-1"><span>實</span><div><b>현실 각주</b> — '+fc+'</div></div>';
+  var al=allies();
+  h='<div class="bi" style="grid-column:1/-1;border-left-color:var(--jade)"><span>◈</span><div>'
+   +'맹우 <b>'+al.m+'명</b> · 우호 <b>'+al.u+'명</b> — 설전 시작 시 신뢰 +'+Math.min(25,5*al.m)+', 정보력 +'+(3*al.u)+'</div></div>'+h;
+  $("br-body").innerHTML=h;
+  show("s-brief");
+}
+$("br-go").addEventListener("click",function(){ if(lastBrief) duel(lastBrief.i,lastBrief.buff); });
+
+function shf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+function duel(i,buff,fm){
+  var e=fm?null:EPS[i],pool,foe,tm;
+  if(fm){ pool=shf(P.frag.map(findQ).filter(Boolean)); foe={n:"과거의 나",r:"지하 3층의 파견직",hp:115}; tm=20; }
+  else{
+    if(e.actPool){ pool=[]; QBANK.forEach(function(s){ if(s.ch===e.act) pool=pool.concat(s.qs); }); pool=shf(pool); }
+    else pool=shf(BANK[e.code].qs);
+    foe=e.foe; tm=e.foe.t;
+  }
+  G={i:i,fm:!!fm,foe:foe,fhp:foe.hp,fmx:foe.hp,pool:pool,pi:0,streak:0,best:0,locked:false,
+     hp:maxT(),mp:60,tmax:tm,t:tm,right:0,wrongN:0,gained:0,free:0,hint:false,bonus:1,
+     phase:1,kind:buff,tbase:tm};
+  var al=allies();
+  G.hp=Math.min(maxT()+25, G.hp+Math.min(25,5*al.m));
+  G.mp=Math.min(100, G.mp+3*al.u);
+  if(!fm&&CHARS[foe.n]&&P.met.indexOf(foe.n)<0)P.met.push(foe.n);
+  if(buff==="mp")G.mp=100;
+  if(buff==="hp")G.hp=maxT();
+  if(buff==="cut")G.free=3;
+  if(buff==="share"){G.bonus=1.3;G.hp=Math.max(30,maxT()-20);}
+  pf();pm();nq();show("s-duel");
+}
+function mood(){ var r=G.fhp/G.fmx; return r<=0?"down":r<=0.33?"shaken":r<=0.66?"angry":"calm"; }
+function pf(){ $("f-p").innerHTML=portrait(G.foe.n,mood()); $("f-n").textContent=G.foe.n; $("f-r").textContent=G.foe.r;
+  $("f-hp").style.width=Math.max(0,G.fhp/G.fmx*100)+"%"; }
+function ml(){return G.streak>=5?2.0:G.streak>=3?1.5:G.streak>=2?1.2:1.0;}
+function pm(){
+  $("m-n").innerHTML=HERO+' <i>'+rank()+'</i>';
+  $("m-hp").style.width=Math.max(0,G.hp/maxT()*100)+"%"; $("m-hpv").textContent=Math.max(0,G.hp)+" / "+maxT();
+  $("m-mp").style.width=G.mp+"%"; $("m-mpv").textContent=G.mp+" / 100";
+  $("m-xp").style.width=Math.min(100,P.exp/needX()*100)+"%"; $("m-xpv").textContent=P.exp+" / "+needX();
+  var m=$("m-mo"); m.textContent=G.streak>=2?"기세 ×"+G.streak+" · 설득력 "+Math.round(ml()*100)+"%":"";
+  m.classList.toggle("hot",G.streak>=4);
+  var C=[{k:"cut",n:"미래 기억",d:(G.free>0?"무료 "+G.free+"회":"오답 2개 소거"),c:(G.free>0?0:25)},
+         {k:"hint",n:"통찰",d:"핵심 힌트",c:30},
+         {k:"heal",n:"인맥",d:"신뢰 +40",c:40},
+         {k:"time",n:"시간 끌기",d:"제한 +15초",c:20}];
+  $("cds").innerHTML=C.map(function(s){var d=G.mp<s.c||G.locked;
+    return '<button class="cd" data-k="'+s.k+'"'+(d?" disabled":"")+'><b>'+s.n+'</b><i>'+s.d+(s.c?" · "+s.c:"")+'</i></button>';}).join("");
+  Array.prototype.forEach.call($("cds").querySelectorAll(".cd"),function(el){
+    el.addEventListener("click",function(){card(el.dataset.k);});});
+}
+function nq(){
+  if(G.phase===3){ G.hp-=4; }
+  if(G.pi>=G.pool.length){G.pool=shf(G.pool);G.pi=0;}
+  G.q=G.pool[G.pi++];G.cut=[];G.hint=false;G.locked=false;$("jd").innerHTML="";
+  $("q-tg").textContent=G.q.stage.replace(/_/g,".")+" · "+G.q.sname+" · 제"+G.phase+"국면"+(G.phase===3?" · 압박":"");
+  $("q-q").textContent=G.q.q; dop(); tmr(); pm();
+}
+function dop(){
+  var K=["①","②","③","④"];
+  $("q-o").innerHTML=G.q.c.map(function(t,i){var f=G.cut.indexOf(i)>=0;
+    return '<button class="opt'+(f?" f":"")+'" data-i="'+i+'"'+(f||G.locked?" disabled":"")+'><span class="k">'+K[i]+'</span><span>'+t+'</span></button>';}).join("");
+  Array.prototype.forEach.call($("q-o").querySelectorAll(".opt"),function(el){
+    el.addEventListener("click",function(){ans(+el.dataset.i);});});
+}
+function tmr(){clearInterval(tick);G.t=G.tmax;pt();
+  tick=setInterval(function(){G.t--;pt();if(G.t<=0){clearInterval(tick);ans(-1);}},1000);}
+function pt(){var b=$("tmb");b.style.width=Math.max(0,G.t/G.tmax*100)+"%";b.classList.toggle("wn",G.t<=6);}
+function card(k){
+  if(G.locked)return;
+  var c={cut:25,hint:30,heal:40,time:20}[k]; if(k==="cut"&&G.free>0)c=0;
+  if(G.mp<c)return; G.mp-=c;
+  if(k==="cut"){ if(c===0)G.free--;
+    var a=[];for(var i=0;i<4;i++)if(i!==G.q.a&&G.cut.indexOf(i)<0)a.push(i);
+    G.cut=G.cut.concat(shf(a).slice(0,2)); dop(); }
+  else if(k==="hint"){G.hint=true;$("jd").innerHTML='<div class="jd"><div class="h o">통찰</div><p>'+G.q.e.split(".")[0]+'…</p></div>';}
+  else if(k==="heal"){G.hp=Math.min(maxT(),G.hp+40);}
+  else if(k==="time"){G.t+=15;pt();}
+  pm();
+}
+function ans(pick){
+  if(G.locked)return; G.locked=true; clearInterval(tick);
+  var K=["①","②","③","④"],ok=(pick===G.q.a);
+  Array.prototype.forEach.call($("q-o").querySelectorAll(".opt"),function(el){
+    var i=+el.dataset.i;el.disabled=true;
+    if(i===G.q.a)el.classList.add("o"); else if(i===pick)el.classList.add("x");});
+  var h;
+  if(ok){
+    G.right++;P.right++;G.streak++;if(G.streak>G.best)G.best=G.streak;
+    var fs=G.t/G.tmax, cr=(fs>=0.65&&G.streak>=3);
+    var d=Math.round(pow()*ml()*(1+fs*0.4)*(cr?1.6:1)*(G.hint?0.75:1));
+    G.fhp-=d; G.mp=Math.min(100,G.mp+10); P.exp+=12; G.gained+=12;
+    pop("-"+d,cr?"#F0C25C":"#FFE0A0"); fl();
+    if(G.fm){var x=P.frag.indexOf(G.q.id);if(x>=0)P.frag.splice(x,1);}
+    h='<div class="jd"><div class="h o">정곡 · 설득력 '+d+(cr?"  ◆ 회심의 일격":"")+(ml()>1?"  (기세 ×"+G.streak+")":"")+'</div>'
+      +'<p>'+G.q.e+'</p><button class="btn go" id="b-go">계속</button></div>';
+  } else {
+    G.wrongN++;P.wrong++;G.streak=0;
+    var dm=Math.round(G.fmx*0.13); G.hp-=dm;
+    if(P.frag.indexOf(G.q.id)<0)P.frag.push(G.q.id);
+    pop("-"+dm,"#F08A80");
+    $("foe").classList.add("sk"); setTimeout(function(){$("foe").classList.remove("sk");},320);
+    h='<div class="jd"><div class="h x">'+(pick<0?"침묵":"반박당했다")+' · 신뢰 -'+dm+'</div>'
+      +'<div class="rl">「'+G.foe.n+'」 … 그것도 모르고 여기 앉아 계셨습니까.</div>'
+      +'<p><b>정답: '+K[G.q.a]+" "+G.q.c[G.q.a]+'</b><br>'+G.q.e+'</p><button class="btn go" id="b-go">계속</button></div>';
+  }
+  var r=G.fhp/G.fmx, np=r<=0.33?3:r<=0.66?2:1;
+  if(np>G.phase&&G.fhp>0){
+    G.phase=np; G.tmax=Math.max(11,G.tbase-(np-1)*3);
+    var pl=(PHASE[G.foe.n]||["",""])[np-2]||"";
+    h+='<div class="jd" style="border-left-color:var(--seal);margin-top:9px"><div class="h x">국면 전환 · 제'+np+'국면 '
+      +(np===2?"— 제한시간 단축":"— 제한시간 단축 · 매 턴 신뢰 소모")+'</div><div class="rl">「'+G.foe.n+'」 '+pl+'</div></div>';
+  }
+  $("jd").innerHTML=h; pf(); pm();
+  $("b-go").addEventListener("click",turn); save();
+}
+function turn(){ if(G.hp<=0){fin(false);return;} if(G.fhp<=0){fin(true);return;} nq(); }
+function pop(t,c){var d=document.createElement("div");d.className="pop";d.textContent=t;d.style.color=c;
+  $("foe").appendChild(d);setTimeout(function(){if(d.parentNode)d.parentNode.removeChild(d);},1000);}
+function fl(){var p=$("f-p");p.classList.add("hit");setTimeout(function(){p.classList.remove("hit");},160);}
+
+function fin(win){
+  clearInterval(tick);
+  var lv0=P.lv,e=G.fm?null:EPS[G.i];
+  P.exp+=win?55:0; G.gained+=win?55:0;
+  while(P.exp>=needX()){P.exp-=needX();P.lv++;}
+  var got=0;
+  if(win&&e&&!cl(e.code)){got=Math.round(e.share*G.bonus*10)/10;P.share+=got;P.done.push(e.code);}
+  if(!G.fm){ bumpRel(G.foe.n, win?1:-1); if(G.kind==="hp")bumpRel(G.foe.n,1); if(G.kind==="share")bumpRel(G.foe.n,-1); }
+  save();
+  var ln=G.fm
+    ?(win?[["","지하 3층의 내가 웃었다."],["*","…이제 됐다. 넌 여기 두고 간다."]]
+         :[["","과거의 내가 고개를 저었다."],["","아직 그때의 나를 이길 수 없다."]])
+    :(win?e.win:e.lose);
+  var st={win:win,got:got,lv0:lv0,r:G.right,w:G.wrongN,best:G.best,fm:G.fm,i:G.i,fact:(e?FACT[e.code]:null),
+          last:(e&&e.code==="4_2_3"&&win)};
+  var iv=(win&&e&&e.actPool&&INTER[e.act]&&P.inter.indexOf(e.act)<0)?e.act:-1;
+  play(ln,null,function(){
+    if(iv>=0){ P.inter.push(iv); save();
+      play(INTER[iv].s,{n:"막간",t:INTER[iv].t},function(){res(st);}); }
+    else res(st);
+  });
+}
+function res(st){
+  var acc=(st.r+st.w)?Math.round(st.r/(st.r+st.w)*100):0;
+  var gr=acc>=95?"S":acc>=85?"A":acc>=70?"B":acc>=55?"C":"D";
+  var h='<div class="st">'+seal(st.win?"合":"否",true)+'</div>'
+   +'<h2 class="'+(st.win?"w":"l")+'">'+(st.win?"설전 승":"설전 패")+'</h2>'
+   +'<p class="sb">'+(st.win?"상대의 논리 방어선이 무너졌다.":"신뢰를 잃었다. 이 판은 다시 짜야 한다.")+'</p>'
+   +(P.lv>st.lv0?'<div class="pm">◈ 승진 — '+rank()+" (Lv."+P.lv+") · 신뢰 "+maxT()+" · 설득력 "+pow()+'</div>':"")
+   +'<dl class="tal"><dt>정답 / 오답</dt><dd>'+st.r+" / "+st.w+'</dd>'
+   +'<dt>정답률</dt><dd>'+acc+"% ("+gr+')</dd>'
+   +'<dt>최대 기세</dt><dd>'+st.best+'</dd>'
+   +'<dt>획득 지분</dt><dd>'+(st.got?"+"+st.got.toFixed(1)+"%":"—")+'</dd>'
+   +'<dt>누적 지분</dt><dd>'+P.share.toFixed(1)+'%</dd>'
+   +'<dt>기억의 파편</dt><dd>'+P.frag.length+'개</dd></dl>';
+  if(st.fact) h+='<div class="factbox"><span>實</span><div><b>현실 각주</b><br>'+st.fact+'</div></div>';
+  if(st.last){
+    var a=(P.right+P.wrong)?P.right/(P.right+P.wrong)*100:0;
+    h+='<p class="sb" style="color:var(--gold);font-family:var(--disp);font-size:16px">— 완결 —<br>최종 정답률 '
+      +Math.round(a)+"% · "+(a>=95?"S · 회장":a>=85?"A · 부회장":a>=70?"B · 전무":a>=55?"C · 이사":"D · 부장")+'</p>';
+  }
+  h+='<div class="row rowc"><button class="btn key" id="r-a">다시</button>'
+   +(st.win&&!st.fm&&st.i+1<EPS.length&&op(st.i+1)?'<button class="btn" id="r-n">다음 화</button>':"")
+   +'<button class="btn" id="r-m">연대기</button>'
+   +(P.frag.length?'<button class="btn" id="r-f">기억의 파편</button>':"")+'</div>';
+  $("r-body").innerHTML=h;
+  $("r-a").addEventListener("click",function(){st.fm?duel(-1,null,true):ep(st.i);});
+  if($("r-n"))$("r-n").addEventListener("click",function(){ep(st.i+1);});
+  $("r-m").addEventListener("click",map);
+  if($("r-f"))$("r-f").addEventListener("click",frag);
+  show("s-res");
+}
+
+/* ── 파편 / 요약 ──────────────────────────────── */
+function frag(){
+  $("fr-s").textContent=P.frag.length?P.frag.length+"개의 실책이 남아 있다. 회상 설전에서 맞히면 사라진다.":"";
+  $("b-frd").disabled=P.frag.length<2;
+  $("fr-body").innerHTML=P.frag.length?P.frag.map(function(id){var q=findQ(id);if(!q)return"";
+    return '<div class="frg"><div class="c">'+q.stage.replace(/_/g,".")+" · "+q.sname+'</div><div class="q">'+q.q
+      +'</div><div class="a">정답 — '+q.c[q.a]+'</div><div class="e">'+q.e+'</div></div>';}).join("")
+    :'<div class="blank">아직 아무것도 놓치지 않았다.</div>';
+  show("s-frag");
+}
+function sums(){
+  var h="";
+  QBANK.forEach(function(s){
+    h+='<div class="sumsec"><h4>'+s.code.replace(/_/g,".")+" "+s.name+" · "+new Array(s.star+1).join("★")+'</h4><div class="bgrid">';
+    (SUM[s.code]||[]).forEach(function(x,k){h+='<div class="bi"><span>'+(k+1<10?"0":"")+(k+1)+'</span><div>'+x+'</div></div>';});
+    h+='</div></div>';
+  });
+  $("sum-body").innerHTML=h; show("s-sum");
+}
+
+function replayInter(i){ play(INTER[i].s,{n:"막간",t:INTER[i].t},map); }
+function who(){
+  var list=Object.keys(CHARS).filter(function(n){return n==="진도윤"||P.met.indexOf(n)>=0;});
+  $("wh-s").textContent=list.length+"명 · 온건한 선택과 승리는 관계를 올리고, 강경한 선택과 패배는 내린다";
+  $("wh-body").innerHTML=list.length?('<div class="whg">'+list.map(function(n){
+    var c=CHARS[n],v=(P.rel&&P.rel[n])||0;
+    return '<div class="wc"><div class="wp">'+portrait(n,v<=-2?"angry":v>=2?"calm":"calm")+'</div>'
+      +'<div class="wi"><div class="wn">'+n+'</div><div class="wr">'+c.r+'</div>'
+      +'<div class="wl" style="color:'+relColor(v)+'">관계 · '+relLabel(v)+' ('+(v>0?"+":"")+v+')</div>'
+      +'<div class="wd">'+c.p+'</div></div></div>';
+  }).join("")+'</div>'):'<div class="blank">아직 아무도 만나지 않았다.</div>';
+  show("s-who");
+}
+$("b-who").addEventListener("click",who);
+$("b-whb").addEventListener("click",map);
+
+/* ── 부트 ─────────────────────────────────────── */
+function enter(){
+  if(!P.seenPro){P.seenPro=true;save();play(PROLOGUE,{n:"프롤로그",t:"회귀"},map);}
+  else map();
+}
+$("b-new").addEventListener("click",function(){P.seenPro=false;enter();});
+$("b-cont").addEventListener("click",map);
+$("b-wipe").addEventListener("click",function(){P.lv=1;P.exp=0;P.share=0;P.done=[];P.frag=[];P.right=0;P.wrong=0;P.seenPro=false;P.rel={};P.met=[];P.inter=[];save();
+  $("b-wipe").textContent="삭제됨";setTimeout(function(){$("b-wipe").textContent="기록 삭제";},1500);});
+$("go-map").addEventListener("click",function(){clearInterval(tick);clearInterval(typer);NV=null;map();});
+$("b-title").addEventListener("click",function(){show("s-title");});
+$("b-frag").addEventListener("click",frag);
+$("b-frb").addEventListener("click",map);
+$("b-frd").addEventListener("click",function(){duel(-1,null,true);});
+$("b-sum").addEventListener("click",sums);
+$("b-sumb").addEventListener("click",map);
+$("b-flee").addEventListener("click",function(){clearInterval(tick);map();});
+$("b-brief2").addEventListener("click",function(){if(lastBrief)brief(lastBrief.i,lastBrief.buff);});
+$("dbox").addEventListener("click",function(){if(NV)stp();});
+document.addEventListener("keydown",function(ev){
+  if(!$("s-novel").classList.contains("hide")){
+    if((ev.key==="Enter"||ev.key===" ")&&NV){ev.preventDefault();stp();} return; }
+  if($("s-duel").classList.contains("hide"))return;
+  if(["1","2","3","4"].indexOf(ev.key)>=0&&!G.locked)ans(+ev.key-1);
+  else if((ev.key==="Enter"||ev.key===" ")&&G.locked){var b=$("b-go");if(b){ev.preventDefault();b.click();}}
+});
+load(function(){bar(); var ha=document.getElementById("heroart"); if(ha) ha.innerHTML=portrait("진도윤","calm");});
+
+})();
+</script>
